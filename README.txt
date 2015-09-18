@@ -1,0 +1,1 @@
+This repository contains all my work for CS5610 - Web Development course Fall 2015 NEU Seattle.

@@ -111,3 +111,7 @@ span.glyphicon {
 span.glyphicon.glyphicon-triangle-bottom {
     font-size: 0.8em;
 }
+
+.allicons{
+    float:right;
+}

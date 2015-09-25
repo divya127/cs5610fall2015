@@ -103,3 +103,11 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+span.glyphicon {
+    font-size: 2em;
+}
+
+span.glyphicon.glyphicon-triangle-bottom {
+    font-size: 0.8em;
+}

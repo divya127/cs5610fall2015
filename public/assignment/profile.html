@@ -36,8 +36,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">Login</a></li>
                 <li><a href="#">Username</a></li>
                 <li><a href="#">Logout</a></li>
             </ul>
@@ -57,11 +55,33 @@
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Welcome!</h1>
+            <h1 class="page-header">Profile</h1>
+            <form class="form-horizontal" action="profile.html">
+                <div class="form-group">
+                    <label for="userName">Username:</label>
+                    <input id="userName" type="text" class="form-control" placeholder="star123">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
+                    <input id="pwd" type="password" class="form-control" placeholder="********">
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input id="firstName" type="text" class="form-control" placeholder="Jane or Ram">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input id="lastName" type="text" class="form-control" placeholder="Smith or Williams">
+                </div>
+                <div class="form-group">
+                    <label for="mail">Email:</label>
+                    <input id="mail" type="email" class="form-control" placeholder="yourname@gmail.com">
+                </div>
+                <div class="form-group">
+                    <button id="submit" type="submit" class="btn btn-info form-control">Update</button>
+                </div>
+            </form>
 
-            <span class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </span>
         </div>
     </div>
 </div>

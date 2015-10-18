@@ -5,9 +5,18 @@
 		.config(function($routeProvider)
 		{
 			$routeProvider
-				.when("/courses",
+				.when("/header",
 				{
-					templateUrl: "courses/courses.view.html"
+					templateUrl: "header/header.view.html",
+                    controller: "HeaderController"
 				})
+				.when("/sidebar",
+                {
+                    templateUrl: "sidebar/sidebar.view.html",
+                    controller: "SidebarController"
+                })
+                .otherwise({
+                    redirectTo: "index"
+                  })
 		});
 })();

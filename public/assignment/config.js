@@ -5,18 +5,17 @@
 		.config(function($routeProvider)
 		{
 			$routeProvider
-				.when("/header",
+				.when("/home",
 				{
-					templateUrl: "header/header.view.html",
-                    controller: "HeaderController"
+					templateUrl: "home/home.view.html"
 				})
-				.when("/sidebar",
+				.when("/login",
                 {
-                    templateUrl: "sidebar/sidebar.view.html",
-                    controller: "SidebarController"
+                    templateUrl: "login/login.view.html",
+                    controller: "LoginController"
                 })
                 .otherwise({
-                    redirectTo: "index"
+                    redirectTo: "/home"
                   })
 		});
 })();

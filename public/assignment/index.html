@@ -11,11 +11,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.0/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="MainController.js"></script>
+    <script src="/service/UserService.js"></script>
+    <script src="/service/FormService.js"></script>
     <script src="/header/header.controller.js"></script>
+    <script src="/login/login.controller.js"></script>
     <link rel="stylesheet" href="../../css/dashboard.css">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
-<body>
-<H1> Assignment Home Page </H1>
+<body ng-controller="MainController">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div ng-include="'/header/header.view.html'"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <div ng-include="'/sidebar/sidebar.view.html'"></div>
+        </div>
+        <div class="col-sm-10" ng-view>
+        </div>
+    </div>
+</div>
 </body>
 </html>

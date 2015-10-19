@@ -1,5 +1,5 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Register</h1>
+    <h1 class="page-header">Profile</h1>
     <form class="form-horizontal" action="profile.html">
         <div class="form-group">
             <label for="userName">Username:</label>
@@ -10,15 +10,19 @@
             <input id="pwd" ng-model="pwd" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="form-group">
-            <label for="verifypwd">Verify Password:</label>
-            <input id="verifypwd" ng-model=""verifypwd" type="password" class="form-control" placeholder="Verify Password">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" ng-model="firstName" type="text" class="form-control" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" ng-model="lastName" type="text" class="form-control" placeholder="Last Name">
         </div>
         <div class="form-group">
             <label for="mail">Email:</label>
-            <input id="mail" ng-model="email" type="email" class="form-control" placeholder="Email">
+            <input id="mail" ng-model="mail" type="email" class="form-control" placeholder="Email">
         </div>
         <div class="form-group">
-            <button id="submit" ng-click="register()" type="submit" class="btn btn-warning form-control">Register</button>
+            <button id="submit" ng-click="update()" type="submit" class="btn btn-info form-control">Update</button>
         </div>
     </form>
 

@@ -3,13 +3,17 @@
              .module("FormBuilderApp")
              .controller("RegisterController", RegisterController);
 
-         function RegisterController($scope, UserService) {
+         function RegisterController($scope, UserService, $location) {
 
-             $rootScope = UserService.findUserByUsernameAndPassword();
+             $scope.allUsers = UserService.findAllUsers();
 
-             $scope.login = function(index) {
-                 console.log(index);
-                 $scope.courses.splice(index, 1);
-             }
+
+             var username = $scope.userName;
+             var password = $scope.pwd;
+             var email = $scope.email;
+             alert(email);
+
+             $scope.register = UserService.createUser(username, password, email);
+             $scope$location.url("/profile")
          }
      })();

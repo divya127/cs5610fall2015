@@ -22,13 +22,6 @@
             {username: "admin", password: "admin", id: id2, email: "admin@gmail.com", firstName: "admin", lastName: "admin"}
         ];
 
-        var courses = [
-                    {title: "Java 101", seats: 12, start: new Date()},
-                    {title: "Node.js 101", seats: 12, start: new Date()},
-                    {title: "C# 101", seats: 12, start: new Date()},
-                    {title: "ASP.NET 101", seats: 12, start: new Date()},
-                ];
-
         var service = {
             findAllUsers: findAllUsers,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -52,44 +45,39 @@
         }
 
         function findUserByUsernameAndPassword(username, password) {
-            for(var i = 0; i < allUsers.length; i++) {
-                    var user = allUsers[i];
-                    var attrUserName = user[username];
-                    var attrPwd = user[password];
-                    if(attrUserName == username && attrPwd == password) {
-                        return user;
-                        //callback(user);
-                    }
+            for(var user in allUsers) {
+                if(allUsers[user].username.localeCompare(username) == 0 && allUsers[user].password.localeCompare(password) == 0) {
+                    console.log("Found user!");
+                    return allUsers[user];
+                    //callback(user);
                 }
+            }
             return null;
             //callback(null);
         }
 
-        function deleteUserById(userId, callback) {
-            for(var i = 0; i < allUsers.length; i++) {
-                var user = allUsers[i];
-                var attrId = user[id];
-                if(attrId == userId) {
+        function deleteUserById(userId) {
+            for(var user in allUsers) {
+                if(allUsers[user].id.localeCompare(userId) == 0) {
                     allUsers.splice(userId, 1);
                 }
             }
-            callback(allUsers);
+           // callback(allUsers);
         }
 
-        function updateUser(userId, userObj, callback) {
-            for(var i = 0; i < allUsers.length; i++) {
-                var user = allUsers[i];
-                var attrId = user[id];
-                if(attrId == userId) {
-                    user[username] = userObj.username;
-                    user[password] = userObj.password;
-                    user[email] = userObj.email;
-                    user[firstName] = userObj.firstName;
-                    user[lastName] = userObj.lastName;
-                    callback(user);
+        function updateUser(userId, userObj) {
+            for(var user in allUsers) {
+               if(allUsers[user].id.localeCompare(userId) == 0) {
+                    allUsers[user].username = userObj.username;
+                    allUsers[user].password = userObj.password;
+                    allUsers[user].email = userObj.email;
+                    allUsers[user].firstName = userObj.firstName;
+                    allUsers[user].lastName = userObj.lastName;
+                    return allUsers[user];
+                    //callback(user);
                 }
             }
-            callback(userObj);
+            //callback(userObj);
         }
     }
 })();

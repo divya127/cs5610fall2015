@@ -3,11 +3,11 @@
     <form class="form-horizontal" action="profile.html">
         <div class="form-group">
             <label for="userName">Username:</label>
-            <input id="userName" ng-model="userName" type="text" class="form-control" placeholder="Username">
+            <input id="userName" ng-model="user.username" type="text" class="form-control" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-            <input id="pwd" ng-model="pwd" type="password" class="form-control" placeholder="Password">
+            <input id="pwd" ng-model="user.pwd" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="firstName">First Name:</label>
@@ -19,12 +19,10 @@
         </div>
         <div class="form-group">
             <label for="mail">Email:</label>
-            <input id="mail" ng-model="mail" type="email" class="form-control" placeholder="Email">
+            <input id="mail" ng-model="user.email" type="email" class="form-control" placeholder="Email">
         </div>
         <div class="form-group">
             <button id="submit" ng-click="update()" type="submit" class="btn btn-info form-control">Update</button>
         </div>
     </form>
-    {{allUsers}}
-
 </div>

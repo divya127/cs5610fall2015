@@ -7,13 +7,13 @@
 
              $scope.allUsers = UserService.findAllUsers();
 
+             $scope.register = function(){
+                                var newUser = UserService.createUser($scope.user.username, $scope.user.pwd, $scope.user.email);
+                                $scope.user.username = newUser.username;
+                                $scope.user.pwd = newUser.pwd;
+                                $scope.user.email = newUser.email;
+                                $scope.$location.url("/profile");
+                               }
 
-             var username = $scope.userName;
-             var password = $scope.pwd;
-             var email = $scope.email;
-             alert(email);
-
-             $scope.register = UserService.createUser(username, password, email);
-             $scope$location.url("/profile")
          }
      })();

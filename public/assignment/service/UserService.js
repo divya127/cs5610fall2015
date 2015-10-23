@@ -22,6 +22,13 @@
             {username: "admin", password: "admin", id: id2, email: "admin@gmail.com", firstName: "admin", lastName: "admin"}
         ];
 
+        var courses = [
+                    {title: "Java 101", seats: 12, start: new Date()},
+                    {title: "Node.js 101", seats: 12, start: new Date()},
+                    {title: "C# 101", seats: 12, start: new Date()},
+                    {title: "ASP.NET 101", seats: 12, start: new Date()},
+                ];
+
         var service = {
             findAllUsers: findAllUsers,
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -31,27 +38,31 @@
         };
         return service;
 
-        function createUser(username, password, email, callback) {
+        function createUser(username, password, email) {
             var id = uniqueId();
             var newUser = {username: username, password: password, id: id , email: email};
             allUsers.push(newUser);
-            callback(newUser);
+            return newUser;
+            //callback(newUser);
         }
 
-        function findAllUsers(callback) {
-            callback(allUsers);
+        function findAllUsers() {
+            return allUsers;
+           // callback(allUsers);
         }
 
-        function findUserByUsernameAndPassword(username, password, callback) {
+        function findUserByUsernameAndPassword(username, password) {
             for(var i = 0; i < allUsers.length; i++) {
                     var user = allUsers[i];
                     var attrUserName = user[username];
                     var attrPwd = user[password];
                     if(attrUserName == username && attrPwd == password) {
-                        callback(user);
+                        return user;
+                        //callback(user);
                     }
                 }
-            callback(null);
+            return null;
+            //callback(null);
         }
 
         function deleteUserById(userId, callback) {

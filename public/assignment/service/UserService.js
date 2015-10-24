@@ -32,17 +32,15 @@
         };
         return service;
 
-        function createUser(username, password, email) {
+        function createUser(username, password, email, callback) {
             var id = uniqueId();
             var newUser = {username: username, password: password, id: id , email: email};
             allUsers.push(newUser);
-            return newUser;
-            //callback(newUser);
+            callback(newUser);
         }
 
-        function findAllUsers() {
-            return allUsers;
-           // callback(allUsers);
+        function findAllUsers(callback) {
+           callback(allUsers);
         }
 
         function findUserByUsernameAndPassword(username, password, callback) {
@@ -50,24 +48,22 @@
                 if(allUsers[user].username.localeCompare(username) == 0 &&
                 allUsers[user].password.localeCompare(password) == 0) {
                     console.log("Found user!");
-                    //return allUsers[user];
                     callback(allUsers[user]);
                 }
             }
-            //return null;
             callback(null);
         }
 
-        function deleteUserById(userId) {
+        function deleteUserById(userId, callback) {
             for(var user in allUsers) {
                 if(allUsers[user].id.localeCompare(userId) == 0) {
                     allUsers.splice(userId, 1);
                 }
             }
-           // callback(allUsers);
+           callback(allUsers);
         }
 
-        function updateUser(userId, userObj) {
+        function updateUser(userId, userObj, callback) {
             for(var user in allUsers) {
                if(allUsers[user].id.localeCompare(userId) == 0) {
                     allUsers[user].username = userObj.username;
@@ -75,11 +71,10 @@
                     allUsers[user].email = userObj.email;
                     allUsers[user].firstName = userObj.firstName;
                     allUsers[user].lastName = userObj.lastName;
-                    return allUsers[user];
-                    //callback(user);
+                    callback(allUsers[user]);
                 }
             }
-            //callback(userObj);
+            callback(userObj);
         }
     }
 })();

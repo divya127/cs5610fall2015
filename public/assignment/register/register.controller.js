@@ -6,18 +6,29 @@
 
          function RegisterController($scope, UserService, $location, $rootScope) {
 
-             $scope.allUsers = UserService.findAllUsers();
+             UserService.findAllUsers(getAllUsers);
+
+             function getAllUsers(response) {
+                if(response != null) {
+                    $scope.allUsers = response;
+                }
+             }
 
              $scope.register = function($rootScope){
-                var user = UserService.createUser($scope.user.username, $scope.user.pwd, $scope.user.email);
+                var username = $scope.user.userName;
+                var pwd = $scope.user.pwd;
+                var email = $scope.user.email;
+                var user = UserService.createUser(username, pwd, email, callback);
+             }
 
-                $rootScope.curusername = user.username;
-                $rootScope.curpwd = user.password;
-                $rootScope.curid = user.id;
-                $rootScope.curemail = user.email;
-
-                $scope.$location.url("/profile");
-               }
-
+             function callback(response){
+                if(response != null) {
+                    $rootScope.curusername = response.username;
+                    $rootScope.curpwd = response.password;
+                    $rootScope.curid = response.id;
+                    $rootScope.curemail = response.email;
+                    $scope.$location.url("/profile");
+                }
+             }
          }
-     })();
+    })();

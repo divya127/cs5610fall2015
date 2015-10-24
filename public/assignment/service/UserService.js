@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
     angular
         .module("FormBuilderApp")
         .factory("UserService", UserService);
@@ -44,16 +45,17 @@
            // callback(allUsers);
         }
 
-        function findUserByUsernameAndPassword(username, password) {
+        function findUserByUsernameAndPassword(username, password, callback) {
             for(var user in allUsers) {
-                if(allUsers[user].username.localeCompare(username) == 0 && allUsers[user].password.localeCompare(password) == 0) {
+                if(allUsers[user].username.localeCompare(username) == 0 &&
+                allUsers[user].password.localeCompare(password) == 0) {
                     console.log("Found user!");
-                    return allUsers[user];
-                    //callback(user);
+                    //return allUsers[user];
+                    callback(allUsers[user]);
                 }
             }
-            return null;
-            //callback(null);
+            //return null;
+            callback(null);
         }
 
         function deleteUserById(userId) {

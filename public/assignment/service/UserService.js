@@ -16,11 +16,9 @@
             s4() + '-' + s4() + s4() + s4();
         }
 
-        var id1 = uniqueId();
-        var id2 = uniqueId();
         var allUsers = [
-            {username: "divya127", password: "test123", id: id1 , email: "divya@gmail.com", firstName: "Divya", lastName: "Anush"},
-            {username: "admin", password: "admin", id: id2, email: "admin@gmail.com", firstName: "admin", lastName: "admin"}
+            {username: "divya127", password: "test123", id: "123" , email: "divya@gmail.com", firstName: "Divya", lastName: "Anush"},
+            {username: "admin", password: "admin", id: "456", email: "admin@gmail.com", firstName: "admin", lastName: "admin"}
         ];
 
         var service = {
@@ -32,11 +30,10 @@
         };
         return service;
 
-        function createUser(username, password, email, callback) {
-            var id = uniqueId();
-            var newUser = {username: username, password: password, id: id , email: email};
-            allUsers.push(newUser);
-            callback(newUser);
+        function createUser(userObj, callback) {
+            userObj.id = uniqueId();
+            allUsers.push(userObj);
+            callback(userObj);
         }
 
         function findAllUsers(callback) {

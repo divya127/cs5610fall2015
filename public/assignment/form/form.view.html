@@ -31,9 +31,10 @@
             </td>
         </tr>
         </thead>
+        {{forms}}
         <tr ng-repeat="form in forms">
             <td>
-                {{form.name}}
+                {{form.formname}}
             </td>
             <td>
                 <button ng-click="deleteForm($index)">

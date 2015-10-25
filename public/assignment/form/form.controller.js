@@ -4,9 +4,9 @@
              .module("FormBuilderApp")
              .controller("FormController", FormController);
 
-         function RegisterController($scope, UserService, $location, $rootScope, FormService) {
+         function FormController($scope, UserService, $location, $rootScope, FormService) {
 
-             FormService.findAllFormsForUser(userId, getallForms);
+             FormService.findAllFormsForUser($rootScope.curid, getallForms);
              function getallForms(response) {
                 if(response != null) {
                     $scope.forms = response;
@@ -14,27 +14,29 @@
              }
 
              $scope.addForm = function() {
-                var formObj = { };
+                var formObj = { userid: $rootScope.curid, formname: $scope.formname};
                 FormService.createFormForUser($rootScope.curid, formObj, createForm);
              }
+
              function createForm(response) {
                 if(response != null) {
-                    $scope.forms = response;
+                    $scope.currentform = response;
+                    $scope.forms.push($scope.currentform);
                 }
              }
 
              $scope.updateForm = function() {
-                FormService.updateFormById(formId, newForm, updateForm);
+                FormService.updateFormById($scope.currentform.formId, newForm, updateForm);
              }
              function updateForm(response) {
                  if(response != null) {
-                     $scope.forms = response;
+                     $scope.currentform = response;
                  }
              }
 
              $scope.deleteForm = function(index) {
                 var currentForm = $scope.forms[index];
-                 FormService.deleteFormById(currentForm.id, deleteForm);
+                 FormService.deleteFormById(currentForm.formId, $rootScope.curid, deleteForm);
              }
              function deleteForm(response) {
                   if(response != null) {
@@ -47,7 +49,7 @@
              }
              function selectForm(response) {
                   if(response != null) {
-                      $scope.forms = response;
+                      $scope.currentform = response;
                   }
              }
 

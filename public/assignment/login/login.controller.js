@@ -18,6 +18,8 @@
             $rootScope.curpwd = response.password;
             $rootScope.curid = response.id;
             $rootScope.curemail = response.email;
+            $rootScope.firstname = response.firstName;
+            $rootScope.lastname = response.lastName;
             $scope.$location.url("/profile");
             }
         }

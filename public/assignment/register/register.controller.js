@@ -18,7 +18,8 @@
                 var username = $scope.user.userName;
                 var pwd = $scope.user.pwd;
                 var email = $scope.user.email;
-                var user = UserService.createUser(username, pwd, email, callback);
+                var userObj = {username: username, password: pwd , email: email};
+                var user = UserService.createUser(userObj, callback);
              }
 
              function callback(response){

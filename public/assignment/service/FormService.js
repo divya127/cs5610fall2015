@@ -19,8 +19,8 @@
         var id2 = uniqueIdForm();
 
         var forms = [
-            {formId: id1, name: "Registration Form", userid: "ff51fb46-6251-a9ef-79be-7264a076562c"},
-            {formId: id2, name: "Todo List", userid: "3b0d054b-d879-1b72-328a-7ad92d25a5b2"}
+            {formId: id1, formname: "Registration Form", userid: "123"},
+            {formId: id2, formname: "Todo List", userid: "456"}
         ];
 
         var service = {
@@ -32,10 +32,10 @@
         return service;
 
         function createFormForUser(userId, form, callback) {
-            var id = uniqueId();
-            var newForm = {formId: id, name: form.name, userid: userId};
-            forms.push(newForm);
-            callback(newForm);
+            var id = uniqueIdForm();
+            form.formId = id;
+            forms.push(form);
+            callback(form);
         }
 
         function findAllFormsForUser(userId, callback) {
@@ -48,13 +48,20 @@
             callback(formsForUser);
         }
 
-        function deleteFormById(formId, callback) {
-            for(var form in forms) {
-                if(forms[form].formId.localeCompare(formId) == 0) {
-                    forms.splice(formId, 1);
+        function deleteFormById(formId, userId, callback) {
+            var formsForUser = [];
+            for(var formd in forms) {
+                if(forms[formd].formId.localeCompare(formId) == 0 ) {
+                    forms.splice(formd, 1);
                 }
             }
-           callback(forms);
+
+            for(var form in forms) {
+                if(forms[form].userid.localeCompare(userId) == 0) {
+                    formsForUser.push(forms[form]);
+                }
+            }
+           callback(formsForUser);
         }
 
         function updateFormById(formId, newForm, callback) {

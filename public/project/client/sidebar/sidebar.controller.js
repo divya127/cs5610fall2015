@@ -1,7 +1,7 @@
 (function()
 {
     angular
-        .module("FormBuilderApp")
+        .module("AcademiaApp")
         .controller("SidebarController", SidebarController);
 
     function SidebarController($scope, $location)

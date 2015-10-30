@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     angular
-        .module("FormBuilderApp")
+        .module("AcademiaApp")
         .controller("MainController", MainController);
 
     function MainController($scope, $location, $rootScope) {

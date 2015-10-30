@@ -1,11 +1,10 @@
 (function() {
     'use strict';
     angular
-        .module("FormBuilderApp")
+        .module("AcademiaApp")
         .controller("HeaderController", HeaderController);
 
     function HeaderController($scope, $location)
     {
-        $scope.headerHello = "Hello from Header!" ;
     }
 })();

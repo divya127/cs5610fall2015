@@ -24,10 +24,40 @@
                     templateUrl: "profile/profile.view.html",
                     controller: "ProfileController"
                 })
-                .when("/form",
+                .when("/clubs",
                 {
-                    templateUrl: "form/form.view.html",
-                    controller: "FormController"
+                    templateUrl: "profile/club.view.html",
+                    controller: "ClubController"
+                })
+                .when("/skills",
+                {
+                    templateUrl: "profile/skills.view.html",
+                    controller: "SkillsController"
+                })
+                .when("/recommendations",
+                {
+                    templateUrl: "profile/recommendations.view.html",
+                    controller: "RecommendationsController"
+                })
+                .when("/testscores",
+                {
+                    templateUrl: "profile/testscores.view.html",
+                    controller: "TestScoresController"
+                })
+                .when("/projects",
+                {
+                    templateUrl: "profile/profile.view.html",
+                    controller: "ProfileController"
+                })
+                .when("/professor",
+                {
+                    templateUrl: "professor/professor.view.html",
+                    controller: "ProfessorController"
+                })
+                .when("/student",
+                {
+                    templateUrl: "student/student.view.html",
+                    controller: "StudentController"
                 })
                 .otherwise({
                     redirectTo: "/home"

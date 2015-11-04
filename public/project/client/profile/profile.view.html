@@ -13,4 +13,28 @@
             <li role="presentation"><a href="#/recommendations">Recommendations</a></li>
             <li role="presentation"><a href="#/testscores">Test Scores</a></li>
         </ul>
+    <br>
+    <div class = "col-lg-10">
+    <div ng-include src="'projects.view.html'"></div>
+    <table class="table table-striped table-bordered table-hover">
+        <ul class="list-group">
+            <li class="list-group-item">1. Create Car Rental Reservation Website
+            <br><br>
+        Designed a car rental application using Rest Web services and Java
+            </li>
+            <li class="list-group-item">2. Designed Quiz Buzzer electronic circuit for four player. Implemented a working model as well.
+            </li>
+            </ul>
+        <tr ng-repeat="proj in projects">
+            <td>
+                <ul class="list-group">
+                    <li class="list-group-item">{{proj.title}}
+                        <br><br>
+                    {{proj.description}}
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    </div>
 </div>

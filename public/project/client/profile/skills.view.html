@@ -13,4 +13,33 @@
         <li role="presentation"><a href="#/recommendations">Recommendations</a></li>
         <li role="presentation"><a href="#/testscores">Test Scores</a></li>
     </ul>
+
+    <br>
+    <div class="col-lg-8">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <span class="badge">5</span>
+            Java
+        </li>
+        <li class="list-group-item">
+            <span class="badge">14</span>
+            Web Design
+        </li>
+        <li class="list-group-item">
+            <span class="badge">8</span>
+            Trigonometry
+        </li>
+        <li class="list-group-item">
+            <span class="badge">2</span>
+            CSS
+        </li>
+    </ul>
+</div>
+
+    <ul class="list-group" ng-repeat="skill in skills">
+        <li class="list-group-item">
+            <span class="badge">{{skill.endorsementCount}}</span>
+            {{skill.name}}
+        </li>
+    </ul>
 </div>

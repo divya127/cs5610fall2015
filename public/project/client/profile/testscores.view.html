@@ -13,4 +13,30 @@
         <li role="presentation"><a href="#/recommendations">Recommendations</a></li>
         <li role="presentation" class="active"><a href="#/testscores">Test Scores</a></li>
     </ul>
+    <br>
+    <div class="col-lg-6">
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">GRE (Conducted by ETS Org)</h4>
+                <p class="list-group-item-text">320 / 340</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">TOEFL (Conducted by ETS Org)</h4>
+                <p class="list-group-item-text">111 / 120</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6" ng-repeat = "score in testscores">
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4 class="list-group-item-heading">{{score.name}} {{score.org}}</h4>
+                <p class="list-group-item-text">{{score.marks}}</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -27,26 +27,26 @@
                 .when("/clubs",
                 {
                     templateUrl: "profile/club.view.html",
-                    controller: "ClubController"
+                    controller: "ProfileController"
                 })
                 .when("/skills",
                 {
                     templateUrl: "profile/skills.view.html",
-                    controller: "SkillsController"
+                    controller: "ProfileController"
                 })
                 .when("/recommendations",
                 {
                     templateUrl: "profile/recommendations.view.html",
-                    controller: "RecommendationsController"
+                    controller: "ProfileController"
                 })
                 .when("/testscores",
                 {
                     templateUrl: "profile/testscores.view.html",
-                    controller: "TestScoresController"
+                    controller: "ProfileController"
                 })
                 .when("/projects",
                 {
-                    templateUrl: "profile/profile.view.html",
+                    templateUrl: "profile/projects.view.html",
                     controller: "ProfileController"
                 })
                 .when("/professor",

@@ -1,7 +1,7 @@
 (function(){
     'use strict';
     angular
-        .module("FormBuilderApp")
+        .module("AcademiaApp")
         .controller("LoginController", LoginController);
 
     function LoginController($scope, UserService, $rootScope) {

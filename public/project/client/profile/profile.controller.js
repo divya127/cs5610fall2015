@@ -4,7 +4,7 @@
         .module("AcademiaApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, UserService, $rootScope) {
+    function ProfileController($scope, $rootScope) {
 
         $scope.username = $rootScope.curusername;
         $scope.pwd = $rootScope.curpwd;
@@ -15,8 +15,6 @@
         $scope.update = function(){
             var userobj = {username: $scope.username, password: $scope.pwd, id: $rootScope.curid,
             email: $scope.email, firstName: $scope.firstname, lastName: $scope.lastname};
-
-            UserService.updateUser($rootScope.curid, userobj, callback);
         }
 
         function callback(response) {

@@ -5,16 +5,19 @@
         <p>Web Development Enthusiast</p>
         <img src="holder.js/200x200/social">
         <br>
-    <br>
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#/projects">Projects</a></li>
-            <li role="presentation"><a href="#/clubs">Clubs</a></li>
-            <li role="presentation"><a href="#/skills">Skills</a></li>
-            <li role="presentation"><a href="#/recommendations">Recommendations</a></li>
-            <li role="presentation"><a href="#/testscores">Test Scores</a></li>
-        </ul>
-    <br>
-    <div class = "col-lg-10">
-    <div ng-include src="'profile/projects.view.html'"></div>
-    </div>
+        <div id="blah" class="col-lg-10">
+            <div ng-include src="'profile/projects.view.html'"></div>
+        </div>
+        <div id="clubs" class="col-lg-10">
+            <div ng-include src="'profile/club.view.html'"></div>
+        </div>
+        <div id="skills" class="col-lg-10">
+            <div ng-include src="'profile/skills.view.html'"></div>
+        </div>
+        <div id="testscores" class="col-lg-10">
+            <div ng-include src="'profile/testscores.view.html'"></div>
+        </div>
+        <div id="recommendations" class="col-lg-10">
+            <div ng-include src="'profile/recommendations.view.html'"></div>
+        </div>
 </div>

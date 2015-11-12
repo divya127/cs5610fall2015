@@ -4,7 +4,18 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService($http, $q) {
+
+        var api = {
+            findAllUsers: findAllUsers,
+            findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
+            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
+            createUser: createUser,
+            deleteUserById: deleteUserById,
+            updateUser: updateUser
+        };
+        return api;
 
         function uniqueId() {
           function s4() {
@@ -21,57 +32,110 @@
             {username: "admin", password: "admin", id: "456", email: "admin@gmail.com", firstName: "admin", lastName: "admin"}
         ];
 
-        var service = {
-            findAllUsers: findAllUsers,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
-            createUser: createUser,
-            deleteUserById: deleteUserById,
-            updateUser: updateUser
-        };
-        return service;
 
-        function createUser(userObj, callback) {
+        function createUser(userObj) {
+            var deferred = $q.defer();
             userObj.id = uniqueId();
-            allUsers.push(userObj);
-            callback(userObj);
+            $http.post("/api/assignment/user/", userObj)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+//            userObj.id = uniqueId();
+//            allUsers.push(userObj);
+//            callback(userObj);
         }
 
-        function findAllUsers(callback) {
-           callback(allUsers);
+        function findAllUsers() {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user/")
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+           //callback(allUsers);
         }
 
-        function findUserByUsernameAndPassword(username, password, callback) {
-            for(var user in allUsers) {
-                if(allUsers[user].username.localeCompare(username) == 0 &&
-                allUsers[user].password.localeCompare(password) == 0) {
-                    console.log("Found user!");
-                    callback(allUsers[user]);
-                }
-            }
-            callback(null);
+        function findUserById(userId) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user/"+userId)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
         }
 
-        function deleteUserById(userId, callback) {
-            for(var user in allUsers) {
-                if(allUsers[user].id.localeCompare(userId) == 0) {
-                    allUsers.splice(userId, 1);
-                }
-            }
-           callback(allUsers);
+        function findUserByUsernameAndPassword(username, password) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user?username=" + username + "&password=" + password)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+
+//            for(var user in allUsers) {
+//                if(allUsers[user].username.localeCompare(username) == 0 &&
+//                allUsers[user].password.localeCompare(password) == 0) {
+//                    console.log("Found user!");
+//                    callback(allUsers[user]);
+//                }
+//            }
+//            callback(null);
         }
 
-        function updateUser(userId, userObj, callback) {
-            for(var user in allUsers) {
-               if(allUsers[user].id.localeCompare(userId) == 0) {
-                    allUsers[user].username = userObj.username;
-                    allUsers[user].password = userObj.password;
-                    allUsers[user].email = userObj.email;
-                    allUsers[user].firstName = userObj.firstName;
-                    allUsers[user].lastName = userObj.lastName;
-                    callback(allUsers[user]);
-                }
-            }
-            callback(userObj);
+        function findUserByUsername(username) {
+            var deferred = $q.defer();
+            $http.get("/api/assignment/user?username=" + username)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
         }
+
+        function deleteUserById(userId) {
+            var deferred = $q.defer();
+            $http.delete("/api/assignment/user/" + userId)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+
+//            for(var user in allUsers) {
+//                if(allUsers[user].id.localeCompare(userId) == 0) {
+//                    allUsers.splice(userId, 1);
+//                }
+//            }
+//           callback(allUsers);
+        }
+
+        function updateUser(userId, userObj) {
+            var deferred = $q.defer();
+
+            $http.post("/api/assignment/user/"+userId, userObj)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+
+//            for(var user in allUsers) {
+//               if(allUsers[user].id.localeCompare(userId) == 0) {
+//                    allUsers[user].username = userObj.username;
+//                    allUsers[user].password = userObj.password;
+//                    allUsers[user].email = userObj.email;
+//                    allUsers[user].firstName = userObj.firstName;
+//                    allUsers[user].lastName = userObj.lastName;
+//                    callback(allUsers[user]);
+//                }
+//            }
+//            callback(userObj);
     }
 })();

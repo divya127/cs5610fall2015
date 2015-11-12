@@ -1,4 +1,4 @@
-var forms = require('form.mock.json');
+var forms = require('../models/form.mock.json');
 module.exports = function(app) {
 
     var service = {

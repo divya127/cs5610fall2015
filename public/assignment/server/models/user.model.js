@@ -8,10 +8,13 @@ module.exports = function(app) {
 //    return service;
 
     var api = {
-            addPage: addPage,
-            addContent: addContent,
-            getAllPages: getAllPages,
-            getPageById: getPageById
+            findUserById : findUserById,
+            findUserByUsername : findUserByUsername,
+            findUserByCredentials : findUserByCredentials
+            findAllUsers: findAllUsers,
+            deleteUserById : deleteUserById,
+            addNewUser : addNewUser,
+
         };
         return api;
 

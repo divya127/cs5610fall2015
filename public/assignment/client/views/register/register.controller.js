@@ -10,12 +10,16 @@
             model.register = register;
 
             function init() {
-             UserService.findAllUsers(getAllUsers)
-                        .then(function(users){
-                            model.allUsers = users;
-                        });
+                getAllUsers();
             }
             init();
+
+            function getAllUsers() {
+                UserService.findAllUsers(getAllUsers)
+                            .then(function(users){
+                                model.allUsers = users;
+                            });
+            }
 
              function register($rootScope){
                 var username = model.user.userName;

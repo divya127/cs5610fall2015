@@ -14,7 +14,7 @@
         model.firstname = $rootScope.firstname;
         model.lastname = $rootScope.lastname;
 
-        model.update = function(){
+        function update(){
             var userobj = {username: model.username, password: model.pwd, id: $rootScope.curid,
             email: model.email, firstName: model.firstname, lastName: model.lastname};
 

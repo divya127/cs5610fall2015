@@ -23,8 +23,8 @@
                                 model.$location.url("/profile");
                                 }
                             }
-                        });
-        }
+                        )};
+       // }
 
 //    function finduser(response){
 //        if (response != null) {

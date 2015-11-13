@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.delete("/api/assignment/form/:id", deleteForm);
 
     function createNewForm(req, res) {
-        console.log("Inside server side addNewUser - forms");
+        console.log("Inside server side createNewForm - forms");
         var form = req.body;
         model
             .createNewForm(form)
@@ -17,7 +17,7 @@ module.exports = function(app) {
     }
 
     function findAllFormsForUser(req, res){
-        console.log("Inside server side findUserById - forms");
+        console.log("Inside server side findAllFormsForUser - forms");
         var userId = req.params.id;
         model
             .findAllFormsForUser(userId)
@@ -27,7 +27,7 @@ module.exports = function(app) {
     }
 
     function updateForm(req, res) {
-    console.log("Inside server side updateUser - forms");
+    console.log("Inside server side updateForm - forms");
     var formId = req.params.id;
     var formObj = req.body;
         model
@@ -38,7 +38,7 @@ module.exports = function(app) {
     }
 
     function deleteForm(req, res) {
-    console.log("Inside server side deleteUser - forms");
+    console.log("Inside server side deleteForm - forms");
     var formId = req.params.id;
         model
             .deleteForm(formId)

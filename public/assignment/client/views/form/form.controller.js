@@ -13,6 +13,7 @@
             model.selectForm = selectForm;
 
             function init() {
+            console.log("insdie form controller" + $rootScope.curid);
              FormService.findAllFormsForUser($rootScope.curid)
                         .then(function(forms){
                             model.forms = forms;

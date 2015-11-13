@@ -12,12 +12,13 @@ module.exports = function(app) {
     };
     return api;
 
-    function findAllFormsForUser(formId) {
+    function findAllFormsForUser(userId) {
     console.log("inside form.model.js findAllFormsForUser");
         var deferred = q.defer();
         for(var form in forms) {
-            if(forms[form].id.localeCompare(formId) == 0) {
-                deferred.resolve(users[user]);
+        console.log(forms[form].userId + " " + userId);
+            if(forms[form].userId == userId) {
+                deferred.resolve(forms[form ]);
             }
         }
         return deferred.promise;

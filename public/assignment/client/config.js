@@ -33,7 +33,7 @@
                     controller: "FormController",
                     controllerAs: "model"
                 })
-                .when("/form-field",
+                .when("/form-field/:formId",
                 {
                     templateUrl: "views/field/field.view.html",
                     controller: "FieldController",

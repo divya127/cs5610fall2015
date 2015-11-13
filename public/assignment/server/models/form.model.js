@@ -16,7 +16,6 @@ module.exports = function(app) {
     console.log("inside form.model.js findAllFormsForUser");
         var deferred = q.defer();
         for(var form in forms) {
-        console.log(forms[form].userId + " " + userId);
             if(forms[form].userId == userId) {
                 deferred.resolve(forms[form ]);
             }

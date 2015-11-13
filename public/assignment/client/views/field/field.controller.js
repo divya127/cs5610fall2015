@@ -4,8 +4,9 @@
              .module("FormBuilderApp")
              .controller("FieldController", FieldController);
 
-         function FieldController(UserService, FieldService) {
-
+         function FieldController(UserService, FieldService, $routeParams) {
+           var id = $routeParams.formId;
+           console.log(id);
 
 
         }

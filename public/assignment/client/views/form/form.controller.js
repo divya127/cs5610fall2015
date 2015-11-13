@@ -16,6 +16,7 @@
             console.log("insdie form controller" + $rootScope.curid);
              FormService.findAllFormsForUser($rootScope.curid)
                         .then(function(forms){
+                            console.log(forms);
                             model.forms = forms;
                         });
              }

@@ -5,7 +5,6 @@
         .factory("FieldService", FieldService);
 
     function FieldService($http, $q) {
-
 //    var api = {
 //        createFormForUser: createFormForUser,
 //        findAllFormsForUser: findAllFormsForUser,

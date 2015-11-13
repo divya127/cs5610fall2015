@@ -13,13 +13,7 @@
             var pwd = model.pwd;
             UserService.findUserByUsernameAndPassword(username, pwd)
                         .then(function(user){
-                        console.log("Returned userObj: " + user);
-
-                        for(var i = 0; i < user.length; i++){
-                            console.log(user[i].username);
-                        }
-
-                            if (user != null) {
+                         if (user != null) {
                                 $rootScope.curusername = user.username;
                                 $rootScope.curpwd = user.password;
                                 $rootScope.curid = user.id;
@@ -30,18 +24,6 @@
                                 }
                             }
                         )};
-       // }
 
-//    function finduser(response){
-//        if (response != null) {
-//            $rootScope.curusername = response.username;
-//            $rootScope.curpwd = response.password;
-//            $rootScope.curid = response.id;
-//            $rootScope.curemail = response.email;
-//            $rootScope.firstname = response.firstName;
-//            $rootScope.lastname = response.lastName;
-//            $scope.$location.url("/profile");
-//            }
-//        }
     }
 })();

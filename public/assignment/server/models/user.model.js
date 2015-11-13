@@ -14,7 +14,7 @@ module.exports = function(app) {
         };
         return api;
 
-        function findUserById(id) {
+        function findUserById(userId) {
         console.log("inside user.model.js findUserById");
             var deferred = q.defer();
             for(var user in users) {

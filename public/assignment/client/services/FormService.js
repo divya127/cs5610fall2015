@@ -20,16 +20,8 @@
               .toString(16)
               .substring(1);
           }
-          return s4() + s4() + '-' + s4();
+          return s4();
         }
-
-        var id1 = uniqueIdForm();
-        var id2 = uniqueIdForm();
-
-        var forms = [
-            {formId: id1, formname: "Registration Form", userid: "123"},
-            {formId: id2, formname: "Todo List", userid: "456"}
-        ];
 
         function createFormForUser(userId, form) {
             var deferred = $q.defer();
@@ -41,10 +33,6 @@
                 });
 
             return deferred.promise;
-//
-//            var id = uniqueIdForm();
-//            form.formId = id;
-//            forms.push(form);
         }
 
         function findAllFormsForUser(userId) {
@@ -56,13 +44,6 @@
 
             return deferred.promise;
 
-
-//            var formsForUser = [];
-//            for(var form in forms) {
-//                if(forms[form].userid.localeCompare(userId) == 0) {
-//                    formsForUser.push(forms[form]);
-//                }
-//            }
         }
 
         function deleteFormById(formId, userId) {
@@ -74,19 +55,6 @@
 
             return deferred.promise;
 
-
-//            var formsForUser = [];
-//            for(var formd in forms) {
-//                if(forms[formd].formId.localeCompare(formId) == 0 ) {
-//                    forms.splice(formd, 1);
-//                }
-//            }
-//
-//            for(var form in forms) {
-//                if(forms[form].userid.localeCompare(userId) == 0) {
-//                    formsForUser.push(forms[form]);
-//                }
-//            }
         }
 
         function updateFormById(formId, newForm) {
@@ -99,17 +67,6 @@
 
             return deferred.promise;
 
-
-//            for(var form in forms) {
-//               if(forms[form].formId.localeCompare(formId) == 0) {
-//                    forms[form].username = newForm.username;
-//                    forms[form].password = newForm.password;
-//                    forms[form].email = newForm.email;
-//                    forms[form].firstName = newForm.firstName;
-//                    forms[form].lastName = newForm.lastName;
-//                    callback(forms[form]);
-//                }
-//            }
         }
     }
 })();

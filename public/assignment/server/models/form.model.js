@@ -1,48 +1,74 @@
 var forms = require('../models/form.mock.json');
+var q = require("q");
+
 module.exports = function(app) {
 
-    var service = {
+    var api = {
         findFormByTitle : findFormByTitle,
+        findAllFormsForUser : findAllFormsForUser,
+        createNewForm : createNewForm,
+        updateForm : updateForm,
+        deleteForm : deleteForm
     };
-    return service;
+    return api;
 
-    app.get('/api/user', function (req, res) {
-            res.json(forms);
-        });
+    function findAllFormsForUser(formId) {
+    console.log("inside form.model.js findAllFormsForUser");
+        var deferred = q.defer();
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                deferred.resolve(users[user]);
+            }
+        }
+        return deferred.promise;
+    }
 
-    app.get('/api/user/:id', function (req, res) {
-        var index = req.params.id;
-        console.log(index);
-        res.json(forms[index]);
-    });
+    function deleteForm(formId) {
+    console.log("inside form.model.js deleteForm");
+        var deferred = q.defer();
+        for(var form in forms) {
+            if(forms[form].id == formId) {
+                forms.splice(form, 1);
+                deferred.resolve(forms);
+            }
+        }
+        return deferred.promise;
+    }
 
-    app.delete('/api/user/:id', function (req, res) {
-        var index = req.params.id;
-        forms.splice(index, 1);
-        res.json(forms);
-    });
+    function createNewForm(newForm) {
+    console.log("inside form.model.js createNewForm");
+        var deferred = q.defer();
+        console.log(newForm);
+        forms.push(newForm);
+        deferred.resolve(newForm);
+        return deferred.promise;
+    }
 
-    app.post('/api/user', function (req, res) {
-        var newUser = req.body;
-        console.log(newUser);
-        courses.push(newUser);
-        res.json(forms);
-    });
-
-    app.put('/api/user/:id', function (req, res) {
-        var index = req.params.id;
-        forms[index] = req.body;
-        res.json(forms);
-    });
+    function updateForm(formId, formObj) {
+    console.log("inside form.model.js updateForm");
+        var deferred = q.defer();
+        for(var i = 0; i < forms.length; i++)  {
+        console.log(forms[i].id);
+            if(forms[i].id == formId) {
+                forms[i].username = formObj.username;
+                forms[i].password = formObj.password;
+                forms[i].firstName = formObj.firstName;
+                forms[i].lastName = formObj.lastName;
+                deferred.resolve(forms[i]);
+            }
+        }
+        return deferred.promise;
+    }
 
     function findFormByTitle(title) {
+    var deferred = q.defer();
         for(var form in forms) {
             if(forms[form].title.localeCompare(title) == 0) {
                 console.log("Found form!");
-                callback(forms[form]);
+                deferred.resolve(forms[form]);
             }
         }
-        callback(null);
+        return deferred.promise;
     }
 
 

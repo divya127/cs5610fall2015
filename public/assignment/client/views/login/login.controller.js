@@ -9,10 +9,16 @@
         model.login = login;
 
         function login() {
-            var username = model.user.username;
-            var pwd = model.user.pwd;
+            var username = model.username;
+            var pwd = model.pwd;
             UserService.findUserByUsernameAndPassword(username, pwd)
                         .then(function(user){
+                        console.log("Returned userObj: " + user);
+
+                        for(var i = 0; i < user.length; i++){
+                            console.log(user[i].username);
+                        }
+
                             if (user != null) {
                                 $rootScope.curusername = user.username;
                                 $rootScope.curpwd = user.password;
@@ -20,7 +26,7 @@
                                 $rootScope.curemail = user.email;
                                 $rootScope.firstname = user.firstName;
                                 $rootScope.lastname = user.lastName;
-                                model.$location.url("/profile");
+                                $location.url("/profile");
                                 }
                             }
                         )};

@@ -1,13 +1,13 @@
 var model = require("../models/user.model.js")();
 
 module.exports = function(app) {
-    app.get("/api/assignment/user?username=:username", findUserByUsername);
-    app.get("/api/assignment/user?username=:username&password=:password", findUserByUsernameAndPassword);
+    app.get("/api/assignment/user/username=:username&password=:password", findUserByUsernameAndPassword);
     app.get("/api/assignment/user", findAllUsers);
     app.get("/api/assignment/user/:id", findUserById);
     app.post("/api/assignment/user", addNewUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
+    //app.get("/api/assignment/user/username=:username", findUserByUsername);
 
     function findAllUsers(req, res) {
     console.log("Inside findAllUsers!");
@@ -19,6 +19,7 @@ module.exports = function(app) {
     }
 
     function findUserByUsername(req, res) {
+        console.log("Inside server side findUserByUsername");
         var username = req.params.username;
         model
             .findUserByUsername(username)
@@ -28,6 +29,7 @@ module.exports = function(app) {
     }
 
     function findUserByUsernameAndPassword(req, res) {
+    console.log("Inside server side findUserByUsernameAndPassword");
         var username = req.params.username;
         var pwd = req.params.password;
         var credentials = {
@@ -42,7 +44,8 @@ module.exports = function(app) {
     }
 
     function addNewUser(req, res) {
-        var page = req.body;
+        console.log("Inside server side addNewUser");
+        var user = req.body;
         model
             .addNewUser(user)
             .then(function(users){
@@ -50,7 +53,8 @@ module.exports = function(app) {
             });
     }
 
-    function findUserById(){
+    function findUserById(req, res){
+        console.log("Inside server side findUserById");
         var userId = req.params.id;
         model
             .findUserById(userId)
@@ -59,7 +63,8 @@ module.exports = function(app) {
             });
     }
 
-    function updateUser() {
+    function updateUser(req, res) {
+    console.log("Inside server side updateUser");
     var userId = req.params.id;
     var userObj = req.body;
         model
@@ -69,7 +74,8 @@ module.exports = function(app) {
             });
     }
 
-    function deleteUser() {
+    function deleteUser(req, res) {
+    console.log("Inside server side deleteUser");
     var userId = req.params.id;
         model
             .deleteUser(userId)

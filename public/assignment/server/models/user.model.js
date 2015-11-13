@@ -15,67 +15,82 @@ module.exports = function(app) {
         return api;
 
         function findUserById(id) {
+        console.log("inside user.model.js findUserById");
+            var deferred = q.defer();
             for(var user in users) {
                 if(users[user].id.localeCompare(userId) == 0) {
-                    res.json(users[user]);
+                    deferred.resolve(users[user]);
                 }
             }
-            res.json(null);
+            return deferred.promise;
         }
 
         function findUserByCredentials(credentials) {
+        console.log("inside user.model.js findUserByCredentials");
+            var deferred = q.defer();
             for(var user in users) {
                 if(users[user].username.localeCompare(credentials.username) == 0 &&
                    users[user].password.localeCompare(credentials.password) == 0) {
-                    res.json(users[user]);
+                    deferred.resolve(users[user]);
                 }
             }
-            res.json(null);
+            return deferred.promise;
         }
 
         function findUserByUsername(username) {
+        console.log("inside user.model.js findUserByUsername");
+            var deferred = q.defer();
             for(var user in users) {
                 if(users[user].username.localeCompare(username) == 0) {
-                    res.json(users[user]);
+                    deferred.resolve(users[user]);
                 }
             }
-            res.json(null);
+            return deferred.promise;
         }
 
         function findAllUsers() {
+        console.log("inside user.model.js findAll");
             var deferred = q.defer();
             deferred.resolve(users);
             return deferred.promise;
         }
 
         function deleteUser(userId) {
+        console.log("inside user.model.js deleteUser");
+            var deferred = q.defer();
             for(var user in users) {
-                if(users[user].id.localeCompare(userId) == 0) {
+                if(users[i].id == userId) {
                     users.splice(user, 1);
-                    res.json(users);
+                    deferred.resolve(users);
                 }
             }
-            res.json(users);
+            return deferred.promise;
         }
 
         function addNewUser(newUser) {
+        console.log("inside user.model.js addNewUser");
+            var deferred = q.defer();
             var newUser = newUser;
             console.log(newUser);
             users.push(newUser);
-            res.json(users);
+            deferred.resolve(newUser);
+            return deferred.promise;
         }
 
         function updateUser(userId, userObj) {
-            for(var user in users) {
-                if(users[user].id.localeCompare(userId) == 0) {
-                    users[user].username = userObj.username;
-                    users[user].password = userObj.password;
-                    users[user].firstName = userObj.firstName;
-                    users[user].lastName = userObj.lastName;
-                    res.json(users[user]);
+        console.log("inside user.model.js updateUser");
+            var deferred = q.defer();
+            for(var i = 0; i < users.length; i++)  {
+            console.log(users[i].id);
+                if(users[i].id == userId) {
+                    users[i].username = userObj.username;
+                    users[i].password = userObj.password;
+                    users[i].firstName = userObj.firstName;
+                    users[i].lastName = userObj.lastName;
+                    deferred.resolve(users[i]);
                 }
             }
-            res.json(null);
+            return deferred.promise;
         }
 };
 

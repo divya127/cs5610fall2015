@@ -18,7 +18,7 @@
             var userobj = {username: model.username, password: model.pwd, id: $rootScope.curid,
             email: model.email, firstName: model.firstname, lastName: model.lastname};
 
-            UserService.updateUser($rootScope.curid, userobj, callback)
+            UserService.updateUser($rootScope.curid, userobj)
                         .then(function(user){
                             if(user != null) {
                                 $rootScope.curusername = user.username;

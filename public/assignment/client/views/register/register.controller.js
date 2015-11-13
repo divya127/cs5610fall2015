@@ -24,19 +24,19 @@
                             });
             }
 
-             function register($rootScope){
+             function register(){
                 var username = model.user.userName;
                 var pwd = model.user.pwd;
                 var email = model.user.email;
                 var userObj = {username: username, password: pwd , email: email};
                 var user = UserService.createUser(userObj)
                                       .then(function(user){
-                                        if(response != null) {
+                                        if(user != null) {
                                             $rootScope.curusername = user.username;
                                             $rootScope.curpwd = user.password;
                                             $rootScope.curid = user.id;
                                             $rootScope.curemail = user.email;
-                                            model.$location.url("/profile");
+                                            $location.url("/profile");
                                         }
                                       });
              }

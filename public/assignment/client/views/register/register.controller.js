@@ -10,12 +10,15 @@
             model.register = register;
 
             function init() {
-                getAllUsers();
+               UserService.findAllUsers()
+                           .then(function(users){
+                               model.allUsers = users;
+                           });
             }
             init();
 
             function getAllUsers() {
-                UserService.findAllUsers(getAllUsers)
+                UserService.findAllUsers()
                             .then(function(users){
                                 model.allUsers = users;
                             });

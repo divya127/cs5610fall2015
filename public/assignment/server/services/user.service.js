@@ -1,45 +1,82 @@
-var users = require("../models/form.model.js")();
+var users = require("../models/user.model.js")();
 
 module.exports = function(app) {
     var model = this;
-    app.get("/api/assignment/user", getAllUsers);
+    app.get("/api/assignment/user?username=:username", findUserByUsername);
+    app.get("/api/assignment/user?username=:username&password=:password", findUserByUsernameAndPassword);
+    app.get("/api/assignment/user", findAllUsers);
+    app.get("/api/assignment/user/:id", findUserById);
+    app.post("/api/assignment/user", addNewUser);
+    app.put("/api/assignment/user/:id", updateUser);
+    app.delete("/api/assignment/user/:id", deleteUser);
 
-    model.users = {};
-    function getAllUsers(req, res) {
-    $http.get("/api/assignment/user/")
-        .success(function(response){
-            model.users = response;
-        });
-    }
+    model.users = users;
 
-    model.addUser = function(user) {
-        $http.post("/api/assignment/course", user)
-            .success(function(response){
-                model.users = response;
+    function findAllUsers(req, res) {
+        model
+            .findAllUsers()
+            .then(function(users){
+                res.json(users);
             });
     }
 
-    model.selectUser = function() {
-        var index = $scope.users.indexOf($scope.selectedUser);
-        $http.get("/api/assignment/user/"+index)
-            .success(function(response){
-                model.fetchedUser = response;
+    function findUserByUsername(req, res) {
+        var username = req.params.username;
+        model
+            .findUserByUsername(username)
+            .then(function(user){
+                res.json(user);
             });
     }
 
-    model.updateUser = function(user) {
-    var index = $scope.users.indexOf($scope.selectedUser);
-        $http.put("/api/assignment/user"+index, user)
-            .success(function(response){
-                model.users = response;
+    function findUserByUsernameAndPassword(req, res) {
+        var username = req.params.username;
+        var pwd = req.params.password;
+        var credentials = {
+            username: username,
+            password: pwd
+        };
+        model
+            .findUserByCredentials(credentials)
+            .then(function(user){
+                res.json(user);
             });
     }
 
-    model.deleteUser = function(user) {
-    var index = $scope.users.indexOf($scope.selectedUser);
-        $http.delete("/api/assignment/user"+index)
-            .success(function(response){
-                model.users = response;
+    function addNewUser(req, res) {
+        var page = req.body;
+        model
+            .addNewUser(user)
+            .then(function(users){
+                res.json(users);
+            });
+    }
+
+    function findUserById(){
+        var userId = req.params.id;
+        model
+            .findUserById(userId)
+            .then(function(user){
+                res.json(user);
+            });
+    }
+
+    function updateUser() {
+    var userId = req.params.id;
+    var userObj = req.body;
+        model
+            .updateUser(userId, userObj)
+            .then(function(user){
+                res.json(user);
+            });
+    }
+
+    function deleteUser() {
+    var userId = req.params.id;
+        model
+            .deleteUser(userId)
+            .then(function(users){
+                res.json(users);
             });
     }
 

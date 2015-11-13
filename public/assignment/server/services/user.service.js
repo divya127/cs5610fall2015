@@ -1,7 +1,6 @@
-var users = require("../models/user.model.js")();
+var model = require("../models/user.model.js")();
 
 module.exports = function(app) {
-    var model = this;
     app.get("/api/assignment/user?username=:username", findUserByUsername);
     app.get("/api/assignment/user?username=:username&password=:password", findUserByUsernameAndPassword);
     app.get("/api/assignment/user", findAllUsers);
@@ -10,9 +9,8 @@ module.exports = function(app) {
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
 
-    model.users = users;
-
     function findAllUsers(req, res) {
+    console.log("Inside findAllUsers!");
         model
             .findAllUsers()
             .then(function(users){

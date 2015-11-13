@@ -1,4 +1,6 @@
 var users = require('../models/user.mock.json');
+var q = require("q");
+
 module.exports = function(app) {
 
     var api = {
@@ -41,7 +43,9 @@ module.exports = function(app) {
         }
 
         function findAllUsers() {
-            res.json(users);
+            var deferred = q.defer();
+            deferred.resolve(users);
+            return deferred.promise;
         }
 
         function deleteUser(userId) {

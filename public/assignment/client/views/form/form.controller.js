@@ -23,7 +23,7 @@
              init();
 
              function addForm() {
-                var formObj = { userid: $rootScope.curid, formname: model.formname};
+                var formObj = { userid: $rootScope.curid, title: model.title};
                 FormService.createFormForUser($rootScope.curid, formObj)
                            .then(function(form){
                              model.currentform = form;

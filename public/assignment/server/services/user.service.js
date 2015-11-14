@@ -7,7 +7,7 @@ module.exports = function(app) {
     app.post("/api/assignment/user", addNewUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
-    //app.get("/api/assignment/user/username=:username", findUserByUsername);
+    app.get("/api/assignment/user/username=:username", findUserByUsername);
 
     function findAllUsers(req, res) {
     console.log("Inside findAllUsers!");

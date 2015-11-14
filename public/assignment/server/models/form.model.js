@@ -5,6 +5,8 @@ module.exports = function(app) {
 
     var api = {
         findFormByTitle : findFormByTitle,
+        findAllForms: findAllForms,
+        findFormById : findFormById,
         findAllFormsForUser : findAllFormsForUser,
         createNewForm : createNewForm,
         updateForm : updateForm,
@@ -15,11 +17,13 @@ module.exports = function(app) {
     function findAllFormsForUser(userId) {
     console.log("inside form.model.js findAllFormsForUser");
         var deferred = q.defer();
+        var userForms = [] ;
         for(var form in forms) {
             if(forms[form].userId == userId) {
-                deferred.resolve(forms[form ]);
+                userForms.push(forms[form]);
             }
         }
+        deferred.resolve(userForms);
         return deferred.promise;
     }
 
@@ -40,7 +44,7 @@ module.exports = function(app) {
         var deferred = q.defer();
         console.log(newForm);
         forms.push(newForm);
-        deferred.resolve(newForm);
+        deferred.resolve(forms);
         return deferred.promise;
     }
 
@@ -68,6 +72,23 @@ module.exports = function(app) {
                 deferred.resolve(forms[form]);
             }
         }
+        return deferred.promise;
+    }
+
+    function findFormById(formId) {
+    var deferred = q.defer();
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                console.log("Found form!");
+                deferred.resolve(forms[form]);
+            }
+        }
+        return deferred.promise;
+    }
+
+    function findAllForms() {
+        var deferred = q.defer();
+        deferred.resolve(forms);
         return deferred.promise;
     }
 

@@ -5,6 +5,8 @@ module.exports = function(app) {
     app.post("/api/assignment/user/:id/form", createNewForm);
     app.put("/api/assignment/form/:id", updateForm);
     app.delete("/api/assignment/form/:id", deleteForm);
+    app.get("/api/assignment/form", findAllForms);
+    app.get("/api/assignment/form/:id", findFormById);
 
     function createNewForm(req, res) {
         console.log("Inside server side createNewForm - forms");

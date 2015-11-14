@@ -20,6 +20,91 @@ module.exports = function(app) {
     };
     return api;
 
+    function updateFieldForFormId(fieldId, formId, fieldObj) {
+        console.log("inside form.model.js deleteFieldByFormIdAndFieldId");
+        var deferred = q.defer();
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                var allFields = forms[form].fields;
+                for(var field in allFields) {
+                    if(allFields[field].id.localeCompare(fieldId) == 0) {
+                        allFields[field].id = fieldObj.id;
+                        allFields[field].label = fieldObj.label;
+                        if(allFields[field].type.localeCompare(fieldObj.type) == 0) {
+                            switch(allFields[field].type) {
+                                 case "TEXTAREA" :
+                                    allFields[field].placeholder = fieldObj.placeholder;
+                                 case "OPTIONS" :
+                                    allFields[field].options = fieldObj.options;
+                                 case "CHECKBOXES" :
+                                     allFields[field].options = fieldObj.options;
+                                  case "RADIOS" :
+                                     allFields[field].options = fieldObj.options;
+                                 case "DATE" :
+                                 default:
+                                    allFields[field].placeholder = fieldObj.placeholder;
+                            }
+                        }
+                        deferred.resolve(allFields);
+                    }
+                }
+            }
+        }
+        return deferred.promise;
+    }
+
+    function deleteFieldByFormIdAndFieldId() {
+        console.log("inside form.model.js deleteFieldByFormIdAndFieldId");
+        var deferred = q.defer();
+        var Fields = [];
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                var allFields = forms[form].fields;
+                for(var field in allFields) {
+                    if(allFields[field].id.localeCompare(fieldId) == 0) {
+                        allFields.splice(field, 1);
+                    }
+                }
+
+                for(var field in allFields) {
+                    Fields.push(allFields[field]);
+                }
+            }
+        }
+        deferred.resolve(Fields);
+        return deferred.promise;
+    }
+
+    function findFieldByFormIdAndFieldId(fieldId, formId) {
+        console.log("inside form.model.js findAllFieldsForFormId");
+        var deferred = q.defer();
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                var allFields = forms[form].fields;
+                for(var field in allFields) {
+                    if(allFields[field].id.localeCompare(fieldId) == 0) {
+                        allFields.splice(field, 1);
+                        deferred.resolve(allFields[field]);
+                    }
+                }
+            }
+        }
+        return deferred.promise;
+    }
+
+    function findAllFieldsForFormId(formId) {
+        console.log("inside form.model.js findAllFieldsForFormId");
+        var deferred = q.defer();
+        var allFields = [] ;
+        for(var form in forms) {
+            if(forms[form].id.localeCompare(formId) == 0) {
+                allFields.push(forms[form].fields);
+            }
+        }
+        deferred.resolve(allFields);
+        return deferred.promise;
+    }
+
     function findAllFormsForUser(userId) {
     console.log("inside form.model.js findAllFormsForUser");
         var deferred = q.defer();
@@ -108,6 +193,19 @@ module.exports = function(app) {
         var deferred = q.defer();
         deferred.resolve(forms);
         return deferred.promise;
+    }
+
+    function createNewFieldForFormId(formId, fieldObj) {
+        console.log("inside form.model.js createNewFieldForFormId");
+            var deferred = q.defer();
+            for(var form in forms) {
+                if(forms[form].id.localeCompare(formId) == 0) {
+                    var allFields = forms[form].fields;
+                    allFields.push(fieldObj);
+                    deferred.resolve(allFields);
+                }
+            }
+            return deferred.promise;
     }
 
 

@@ -34,10 +34,10 @@
             </td>
         </tr>
         </thead>
-        <tr ng-repeat="form in model.forms">
+        <tr ng-repeat="myForm in model.forms">
             <td>
-                {{form.id}} {{form.userId}}
-                <a href="#/form-field/{{model.forms.id}}">{{model.forms.title}}</a>
+                myForm.title {{form.userId}}
+                <a href="#/form-field/{{myForm.id}}">{{myForm.title}}</a>
             </td>
             <td>
                 <button ng-click="model.deleteForm(form.id)">

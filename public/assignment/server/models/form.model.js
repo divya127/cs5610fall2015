@@ -30,12 +30,24 @@ module.exports = function(app) {
     function deleteForm(formId) {
     console.log("inside form.model.js deleteForm");
         var deferred = q.defer();
+        var userForms = [];
+        var userId  = "0";
+        console.log("starting for loop");
         for(var form in forms) {
-            if(forms[form].id == formId) {
+        console.log(formId + " " + forms[form].id);
+            if(forms[form].id.localeCompare(formId) == 0) {
+            console.log(formId + " " + forms[form].userId);
+                userId = forms[form].userId;
                 forms.splice(form, 1);
-                deferred.resolve(forms);
+                break;
             }
         }
+        for(var form in forms) {
+            if(forms[form].userId == userId) {
+                userForms.push(forms[form]);
+            }
+        }
+        deferred.resolve(userForms);
         return deferred.promise;
     }
 
@@ -44,7 +56,7 @@ module.exports = function(app) {
         var deferred = q.defer();
         console.log(newForm);
         forms.push(newForm);
-        deferred.resolve(forms);
+        deferred.resolve(newForm);
         return deferred.promise;
     }
 
@@ -53,7 +65,7 @@ module.exports = function(app) {
         var deferred = q.defer();
         for(var i = 0; i < forms.length; i++)  {
         console.log(forms[i].id);
-            if(forms[i].id == formId) {
+            if(forms[form].id.localeCompare(formId) == 0) {
                 forms[i].username = formObj.username;
                 forms[i].password = formObj.password;
                 forms[i].firstName = formObj.firstName;

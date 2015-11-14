@@ -46,7 +46,7 @@
 
         }
 
-        function deleteFormById(formId, userId) {
+        function deleteFormById(formId) {
             var deferred = $q.defer();
             $http.delete("/api/assignment/form/"+ formId)
                 .success(function(forms){

@@ -16,14 +16,13 @@
             console.log("insdie form controller" + $rootScope.curid);
              FormService.findAllFormsForUser($rootScope.curid)
                         .then(function(forms){
-                            console.log(forms);
                             model.forms = forms;
                         });
              }
              init();
 
              function addForm() {
-                var formObj = { userid: $rootScope.curid, title: model.title};
+                var formObj = { userId: $rootScope.curid, title: model.title};
                 FormService.createFormForUser($rootScope.curid, formObj)
                            .then(function(form){
                              model.currentform = form;
@@ -39,11 +38,11 @@
              }
 
 
-             function deleteForm(index) {
-                var currentForm = model.forms[index];
-                 FormService.deleteFormById(currentForm.formId, $rootScope.curid)
+             function deleteForm(formId) {
+                 FormService.deleteFormById(formId)
                             .then(function(forms){
-                            model.forms = forms;
+                            console.log(forms);
+                                model.forms = forms;
                             });
              }
 

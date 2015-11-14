@@ -1,5 +1,6 @@
 var forms = require('../models/form.mock.json');
 var q = require("q");
+var uuid = require('node-uuid');
 
 module.exports = function(app) {
 
@@ -10,7 +11,12 @@ module.exports = function(app) {
         findAllFormsForUser : findAllFormsForUser,
         createNewForm : createNewForm,
         updateForm : updateForm,
-        deleteForm : deleteForm
+        deleteForm : deleteForm,
+        createNewFieldForFormId : createNewFieldForFormId,
+        updateFieldForFormId : updateFieldForFormId,
+        deleteFieldByFormIdAndFieldId : deleteFieldByFormIdAndFieldId,
+        findFieldByFormIdAndFieldId : findFieldByFormIdAndFieldId,
+        findAllFieldsForFormId: findAllFieldsForFormId
     };
     return api;
 

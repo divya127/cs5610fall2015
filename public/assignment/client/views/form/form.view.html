@@ -1,8 +1,8 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Forms</h1>
     <ul class="nav nav-tabs">
-        <li ng-class="{'active': $location.url().indexOf('form') != -1 }" role="presentation"><a href="#/form">Forms</a></li>
-        <li ng-class="{'active': $location.url().indexOf('form-field') != -1 }" role="presentation"><a href="#/form-field">Form-Fields</a></li>
+        <li ng-class="{'active': $location.url().indexOf('form') != -1 }" ><a href="#/form">Forms</a></li>
+        <li ng-class="{'active': $location.url().indexOf('form-field') == -1 }" ><a href="#/form-field">Form-Fields</a></li>
     </ul>
     <br>
     <table class="table table-striped table-bordered table-hover">
@@ -35,7 +35,7 @@
         </thead>
         <tr ng-repeat="form in model.forms">
             <td>
-                <a href="#/form-field/{{myForm.id}}">{{form.title}}</a>
+                <a href="#/form-field/{{form.id}}">{{form.title}}</a>
             </td>
             <td>
                 <button ng-click="model.deleteForm(form.id)">

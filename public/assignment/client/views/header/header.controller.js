@@ -6,6 +6,6 @@
 
     function HeaderController($scope, $location)
     {
-        $scope.headerHello = "Hello from Header!" ;
+        $scope.$location = $location;
     }
 })();

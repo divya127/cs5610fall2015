@@ -1,11 +1,11 @@
 var model = require("../models/form.model.js")();
 
 module.exports = function(app) {
+    app.get("/api/assignment/form", findAllForms);
+    app.put("/api/assignment/form/:formId", updateForm);
     app.get("/api/assignment/user/:userId/form", findAllFormsForUser);
     app.post("/api/assignment/user/:userId/form", createNewForm);
-    app.put("/api/assignment/form/:formId", updateForm);
     app.delete("/api/assignment/form/:formId", deleteForm);
-    app.get("/api/assignment/form", findAllForms);
     app.get("/api/assignment/form/:formId", findFormById);
 
     function createNewForm(req, res) {
@@ -30,9 +30,9 @@ module.exports = function(app) {
 
     function findFormById(req, res){
         console.log("Inside server side findAllFormsForUser - forms");
-        var userId = req.params.userId;
+        var formId = req.params.formId;
         model
-            .findFormById(userId)
+            .findFormById(formId)
             .then(function(form){
                 res.json(form);
             });

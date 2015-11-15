@@ -154,16 +154,22 @@ module.exports = function(app) {
     function updateForm(formId, formObj) {
     console.log("inside form.model.js updateForm");
         var deferred = q.defer();
+        var userForms = [];
+        var userId  = "0";
         for(var i = 0; i < forms.length; i++)  {
         console.log(forms[i].id);
-            if(forms[form].id.localeCompare(formId) == 0) {
-                forms[i].username = formObj.username;
-                forms[i].password = formObj.password;
-                forms[i].firstName = formObj.firstName;
-                forms[i].lastName = formObj.lastName;
-                deferred.resolve(forms[i]);
+            if(forms[i].id.localeCompare(formId) == 0) {
+                forms[i].title = formObj.title;
+                userId = forms[i].userId;
             }
         }
+
+        for(var form in forms) {
+            if(forms[form].userId == userId) {
+                userForms.push(forms[form]);
+            }
+        }
+        deferred.resolve(userForms);
         return deferred.promise;
     }
 

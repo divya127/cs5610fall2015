@@ -31,9 +31,10 @@
              }
 
              function updateForm() {
-                 FormService.updateFormById(model.currentform.formId, newForm)
-                            .then(function(form){
-                                model.currentform = form;
+                var newForm = { id : model.currentForm.id, title : model.title};
+                 FormService.updateFormById(model.currentForm.id, newForm)
+                            .then(function(forms){
+                                model.forms= forms;
                             });
              }
 
@@ -46,14 +47,13 @@
                             });
              }
 
-        //TODO - Rewrite the select form function
-             function selectForm(index) {
-                  model.currentForm = model.forms[index];
-             }
-             function selectForm(response) {
-                  if(response != null) {
-                      model.currentform = response;
-                  }
+             function selectForm(formId) {
+                  FormService.getFormById(formId)
+                              .then(function(form){
+                              console.log(form.title);
+                                  model.title = form.title;
+                                  model.currentForm = form;
+                              });
              }
 
          }

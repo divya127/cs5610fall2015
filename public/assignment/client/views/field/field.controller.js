@@ -28,6 +28,7 @@
             }
 
             function removeField(fieldId) {
+            console.log("Inside removeField " + fieldId);
                 FieldService.deleteFieldFromForm(formId, fieldId)
                             .then(function(fields) {
                                 model.fields = fields;

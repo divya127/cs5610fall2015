@@ -53,7 +53,7 @@ module.exports = function(app) {
         return deferred.promise;
     }
 
-    function deleteFieldByFormIdAndFieldId() {
+    function deleteFieldByFormIdAndFieldId(fieldId, formId) {
         console.log("inside form.model.js deleteFieldByFormIdAndFieldId");
         var deferred = q.defer();
         var Fields = [];
@@ -65,7 +65,6 @@ module.exports = function(app) {
                         allFields.splice(field, 1);
                     }
                 }
-
                 for(var field in allFields) {
                     Fields.push(allFields[field]);
                 }
@@ -206,9 +205,15 @@ module.exports = function(app) {
             var deferred = q.defer();
             for(var form in forms) {
                 if(forms[form].id.localeCompare(formId) == 0) {
-                    var allFields = forms[form].fields;
-                    allFields.push(fieldObj);
-                    deferred.resolve(allFields);
+                   var allFields = forms[form].fields;
+                   if(typeof allFields !== "undefined") {
+                       allFields.push(fieldObj);
+                       deferred.resolve(allFields);
+                   } else {
+                       allFields = [];
+                       allFields.push(fieldObj);
+                       deferred.resolve(allFields);
+                   }
                 }
             }
             return deferred.promise;

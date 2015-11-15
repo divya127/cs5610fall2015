@@ -95,10 +95,10 @@ module.exports = function(app) {
     function findAllFieldsForFormId(formId) {
         console.log("inside form.model.js findAllFieldsForFormId");
         var deferred = q.defer();
-        var allFields = [] ;
+        var allFields;
         for(var form in forms) {
             if(forms[form].id.localeCompare(formId) == 0) {
-                allFields.push(forms[form].fields);
+                allFields = forms[form].fields;
             }
         }
         deferred.resolve(allFields);

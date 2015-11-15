@@ -60,7 +60,7 @@
         function updateFormById(formId, newForm) {
             var deferred = $q.defer();
 
-            $http.post("/api/assignment/form/" + formId)
+            $http.put("/api/assignment/form/" + formId, newForm)
                 .success(function(form){
                     deferred.resolve(form);
                 });

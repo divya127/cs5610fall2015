@@ -2,7 +2,7 @@
     <h1 class="page-header">Forms</h1>
     <ul class="nav nav-tabs">
         <li ng-class="{'active': $location.url().indexOf('form') != -1 }" ><a href="#/form">Forms</a></li>
-        <li ng-class="{'active': $location.url().indexOf('form-field') == -1 }" ><a href="#/form-field">Form-Fields</a></li>
+        <li ng-class="{'active': $location.url().indexOf('form-field') == -1 }" ><a href="#/user">Form-Fields</a></li>
     </ul>
     <br>
     <table class="table table-striped table-bordered table-hover">
@@ -35,7 +35,7 @@
         </thead>
         <tr ng-repeat="form in model.forms">
             <td>
-                <a href="#/form-field/{{form.id}}">{{form.title}}</a>
+                <a href="#/user/{{form.userId}}/form/{{form.id}}/fields">{{form.title}}</a>
             </td>
             <td>
                 <button ng-click="model.deleteForm(form.id)" class="btn btn-danger">

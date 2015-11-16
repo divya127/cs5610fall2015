@@ -14,18 +14,8 @@
     };
         return api;
 
-    function guid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4();
-    }
-
     function createFieldForForm(formId, Field) {
         var deferred = $q.defer();
-        Field.id = guid();
         $http.post("/api/assignment/form/" + formId + "/field", Field)
             .success(function(forms){
                 deferred.resolve(forms);
@@ -72,9 +62,7 @@
             .success(function(form){
                 deferred.resolve(form);
             });
-
         return deferred.promise;
-
     }
 
     }

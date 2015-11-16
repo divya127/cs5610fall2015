@@ -203,6 +203,9 @@ module.exports = function(app) {
     function createNewFieldForFormId(formId, fieldObj) {
         console.log("inside form.model.js createNewFieldForFormId");
             var deferred = q.defer();
+            //generate new id from uuid
+            fieldObj.id = uuid.v1();
+            console.log("new form id: " + fieldObj.id);
             for(var form in forms) {
                 if(forms[form].id.localeCompare(formId) == 0) {
                    var allFields = forms[form].fields;

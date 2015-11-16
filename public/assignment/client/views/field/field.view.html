@@ -82,8 +82,8 @@
                 <div ng-switch-when="RADIOS">
                     <div class="form-group">
                         <label for="radiobtn">{{field.label}}</label>
-                        <div class="radio form-control" id="radiobtn">
-                            <label ng-repeat="option in field.options">
+                        <div class="radio" id="radiobtn" ng-repeat="option in field.options">
+                            <label>
                                 <input type="radio" name="{{option.value}}">{{option.label}}
                             </label>
                         </div>

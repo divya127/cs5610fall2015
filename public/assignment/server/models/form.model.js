@@ -212,6 +212,7 @@ module.exports = function(app) {
                    } else {
                        allFields = [];
                        allFields.push(fieldObj);
+                       forms[form].fields = allFields;
                        deferred.resolve(allFields);
                    }
                 }

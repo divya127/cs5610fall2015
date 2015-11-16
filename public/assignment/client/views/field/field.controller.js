@@ -52,6 +52,7 @@
                                 break;
                      default:
                         field = {"id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"};
+                        break;
                 }
 
                 FieldService.createFieldForForm(formId,     field)

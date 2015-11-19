@@ -1,7 +1,16 @@
-var users = require('../models/user.mock.json');
+//var users = require('../models/user.mock.json');
 var q = require("q");
 
-module.exports = function(app) {
+module.exports = function(mongoose, db) {
+
+    var UserSchema = mongoose.Schema({
+        "firstName": String,
+        "lastName" : String,
+        "username" : String,
+        "password" : String
+    }, {collection: "user"});
+
+    var userModel = mongoose.model("userModel", UserSchema);
 
     var api = {
             findUserById : findUserById,
@@ -51,7 +60,9 @@ module.exports = function(app) {
         function findAllUsers() {
         console.log("inside user.model.js findAll");
             var deferred = q.defer();
-            deferred.resolve(users);
+            userModel.find(function(err, users){
+                deferred.resolve(users);
+            });
             return deferred.promise;
         }
 
@@ -70,10 +81,11 @@ module.exports = function(app) {
         function addNewUser(newUser) {
         console.log("inside user.model.js addNewUser");
             var deferred = q.defer();
-            var newUser = newUser;
             console.log(newUser);
-            users.push(newUser);
-            deferred.resolve(newUser);
+            userModel.create(newUser, function(err, doc){
+                 deferred.resolve(doc);
+            })
+            //users.push(newUser);
             return deferred.promise;
         }
 
@@ -92,5 +104,6 @@ module.exports = function(app) {
             }
             return deferred.promise;
         }
+
 };
 

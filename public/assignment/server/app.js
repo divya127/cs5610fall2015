@@ -1,4 +1,8 @@
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
+
+    var model = require("./models/user.model.js") (mongoose, db);
+    require("./services/user.service.js")(app, model);
+
+
     require("./services/form.service.js")(app);
-    require("./services/user.service.js")(app);
 };

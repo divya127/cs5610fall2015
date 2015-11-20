@@ -15,7 +15,7 @@
                                model.allUsers = users;
                            });
             }
-            init(); */
+            init(); */``
 
             function getAllUsers() {
                 UserService.findAllUsers()

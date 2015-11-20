@@ -9,13 +9,13 @@
             model.getAllUsers = getAllUsers;
             model.register = register;
 
-           /* function init() {
+           function init() {
                UserService.findAllUsers()
                            .then(function(users){
                                model.allUsers = users;
                            });
             }
-            init(); */``
+            init();
 
             function getAllUsers() {
                 UserService.findAllUsers()

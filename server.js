@@ -4,15 +4,12 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
 
-
-var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
-
-mongoose.connect(mongoURL);
-
-var db = mongoose.connection;
-
 var ipaddress 	= process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port 		= process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var mongoURL    = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
+
+mongoose.connect(mongoURL);
+var db = mongoose.connection;
 
 app.use(express.static(__dirname + '/public'));//host the static content in public directory
 app.use(bodyParser.json()); // for parsing application/json

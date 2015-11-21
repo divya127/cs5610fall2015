@@ -5,7 +5,7 @@ var multer = require('multer');
 var mongoose = require('mongoose');
 
 
-var mongoURL = 'mongodb://$OPENSHIFT_MONGODB_DB_URL' || 'mongodb://localhost/cs5610';
+var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610';
 
 mongoose.connect(mongoURL);
 

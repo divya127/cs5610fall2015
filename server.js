@@ -3,7 +3,11 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cs5610');
+
+
+var mongoURL = 'mongodb://$OPENSHIFT_MONGODB_DB_URL' || 'mongodb://localhost/cs5610';
+
+mongoose.connect(mongoURL);
 
 var db = mongoose.connection;
 

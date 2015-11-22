@@ -3,13 +3,7 @@ var q = require("q");
 
 module.exports = function(mongoose, db) {
 
-    var UserSchema = mongoose.Schema({
-        "firstName": String,
-        "lastName" : String,
-        "username" : String,
-        "password" : String
-    }, {collection: "user"});
-
+    var UserSchema = require("./user.schema.js")(mongoose);
     var userModel = mongoose.model("userModel", UserSchema);
 
     var api = {

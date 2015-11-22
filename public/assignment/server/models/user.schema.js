@@ -4,7 +4,7 @@ module.exports = function(mongoose) {
             "lastName" : String,
             "username" : String,
             "password" : String
-        }, {collection: "cs5610.assignment.user"});
+        }, {collection: "assignment.user"});
 
         return UserSchema;
 };

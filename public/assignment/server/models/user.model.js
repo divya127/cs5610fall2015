@@ -20,34 +20,30 @@ module.exports = function(mongoose, db) {
         function findUserById(userId) {
         console.log("inside user.model.js findUserById!!!!!");
             var deferred = q.defer();
-            for(var user in users) {
-                if(users[user].id.localeCompare(userId) == 0) {
-                    deferred.resolve(users[user]);
-                }
-            }
+            userModel.findById(userId, function(err, user){
+                            deferred.resolve(user);
+                        });
             return deferred.promise;
         }
 
         function findUserByCredentials(credentials) {
         console.log("inside user.model.js findUserByCredentials");
             var deferred = q.defer();
-            for(var user in users) {
-                if(users[user].username.localeCompare(credentials.username) == 0 &&
-                   users[user].password.localeCompare(credentials.password) == 0) {
-                    deferred.resolve(users[user]);
-                }
-            }
+            console.log(credentials.username + " " + credentials.password);
+             userModel.find({username: credentials.username,
+                            password: credentials.password}, function(err, user){
+                            console.log(user);
+                deferred.resolve(user);
+            });
             return deferred.promise;
         }
 
         function findUserByUsername(username) {
         console.log("inside user.model.js findUserByUsername");
             var deferred = q.defer();
-            for(var user in users) {
-                if(users[user].username.localeCompare(username) == 0) {
-                    deferred.resolve(users[user]);
-                }
-            }
+            userModel.find({username : username}, function(err, user){
+                            deferred.resolve(user);
+                        });
             return deferred.promise;
         }
 
@@ -63,12 +59,13 @@ module.exports = function(mongoose, db) {
         function deleteUser(userId) {
         console.log("inside user.model.js deleteUser");
             var deferred = q.defer();
-            for(var user in users) {
-                if(users[i].id == userId) {
-                    users.splice(user, 1);
-                    deferred.resolve(users);
-                }
-            }
+            userModel.remove({_id: userId}, function(err, user){
+                   if(err) {
+                       deferred.reject(err);
+                   } else {
+                       deferred.resolve(user);
+                   }
+            });
             return deferred.promise;
         }
 
@@ -78,24 +75,20 @@ module.exports = function(mongoose, db) {
             console.log(newUser);
             userModel.create(newUser, function(err, doc){
                  deferred.resolve(doc);
-            })
-            //users.push(newUser);
+            });
             return deferred.promise;
         }
 
         function updateUser(userId, userObj) {
         console.log("inside user.model.js updateUser");
             var deferred = q.defer();
-            for(var i = 0; i < users.length; i++)  {
-            console.log(users[i].id);
-                if(users[i].id == userId) {
-                    users[i].username = userObj.username;
-                    users[i].password = userObj.password;
-                    users[i].firstName = userObj.firstName;
-                    users[i].lastName = userObj.lastName;
-                    deferred.resolve(users[i]);
-                }
-            }
+            userModel.update({_id: userId}, {$set: userObj}, function(err, user) {
+                     if(err) {
+                         deferred.reject(err);
+                     } else {
+                         deferred.resolve(user);
+                     }
+                 });
             return deferred.promise;
         }
 

@@ -21,13 +21,14 @@
             UserService.updateUser($rootScope.curid, userobj)
                         .then(function(user){
                             if(user != null) {
-                                console.log("Updated user info: " + user[0].username);
-                                $rootScope.curusername = user[0].username;
-                                $rootScope.curpwd = user[0].password;
-                                $rootScope.curid = user[0].id;
-                                $rootScope.curemail = user[0].email;
-                                $rootScope.firstname = user[0].firstName;
-                                $rootScope.lastname = user[0].lastName;
+                                console.log("user : " + user);
+                                console.log("Updated username: " + user.username);
+                                $rootScope.curusername = user.username;
+                                $rootScope.curpwd = user.password;
+                                $rootScope.curid = user._id;
+                                $rootScope.curemail = user.email;
+                                $rootScope.firstname = user.firstName;
+                                $rootScope.lastname = user.lastName;
                             }
                         });
         }

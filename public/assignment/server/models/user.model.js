@@ -81,11 +81,17 @@ module.exports = function(mongoose, db) {
         function updateUser(userId, userObj) {
         console.log("inside user.model.js updateUser");
             var deferred = q.defer();
+            console.log("update user userId: "+ userId);
             userModel.update({_id: userId}, {$set: userObj}, function(err, user) {
                      if(err) {
+                        console.log("Cud not find Usr!!");
                          deferred.reject(err);
                      } else {
-                         deferred.resolve(user);
+                     console.log("Update successful!");
+                         userModel.findById(userId, function(err,usr) {
+                                console.log(usr);
+                                deferred.resolve(usr);
+                         });
                      }
                  });
             return deferred.promise;

@@ -71,6 +71,7 @@ module.exports = function(app, model) {
         model
             .updateUser(userId, userObj)
             .then(function(user){
+                console.log("Updated user: " + user);
                 res.json(user);
             });
     }

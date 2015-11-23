@@ -32,7 +32,6 @@ module.exports = function(mongoose, db) {
             console.log(credentials.username + " " + credentials.password);
              userModel.find({username: credentials.username,
                             password: credentials.password}, function(err, user){
-                            console.log(user);
                 deferred.resolve(user);
             });
             return deferred.promise;

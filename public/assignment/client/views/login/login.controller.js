@@ -14,12 +14,12 @@
             UserService.findUserByUsernameAndPassword(username, pwd)
                         .then(function(user){
                          if (user != null) {
-                                $rootScope.curusername = user.username;
-                                $rootScope.curpwd = user.password;
-                                $rootScope.curid = user.id;
-                                $rootScope.curemail = user.email;
-                                $rootScope.firstname = user.firstName;
-                                $rootScope.lastname = user.lastName;
+                                $rootScope.curusername = user[0].username;
+                                $rootScope.curpwd = user[0].password;
+                                $rootScope.curid = user[0].id;
+                                $rootScope.curemail = user[0].email;
+                                $rootScope.firstname = user[0].firstName;
+                                $rootScope.lastname = user[0].lastName;
                                 $location.url("/profile");
                                 }
                             }

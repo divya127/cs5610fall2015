@@ -8,8 +8,20 @@ var ipaddress 	= process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port 		= process.env.OPENSHIFT_NODEJS_PORT || 3000;
 //var mongoURL    = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/cs5610'; //
 
-mongoose.connect('mongodb://localhost/cs5610');
-var db = mongoose.connection;
+var connectionString = 'mongodb://localhost/cs5610';
+
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
+    connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+        process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+        process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+        process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+        process.env.OPENSHIFT_APP_NAME;
+}
+
+var db = mongoose.connect(connectionString);
+
+//mongoose.connect('mongodb://localhost/cs5610');
+//var db = mongoose.connection;
 
 app.use(express.static(__dirname + '/public'));//host the static content in public directory
 app.use(bodyParser.json()); // for parsing application/json

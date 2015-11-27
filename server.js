@@ -19,7 +19,6 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 var db = mongoose.connect(connectionString);
-
 //mongoose.connect('mongodb://localhost/cs5610');
 //var db = mongoose.connection;
 

@@ -1,6 +1,4 @@
-//var forms = require('../models/form.mock.json');
 var q = require("q");
-var uuid = require('node-uuid');
 
 module.exports = function(mongoose, db) {
 
@@ -97,13 +95,11 @@ module.exports = function(mongoose, db) {
     function findAllFieldsForFormId(formId) {
         console.log("inside form.model.js findAllFieldsForFormId");
         var deferred = q.defer();
-        var allFields;
-        for(var form in forms) {
-            if(forms[form].id.localeCompare(formId) == 0) {
-                allFields = forms[form].fields;
-            }
-        }
-        deferred.resolve(allFields);
+        formModel.findById(formId, function(err, forms){
+            console.log("Found form! " + forms);
+            deferred.resolve(forms.fields);
+        });
+        //deferred.resolve(allFields);
         return deferred.promise;
     }
 
@@ -197,23 +193,17 @@ module.exports = function(mongoose, db) {
     function createNewFieldForFormId(formId, fieldObj) {
         console.log("inside form.model.js createNewFieldForFormId");
             var deferred = q.defer();
-            //generate new id from uuid
-            fieldObj.id = uuid.v1();
             console.log("new form id: " + fieldObj.id);
-            for(var form in forms) {
-                if(forms[form].id.localeCompare(formId) == 0) {
-                   var allFields = forms[form].fields;
-                   if(typeof allFields !== "undefined") {
-                       allFields.push(fieldObj);
-                       deferred.resolve(allFields);
-                   } else {
-                       allFields = [];
-                       allFields.push(fieldObj);
-                       forms[form].fields = allFields;
-                       deferred.resolve(allFields);
-                   }
-                }
-            }
+
+            formModel.findById(formId, function(err, form){
+                form.fields.push(fieldObj);
+                form.save(function(err, form){
+                    console.log(form);
+                    deferred.resolve(form);
+                });
+            });
+
+            //deferred.resolve(allFields);
             return deferred.promise;
     }
 

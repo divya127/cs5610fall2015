@@ -14,7 +14,7 @@
             model.forms = [];
 
             function init() {
-            console.log("insdie form controller" + $rootScope.curid);
+            console.log("inside form controller" + $rootScope.curid);
              FormService.findAllFormsForUser($rootScope.curid)
                         .then(function(forms){
                             model.forms = forms;

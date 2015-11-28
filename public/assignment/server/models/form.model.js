@@ -158,7 +158,7 @@ module.exports = function(mongoose, db) {
     function updateForm(formId, formObj) {
     console.log("inside form.model.js updateForm");
         var deferred = q.defer();
-        var userId = formModel.findById( { title: 0 } );
+        var userId = formObj.userId;
         console.log(userId + " " + formId);
         formModel.update({_id: formId}, {$set: formObj}, function(err, forms) {
              if(err) {

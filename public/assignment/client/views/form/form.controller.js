@@ -11,6 +11,7 @@
             model.updateForm = updateForm;
             model.deleteForm = deleteForm;
             model.selectForm = selectForm;
+            model.forms = [];
 
             function init() {
             console.log("insdie form controller" + $rootScope.curid);

@@ -119,8 +119,9 @@ module.exports = function(mongoose, db) {
     function deleteForm(formId) {
     console.log("inside form.model.js deleteForm");
         var deferred = q.defer();
-        var userId = formModel.find( { }, { title: 0 } );
-        userModel.remove({_id: userId}, function(err, user){
+        var userId = formModel.findById(formId, { title: 0 } );
+        console.log(userId + " " + formId);
+        formModel.remove({_id: formId}, function(err, user){
                if(err) {
                     console.log("Error deleting form for user!");
                    deferred.reject(err);
@@ -130,7 +131,6 @@ module.exports = function(mongoose, db) {
                     });
                }
         });
-        deferred.resolve(userForms);
         return deferred.promise;
     }
 
@@ -139,8 +139,14 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         console.log(newForm);
         formModel.create(newForm, function(err, form){
-            console.log("Created new form!!!");
-             deferred.resolve(form);
+            if(err) {
+                console.log("ERROOOOORRRRR!!!!!");
+            }
+            else {
+                console.log("Created new form!!!");
+                console.log(form);
+                deferred.resolve(form);
+            }
         });
         return deferred.promise;
     }
@@ -148,7 +154,8 @@ module.exports = function(mongoose, db) {
     function updateForm(formId, formObj) {
     console.log("inside form.model.js updateForm");
         var deferred = q.defer();
-        var userId = formModel.find( { }, { title: 0 } );
+        var userId = formModel.findById( { title: 0 } );
+        console.log(userId + " " + formId);
         formModel.update({_id: formId}, {$set: formObj}, function(err, forms) {
              if(err) {
                 console.log("Cud not find Usr!!");

@@ -120,19 +120,20 @@ module.exports = function(mongoose, db) {
     function deleteForm(formId) {
     console.log("inside form.model.js deleteForm");
         var deferred = q.defer();
-        var userId ;
-        formModel.findById(formId, function(err, forms){
-                    console.log(formId + " " + forms);
-                });
+//        var userId ;
+        console.log(formId);
+//        formModel.findById(formId, function(err, forms){
+//                    console.log(forms);
+//                });
 
-        formModel.remove({_id: formId}, function(err, user){
+        formModel.remove({_id: formId}, function(err, form){
                if(err) {
                     console.log("Error deleting form for user!");
                    deferred.reject(err);
                } else {
-                   formModel.find({userId: userId}, function(err, form){
+                   //formModel.find({userId: userId}, function(err, form){
                         deferred.resolve(form);
-                    });
+                   // });
                }
         });
         return deferred.promise;
@@ -185,6 +186,7 @@ module.exports = function(mongoose, db) {
     function findFormById(formId) {
     var deferred = q.defer();
         formModel.findById(formId, function(err, forms){
+            console.log("Found form! " + forms);
             deferred.resolve(forms);
         });
         return deferred.promise;

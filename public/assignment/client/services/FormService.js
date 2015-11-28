@@ -62,14 +62,12 @@
                 .success(function(forms){
                     deferred.resolve(forms);
                 });
-
             return deferred.promise;
 
         }
 
         function updateFormById(formId, newForm) {
             var deferred = $q.defer();
-
             $http.put("/api/assignment/form/" + formId, newForm)
                 .success(function(form){
                     deferred.resolve(form);

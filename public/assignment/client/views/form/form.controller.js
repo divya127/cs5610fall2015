@@ -34,7 +34,7 @@
              function updateForm() {
                 var newForm = { _id : model.currentForm._id, title : model.title, userId: $rootScope.curid};
                 console.log(newForm.title + " " + newForm._id);
-                 FormService.updateFormById(model.currentForm.id, newForm)
+                 FormService.updateFormById(model.currentForm._id, newForm)
                             .then(function(forms){
                                 model.forms= forms;
                             });
@@ -46,7 +46,10 @@
                  FormService.deleteFormById(formId)
                             .then(function(forms){
                             console.log(forms);
-                                model.forms = forms;
+                            FormService.findAllFormsForUser($rootScope.curid)
+                                    .then(function(forms){
+                                        model.forms = forms;
+                                    });
                             });
              }
 

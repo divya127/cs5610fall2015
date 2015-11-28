@@ -32,7 +32,7 @@
              }
 
              function updateForm() {
-                var newForm = { id : model.currentForm.id, title : model.title};
+                var newForm = { _id : model.currentForm.id, title : model.title};
                  FormService.updateFormById(model.currentForm.id, newForm)
                             .then(function(forms){
                                 model.forms= forms;
@@ -41,6 +41,7 @@
 
 
              function deleteForm(formId) {
+                console.log("Form to delete: " + formId);
                  FormService.deleteFormById(formId)
                             .then(function(forms){
                             console.log(forms);

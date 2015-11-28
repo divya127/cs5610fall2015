@@ -61,6 +61,7 @@ module.exports = function(app, model) {
     function deleteForm(req, res) {
     console.log("Inside server side deleteForm - forms");
     var formId = req.params.formId;
+    console.log(formId);
         model
             .deleteForm(formId)
             .then(function(forms){

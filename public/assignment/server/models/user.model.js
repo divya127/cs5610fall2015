@@ -1,4 +1,3 @@
-//var users = require('../models/user.mock.json');
 var q = require("q");
 
 module.exports = function(mongoose, db) {

@@ -1,13 +1,8 @@
 module.exports = function(mongoose) {
-
-    var fieldSchema = mongoose.Schema({
-
-    })
-    var UserSchema = mongoose.Schema({
+    var FormSchema = mongoose.Schema({
             "title": String,
-            "userId" : Number,
-            "fields" :
-        }, {collection: "cs5610.assignment.user"});
+            "userId" : Number
+        }, {collection: "cs5610.assignment.form"});
 
-        return UserSchema;
+        return FormSchema;
 };

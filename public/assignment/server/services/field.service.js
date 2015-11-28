@@ -1,6 +1,6 @@
-var model = require("../models/form.model.js")();
+//var model = require("../models/form.model.js")();
 
-module.exports = function(app) {
+module.exports = function(app, model) {
     app.get("/api/assignment/form/:formId/field", findAllFieldsForFormId);
     app.post("/api/assignment/form/:formId/field", createNewFieldForFormId);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldForFormId);

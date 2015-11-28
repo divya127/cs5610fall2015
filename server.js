@@ -20,7 +20,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 
 var db = mongoose.connect(connectionString);
 
-mongoose.connect(mongoURL);
+//mongoose.connect(mongoURL);
 var db = mongoose.connection;
 
 app.use(express.static(__dirname + '/public'));//host the static content in public directory

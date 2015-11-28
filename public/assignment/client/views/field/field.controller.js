@@ -12,6 +12,7 @@
            model.removeField = removeField;
 
            function init() {
+           console.log(formId);
             FieldService.getFieldsForForm(formId)
                        .then(function(fields){
                            model.fields = fields;

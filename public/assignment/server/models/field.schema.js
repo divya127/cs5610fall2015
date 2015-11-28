@@ -18,15 +18,15 @@ module.exports = function(mongoose) {
                  },
                  "RADIO" : {
                      "label" : {type: String},
-                      "value" : {type: String}
+                     "value" : {type: String}
                  },
                  "CHECKBOX" : {
                       "label" : {type: String},
-                       "value" : {type: String}
+                      "value" : {type: String}
                  },
                  "CHECKBOX" : {
                        "label" : {type: String},
-                        "value" : {type: String}
+                       "value" : {type: String}
                   }
              }]
         });

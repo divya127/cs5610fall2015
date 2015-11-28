@@ -26,6 +26,7 @@
 
     function getFieldsForForm(formId) {
         var deferred = $q.defer();
+        console.log("Inside getfieldsforform");
         $http.get("/api/assignment/form/" + formId + "/field")
             .success(function(forms){
                 deferred.resolve(forms);

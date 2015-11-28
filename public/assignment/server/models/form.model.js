@@ -120,20 +120,13 @@ module.exports = function(mongoose, db) {
     function deleteForm(formId) {
     console.log("inside form.model.js deleteForm");
         var deferred = q.defer();
-//        var userId ;
         console.log(formId);
-//        formModel.findById(formId, function(err, forms){
-//                    console.log(forms);
-//                });
-
         formModel.remove({_id: formId}, function(err, form){
                if(err) {
                     console.log("Error deleting form for user!");
                    deferred.reject(err);
                } else {
-                   //formModel.find({userId: userId}, function(err, form){
-                        deferred.resolve(form);
-                   // });
+                    deferred.resolve(form);
                }
         });
         return deferred.promise;

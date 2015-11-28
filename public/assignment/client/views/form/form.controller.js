@@ -32,7 +32,8 @@
              }
 
              function updateForm() {
-                var newForm = { _id : model.currentForm.id, title : model.title};
+                var newForm = { _id : model.currentForm._id, title : model.title, userId: $rootScope.curid};
+                console.log(newForm.title + " " + newForm._id);
                  FormService.updateFormById(model.currentForm.id, newForm)
                             .then(function(forms){
                                 model.forms= forms;
@@ -52,7 +53,7 @@
              function selectForm(formId) {
                   FormService.getFormById(formId)
                               .then(function(form){
-                              console.log(form.title);
+                              console.log(form.title + " " + form._id);
                                   model.title = form.title;
                                   model.currentForm = form;
                               });

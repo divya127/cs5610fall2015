@@ -6,7 +6,9 @@ module.exports = function(mongoose) {
                   enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
               },
               "options" :{
-                 type: fieldType,
+                 type: String,
+                 enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"],
+                 
                  "TEXT": {
                      "placeholder" : {type: String, default: "Text"}
                  },

@@ -5,11 +5,8 @@ module.exports = function(mongoose) {
                   type: String,
                   enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
               },
-              "options" :[{
-                 "fieldType" : {
-                       type: String,
-                       enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
-                   },
+              "options" :{
+                 type: fieldType,
                  "TEXT": {
                      "placeholder" : {type: String, default: "Text"}
                  },
@@ -17,18 +14,24 @@ module.exports = function(mongoose) {
                      "placeholder" : {type: String, default: "Text"}
                  },
                  "RADIO" : {
+                 "options" : [{
                      "label" : {type: String},
                      "value" : {type: String}
+                     }]
                  },
-                 "CHECKBOX" : {
-                      "label" : {type: String},
-                      "value" : {type: String}
-                 },
-                 "CHECKBOX" : {
+                 "SELECT" : {
+                  "options" : [{
                        "label" : {type: String},
                        "value" : {type: String}
-                  }
-             }]
+                     }]
+                 },
+                 "CHECKBOX" : {
+                  "options" : [{
+                      "label" : {type: String},
+                      "value" : {type: String}
+                     }]
+                 }
+             }
         });
 
         return FieldSchema;

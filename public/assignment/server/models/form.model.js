@@ -203,7 +203,6 @@ module.exports = function(mongoose, db) {
                 });
             });
 
-            //deferred.resolve(allFields);
             return deferred.promise;
     }
 

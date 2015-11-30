@@ -66,9 +66,9 @@
             function removeField(fieldId) {
             console.log("Inside removeField " + fieldId);
                 FieldService.deleteFieldFromForm(formId, fieldId)
-                            .then(function(fields) {
-                                console.log(fields);
-                                model.fields = fields;
+                            .then(function(form) {
+                                console.log(form.fields);
+                                model.fields = form.fields;
                             });
             }
 

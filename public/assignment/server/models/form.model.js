@@ -57,21 +57,19 @@ module.exports = function(mongoose, db) {
     function deleteFieldByFormIdAndFieldId(fieldId, formId) {
         console.log("inside form.model.js deleteFieldByFormIdAndFieldId");
         var deferred = q.defer();
-        var Fields = [];
-        for(var form in forms) {
-            if(forms[form].id.localeCompare(formId) == 0) {
-                var allFields = forms[form].fields;
-                for(var field in allFields) {
-                    if(allFields[field].id.localeCompare(fieldId) == 0) {
-                        allFields.splice(field, 1);
+        formModel.findById(formId, function(err, form){
+                    //form.fields.splice(fieldId, 1);
+                    var allFields = form.fields;
+                    for(var field in allFields) {
+                        if(allFields[field]._id == fieldId) {
+                            allFields.splice(field, 1);
+                        }
                     }
-                }
-                for(var field in allFields) {
-                    Fields.push(allFields[field]);
-                }
-            }
-        }
-        deferred.resolve(Fields);
+                    form.save(function(err, forms){
+                        console.log("Deleted field, form : " + forms);
+                        deferred.resolve(forms);
+                    });
+                });
         return deferred.promise;
     }
 

@@ -70,6 +70,7 @@
             var deferred = $q.defer();
             $http.put("/api/assignment/form/" + formId, newForm)
                 .success(function(form){
+                    console.log("Update successful!!!");
                     deferred.resolve(form);
                 });
 

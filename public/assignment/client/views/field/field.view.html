@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div ng-switch-when="SELECT">
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-12">
                         <label for="dropd">{{field.label}}</label>
                         <br>
                         <select id="dropd" class="form-control col-lg-10">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div ng-switch-when="CHECKBOX">
-                    <div class="form-group">
+                    <div class="form-group col-lg-12">
                         <label for="rolesbox">{{field.label}}</label>
                         <br>
                         <div class="checkbox" id="rolesbox" ng-repeat="option in field.options">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div ng-switch-when="RADIO">
-                    <div class="form-group">
+                    <div class="form-group col-lg-12">
                         <label for="radiobtn">{{field.label}}</label>
                         <div class="radio" id="radiobtn" ng-repeat="option in field.options">
                             <label>

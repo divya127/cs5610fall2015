@@ -5,10 +5,9 @@
         <li ng-class="{'active': $location.url().indexOf('form-field') != -1 }" role="presentation"><a href="#/form-field">Form-Fields</a></li>
     </ul>
     <br>
-    {{model.fields}}
     <div class="form-horizontal">
         <div ng-repeat="field in model.fields">
-            <div ng-switch on="field.type">
+            <div ng-switch on="field.fieldType">
                 <div ng-switch-when="TEXTAREA">
                     <div class="form-group col-lg-12">
                         <label for="txtarea">{{field.label}}</label>
@@ -48,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-switch-when="OPTIONS">
+                <div ng-switch-when="SELECT">
                     <div class="form-group col-lg-10">
                         <label for="dropd">{{field.label}}</label>
                         <br>
@@ -65,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-switch-when="CHECKBOXES">
+                <div ng-switch-when="CHECKBOX">
                     <div class="form-group">
                         <label for="rolesbox">{{field.label}}</label>
                         <br>
@@ -80,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div ng-switch-when="RADIOS">
+                <div ng-switch-when="RADIO">
                     <div class="form-group">
                         <label for="radiobtn">{{field.label}}</label>
                         <div class="radio" id="radiobtn" ng-repeat="option in field.options">

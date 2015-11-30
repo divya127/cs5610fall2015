@@ -16,6 +16,7 @@
 
     function createFieldForForm(formId, Field) {
         var deferred = $q.defer();
+        console.log("Going to server, field: "+ Field);
         $http.post("/api/assignment/form/" + formId + "/field", Field)
             .success(function(forms){
                 deferred.resolve(forms);

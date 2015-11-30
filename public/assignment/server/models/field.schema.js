@@ -5,10 +5,6 @@ module.exports = function(mongoose) {
                   type: String,
                   enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
               },
-              "type" : {
-                    type: String,
-                    enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
-                },
             "options" : [{
                    "label" : {type: String},
                    "value" : {type: String}

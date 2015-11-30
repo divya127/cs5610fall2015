@@ -11,6 +11,7 @@ module.exports = function(app, model) {
         console.log("Inside server side createNewFieldForFormId - fields");
         var formId = req.params.formId;
         var fieldObj = req.body;
+        console.log("In server!!!!!!!!!!! field: ", fieldObj);
         model
             .createNewFieldForFormId(formId, fieldObj)
             .then(function(form){

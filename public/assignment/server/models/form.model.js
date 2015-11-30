@@ -193,13 +193,13 @@ module.exports = function(mongoose, db) {
     function createNewFieldForFormId(formId, fieldObj) {
         console.log("inside form.model.js createNewFieldForFormId");
             var deferred = q.defer();
-            console.log("new form id: " + fieldObj.id);
+            console.log("fieldObj inside model : " + fieldObj);
 
             formModel.findById(formId, function(err, form){
                 form.fields.push(fieldObj);
-                form.save(function(err, form){
-                    console.log(form);
-                    deferred.resolve(form);
+                form.save(function(err, fields){
+                    console.log("Saved form" + fields);
+                    deferred.resolve(fields);
                 });
             });
 

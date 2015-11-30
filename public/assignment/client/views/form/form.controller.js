@@ -32,7 +32,7 @@
              }
 
              function updateForm() {
-                var newForm = { _id : model.currentForm._id, title : model.title, userId: $rootScope.curid};
+                var newForm = { title : model.title, userId: $rootScope.curid};
                 console.log(newForm.title + " " + newForm._id);
                  FormService.updateFormById(model.currentForm._id, newForm)
                             .then(function(forms){

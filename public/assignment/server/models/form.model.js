@@ -148,7 +148,7 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         var userId = formObj.userId;
         console.log(userId + " " + formId);
-        formModel.update({_id: formId}, {$set: formObj}, function(err, forms) {
+        formModel.update({_id: formId}, {$set: formObj},{upsert:true}, function(err, forms) {
              if(err) {
                 console.log(err);
                 console.log("Cud not find Form!!");

@@ -36,6 +36,7 @@
                 console.log(newForm.title + " " + newForm._id);
                  FormService.updateFormById(model.currentForm._id, newForm)
                             .then(function(forms){
+                                console.log("Updated Form-title: " + forms[0].title);
                                 model.forms= forms;
                             });
              }

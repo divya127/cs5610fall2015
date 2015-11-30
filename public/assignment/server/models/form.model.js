@@ -150,7 +150,8 @@ module.exports = function(mongoose, db) {
         console.log(userId + " " + formId);
         formModel.update({_id: formId}, {$set: formObj}, function(err, forms) {
              if(err) {
-                console.log("Cud not find Usr!!");
+                console.log(err);
+                console.log("Cud not find Form!!");
                  deferred.reject(err);
              } else {
              console.log("Update successful!");

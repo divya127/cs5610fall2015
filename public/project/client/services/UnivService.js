@@ -12,11 +12,12 @@
         };
         return api;
 
-        function searchMovieByTitle (name) {
+        function searchUnivByTitle (name) {
             var deferred = $q.defer();
             var searchUrl = url.replace("UNIVNAME", name);
+
             $http
-                .jsonp(searchUrl)
+                .jsonp(data)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

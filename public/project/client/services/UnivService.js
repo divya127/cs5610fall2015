@@ -15,9 +15,8 @@
         function searchUnivByTitle (name) {
             var deferred = $q.defer();
             var searchUrl = url.replace("UNIVNAME", name);
-
             $http
-                .jsonp(data)
+                .get("http://university.apievangelist.com/data/companies.json")
                 .success(function(response) {
                     deferred.resolve(response);
                 });

@@ -64,6 +64,11 @@
                     templateUrl: "views/search/searchResults.view.html",
                     controller: "SearchController"
                 })
+                .when("/univs",
+                {
+                    templateUrl: "views/univs/univs.view.html",
+                    controller: "UnivController"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 })

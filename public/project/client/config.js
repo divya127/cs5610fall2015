@@ -7,56 +7,56 @@
 			$routeProvider
 				.when("/home",
 				{
-					templateUrl: "home/home.view.html"
+					templateUrl: "views/home/home.view.html"
 				})
 				.when("/login",
                 {
-                    templateUrl: "login/login.view.html",
+                    templateUrl: "views/login/login.view.html",
                     controller: "LoginController"
                 })
                 .when("/register",
 				{
-					templateUrl: "register/register.view.html",
+					templateUrl: "views/register/register.view.html",
 					controller: "RegisterController"
 				})
 				.when("/profile",
                 {
-                    templateUrl: "profile/profile.view.html",
+                    templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController"
                 })
                 .when("/clubs",
                 {
-                    templateUrl: "profile/club.view.html",
+                    templateUrl: "views/profile/club.view.html",
                     controller: "ProfileController"
                 })
                 .when("/skills",
                 {
-                    templateUrl: "profile/skills.view.html",
+                    templateUrl: "views/profile/skills.view.html",
                     controller: "ProfileController"
                 })
                 .when("/recommendations",
                 {
-                    templateUrl: "profile/recommendations.view.html",
+                    templateUrl: "views/profile/recommendations.view.html",
                     controller: "ProfileController"
                 })
                 .when("/testscores",
                 {
-                    templateUrl: "profile/testscores.view.html",
+                    templateUrl: "views/profile/testscores.view.html",
                     controller: "ProfileController"
                 })
                 .when("/projects",
                 {
-                    templateUrl: "profile/projects.view.html",
+                    templateUrl: "views/profile/projects.view.html",
                     controller: "ProfileController"
                 })
                 .when("/professor",
                 {
-                    templateUrl: "professor/professor.view.html",
+                    templateUrl: "views/professor/professor.view.html",
                     controller: "ProfessorController"
                 })
                 .when("/student",
                 {
-                    templateUrl: "student/student.view.html",
+                    templateUrl: "views/student/student.view.html",
                     controller: "StudentController"
                 })
                 .otherwise({

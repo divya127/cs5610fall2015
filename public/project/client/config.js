@@ -12,17 +12,20 @@
 				.when("/login",
                 {
                     templateUrl: "views/login/login.view.html",
-                    controller: "LoginController"
+                    controller: "LoginController",
+                    controllerAs: "model"
                 })
                 .when("/register",
 				{
 					templateUrl: "views/register/register.view.html",
-					controller: "RegisterController"
+					controller: "RegisterController",
+					controllerAs: "model"
 				})
 				.when("/profile",
                 {
                     templateUrl: "views/profile/profile.view.html",
-                    controller: "ProfileController"
+                    controller: "ProfileController",
+                    controllerAs: "model"
                 })
                 .when("/clubs",
                 {
@@ -52,22 +55,26 @@
                 .when("/professor",
                 {
                     templateUrl: "views/professor/professor.view.html",
-                    controller: "ProfessorController"
+                    controller: "ProfessorController",
+                    controllerAs: "model"
                 })
                 .when("/student",
                 {
                     templateUrl: "views/student/student.view.html",
-                    controller: "StudentController"
+                    controller: "StudentController",
+                    controllerAs: "model"
                 })
                 .when("/search",
                 {
                     templateUrl: "views/search/searchResults.view.html",
-                    controller: "SearchController"
+                    controller: "SearchController",
+                    controllerAs: "model"
                 })
                 .when("/univs",
                 {
                     templateUrl: "views/univs/univs.view.html",
-                    controller: "UnivController"
+                    controller: "UnivController",
+                    controllerAs: "model"
                 })
                 .otherwise({
                     redirectTo: "/home"

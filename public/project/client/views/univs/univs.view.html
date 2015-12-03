@@ -10,21 +10,27 @@
     <input class="form-control" ng-model="model.name" placeholder="Northeastern University...." type="text"/>
     <button ng-click="model.search()" class="btn btn-warning btn-block">Search</button>
     </div>
-
+    <br><br>
     <table class="table table-striped">
+        <thead>
+            <th>University Name</th>
+            <th>Location</th>
+            <th>Admissions Link</th>
+            <th>Financial Aid Link</th>
+        </thead>
         <tbody>
-        <tr ng-repeat="univ in model.results">
+        <tr ng-repeat="univ in model.results" class="success">
             <td>
-                <a href="{{univ.webaddr}}">{{univ.instnm}}</a>
-            </td>
-            <td>
-                <a href="{{univ.adminurl}}">Admissions</a>
-            </td>
-            <td>
-                <a href="{{univ.npriurl}}">Financial Aid</a>
+                <a ng-href="http://{{univ.webaddr}}" target="_blank">{{univ.instnm}}</a>
             </td>
             <td>
                 {{univ.city}}
+            </td>
+            <td>
+                <a ng-href="http://{{univ.adminurl}}" target="_blank">Admissions</a>
+            </td>
+            <td>
+                <a ng-href="http://{{univ.npriurl}}" target="_blank">Financial Aid</a>
             </td>
         </tr>
         </tbody>

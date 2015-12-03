@@ -1,4 +1,4 @@
-
+var request = require('request');
 module.exports = function(app, model) {
 
     app.get("/api/project/univ/:name", findUnivByName);
@@ -19,11 +19,15 @@ module.exports = function(app, model) {
         function findUnivByName(req, res) {
             var name = req.params.name;
             console.log("uname: " + name);
-            model
-                .findUnivByName(name)
-                .then(function(univ){
-                    res.json(univ);
-                });
+            request("https://inventory.data.gov/api/action/datastore_search?resource_id=38625c3d-5388-4c16-a30f-d105432553a4&limit=10&q="+name,
+            function(error, response, body) {
+              console.log(body);
+            });
+//            model
+//                .findUnivByName(name)
+//                .then(function(univ){
+//                    res.json(univ);
+//                });
         }
 
         function addNewUniv(req, res) {

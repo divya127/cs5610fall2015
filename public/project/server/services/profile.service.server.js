@@ -26,7 +26,7 @@ module.exports = function(app, model) {
 
         function findProfileById(req, res) {
             model
-                .findProfileForUser(req.params.id)
+                .findProfileById(req.params.id)
                 .then(function(profile){
                     res.json(profile);
                 });

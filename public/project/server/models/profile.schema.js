@@ -8,20 +8,25 @@ module.exports = function(mongoose) {
             "schoolName": String,
             "tagLine": String,
             "skills" : [SkillSchema],
-            "testScores": [
+            "testScores": [{
                 "test": String,
                 "scoreAcheived": Number,
                 "scoreMax": Number,
                 "host": String
-            ],
+            }],
             "recommendations" : [RecommendationSchema],
-            "projects" : [
+            "projects" : [{
                 "title" : String,
                 "description" : String,
-            ],
-            "clubs" : [
+            }],
+            "clubs" : [{
                 "clubName" : String
-            ],
+            }],
+            "publications":[{
+                "title" : String,
+                "members": String,
+                "description": String,
+            }],
             "image" : String
         }, {collection: "cs5610.project.profile"});
 

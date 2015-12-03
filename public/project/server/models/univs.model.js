@@ -25,8 +25,10 @@ module.exports = function(mongoose, db) {
         }
 
         function findUnivByName(name) {
+        console.log("inside univ.model.js findUnivByName!!!!! input: " + name);
             var deferred = q.defer();
-            univModel.findOne({"instnm" : {$regex : name}}, function(err, univs){
+            univModel.find({instnm : name}, function(err, univs){
+                            console.log("UNiv found: " + univs);
                             deferred.resolve(univs);
                         });
             return deferred.promise;

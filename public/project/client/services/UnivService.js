@@ -18,7 +18,8 @@
 
         function findUnivByName (name) {
             var deferred = $q.defer();
-            $http.get("/api/project/univ/uname=" + name)
+            console.log("Client uname: " + name);
+            $http.get("/api/project/univ/" + name)
                 .success(function(user){
                     deferred.resolve(user);
                 });

@@ -2,7 +2,7 @@
 module.exports = function(app, model) {
 
 
-    app.get("/api/project/univ/uname:name", findUnivByName);
+    app.get("/api/project/univ/:name", findUnivByName);
     app.get("/api/project/univ", findAllUnivs);
     app.delete("/api/project/univ/:univId", deleteUniv);
     app.post("/api/project/univ", addNewUniv);
@@ -18,7 +18,8 @@ module.exports = function(app, model) {
         }
 
         function findUnivByName(req, res) {
-            var name = req.params.uname;
+            var name = req.params.name;
+            console.log("uname: " + name);
             model
                 .findUnivByName(name)
                 .then(function(univ){

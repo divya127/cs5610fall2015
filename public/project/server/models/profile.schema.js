@@ -4,8 +4,7 @@ module.exports = function(mongoose) {
     var RecommendationSchema = require("./recommendations.schema.js")(mongoose);
 
     var ProfileSchema = mongoose.Schema({
-            "firstName": String,
-            "lastName" : String,
+            "userId": String,
             "schoolName": String,
             "tagLine": String,
             "skills" : [SkillSchema],

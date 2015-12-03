@@ -1,7 +1,6 @@
 
 module.exports = function(app, model) {
 
-
     app.get("/api/project/univ/:name", findUnivByName);
     app.get("/api/project/univ", findAllUnivs);
     app.delete("/api/project/univ/:univId", deleteUniv);

@@ -18,7 +18,7 @@ module.exports = function(mongoose, db) {
         function findUnivById(userId) {
         console.log("inside user.model.js findUserById!!!!!");
             var deferred = q.defer();
-            userModel.findById(userId, function(err, user){
+            univModel.findById(userId, function(err, user){
                             deferred.resolve(user);
                         });
             return deferred.promise;
@@ -26,7 +26,7 @@ module.exports = function(mongoose, db) {
 
         function findUnivByName(name) {
             var deferred = q.defer();
-            userModel.findOne({"instnm" : {$regex : name}}, function(err, univs){
+            univModel.findOne({"instnm" : {$regex : name}}, function(err, univs){
                             deferred.resolve(univs);
                         });
             return deferred.promise;
@@ -34,7 +34,7 @@ module.exports = function(mongoose, db) {
 
         function findAllUnivs() {
             var deferred = q.defer();
-            userModel.find(function(err, users){
+            univModel.find(function(err, users){
                 deferred.resolve(users);
             });
             return deferred.promise;
@@ -42,7 +42,7 @@ module.exports = function(mongoose, db) {
 
         function deleteUniv(userId) {
             var deferred = q.defer();
-            userModel.remove({_id: userId}, function(err, user){
+            univModel.remove({_id: userId}, function(err, user){
                    if(err) {
                        deferred.reject(err);
                    } else {
@@ -55,7 +55,7 @@ module.exports = function(mongoose, db) {
         function addNewUniv(newUser) {
             var deferred = q.defer();
             console.log(newUser);
-            userModel.create(newUser, function(err, doc){
+            univModel.create(newUser, function(err, doc){
                  deferred.resolve(doc);
             });
             return deferred.promise;
@@ -63,7 +63,7 @@ module.exports = function(mongoose, db) {
 
         function updateUniv(userId, userObj) {
             var deferred = q.defer();
-            userModel.update({_id: userId}, {$set: userObj}, function(err, user) {
+            univModel.update({_id: userId}, {$set: userObj}, function(err, user) {
                      if(err) {
                          deferred.reject(err);
                      } else {

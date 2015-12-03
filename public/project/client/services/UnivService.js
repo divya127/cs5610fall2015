@@ -7,12 +7,12 @@
     function UnivService ($http, $q) {
 
         var api = {
-            findUnivById : findUnivById,
             findUnivByName : findUnivByName,
-            findAllUnivs: findAllUnivs,
-            deleteUniv : deleteUniv,
-            addNewUniv : addNewUniv,
-            updateUniv: updateUniv
+//            findAllUnivs: findAllUnivs,
+//            deleteUniv : deleteUniv,
+//            addNewUniv : addNewUniv,
+//            updateUniv: updateUniv,
+//            findUnivById : findUnivById
         };
         return api;
 
@@ -24,4 +24,5 @@
                 });
             return deferred.promise;
         }
-}) ();
+    }
+})();

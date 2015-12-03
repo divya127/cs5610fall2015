@@ -1,12 +1,13 @@
 
 module.exports = function(app, model) {
 
-    app.get("/api/project/univ/:univId", findUnivById);
+
     app.get("/api/project/univ/uname:name", findUnivByName);
     app.get("/api/project/univ", findAllUnivs);
     app.delete("/api/project/univ/:univId", deleteUniv);
     app.post("/api/project/univ", addNewUniv);
     app.put("/api/project/univ/:univId", updateUniv);
+    app.get("/api/project/univ/:univId", findUnivById);
 
     function findAllUnivs(req, res) {
             model

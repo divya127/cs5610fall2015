@@ -2,6 +2,11 @@ span.glyphicon.glyphicon-triangle-bottom {
     font-size: 0.8em;
 }
 
+.list-group-item>.badge {
+    float: left;
+    margin-right: 10px;
+}
+
 .col-md-6 {
     width: 50%;
     margin-left: 200px;

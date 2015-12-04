@@ -21,6 +21,7 @@
             console.log("Client uname: " + name);
             $http.get("/api/project/univ/" + name)
                 .success(function(user){
+
                     deferred.resolve(user);
                 });
             return deferred.promise;

@@ -10,8 +10,9 @@
 
 		function search () {
 			UnivService.findUnivByName(model.name).then(function(response){
-				model.results = response;
-				console.log(response);
+				var res = JSON.parse(response);
+				console.log("Received resposne : " + res);
+				model.results = res.result.records;
 			});
 		}
 

@@ -177,7 +177,9 @@ module.exports = function(mongoose, db) {
 
     function findProfileForUser(userId) {
         var deferred = q.defer();
+        console.log("Inside prof model userId: " + userId);
         profileModel.find({userId : userId}, function(err, user){
+                    console.log("Found prof : " + user);
                         deferred.resolve(user);
                     });
         return deferred.promise;

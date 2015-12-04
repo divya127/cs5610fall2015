@@ -17,6 +17,7 @@ module.exports = function(app, model) {
         }
 
         function findProfileForUser(req, res) {
+            console.log("Inside server side: prof for user : " + req.params.userId);
             model
                 .findProfileForUser(req.params.userId)
                 .then(function(profile){

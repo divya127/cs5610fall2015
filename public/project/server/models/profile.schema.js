@@ -12,7 +12,7 @@ module.exports = function(mongoose) {
                 "test": String,
                 "scoreAcheived": Number,
                 "scoreMax": Number,
-                "host": String
+                "org": String
             }],
             "recommendations" : [RecommendationSchema],
             "projects" : [{

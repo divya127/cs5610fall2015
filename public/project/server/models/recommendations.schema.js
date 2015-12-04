@@ -1,7 +1,8 @@
 module.exports = function(mongoose) {
     var RecommendationSchema = mongoose.Schema({
             "content": String,
-            "writerId" : String,
+            "authorId" : String,
+            "authorName" : String,
             "receipientId": String
         });
 

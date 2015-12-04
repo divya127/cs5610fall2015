@@ -1,23 +1,74 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Profile</h1>
         <p>Divya Devaraj</p>
-        <p>Sophomore year at Lakeside School, Seattle</p>
-        <p>Web Development Enthusiast</p>
-        <img src="holder.js/200x200/social">
+        <p>{{model.profile.schoolName}}</p>
+        <p>{{model.profile.tagLine}}</p>
         <br>
-        <div id="blah" class="col-lg-10">
-            <div ng-include src="'views/profile/projects.view.html'"></div>
+
+        <H3>Projects</H3>
+        <br>
+        <table class="table table-striped table-bordered table-hover">
+            <tr ng-repeat="proj in model.profile.projects">
+                <td>
+                    <ol class="list-group">
+                        <li class="list-group-item">{{proj.title}}
+                            <br><br>
+                            {{proj.description}}
+                        </li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <div class="col-lg-8">
+            <H3>Clubs</H3>
+            <br>
+            <ul class="list-group" ng-repeat = "club in model.profile.clubs">
+                <li class="list-group-item list-group-item-info">{{club.clubName}}</li>
+            </ul>
         </div>
-        <div id="clubs" class="col-lg-10">
-            <div ng-include src="'views/profile/club.view.html'"></div>
+
+
+        <div class="col-lg-8">
+            <H3>Skills</H3>
+            <br>
+            <ul class="list-group" ng-repeat="skill in model.profile.skills">
+                <li class="list-group-item">
+                    <span class="badge">{{skill.count}}</span>
+                    {{skill.title}}
+                </li>
+                <button type="button" ng-click="endorse" class="btn btn-success">Endorse</button>
+            </ul>
         </div>
-        <div id="skills" class="col-lg-10">
-            <div ng-include src="'views/profile/skills.view.html'"></div>
+
+        <div class="col-lg-6">
+        <H3>Test Scores</H3>
+        <br>
+        <div ng-repeat = "score in model.profile.testScores">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <h4 class="list-group-item-heading">{{score.test}} conducted by {{score.org}}</h4>
+                    <p class="list-group-item-text">{{score.scoreAcheived}}/{{score.scoreMax}}</p>
+                </div>
+            </div>
         </div>
-        <div id="testscores" class="col-lg-10">
-            <div ng-include src="'views/profile/testscores.view.html'"></div>
         </div>
-        <div id="recommendations" class="col-lg-10">
-            <div ng-include src="'views/profile/recommendations.view.html'"></div>
+
+    <div class ="col-lg-10">
+        <H3>Recommendations</H3>
+        <br>
+        <div class ="media" ng-repeat="reco in model.profile.recommendations">
+            <div class="media-left media-top">
+                <a href="#">
+                    <img class="media-object" src="..." alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><a href="/profile/{{reco.authorId}}">{{reco.authorName}}</a></h4>
+                {{reco.content}}
+            </div>
         </div>
+    </div>
 </div>

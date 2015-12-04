@@ -6,5 +6,6 @@
 
     function HeaderController($scope, $location)
     {
+        $scope.$location = $location;
     }
 })();

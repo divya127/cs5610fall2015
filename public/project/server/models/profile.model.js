@@ -12,6 +12,7 @@ module.exports = function(mongoose, db) {
         addNewProfile : addNewProfile,
         updateProfile : updateProfile,
         findProfileById : findProfileById,
+        addUnivToAppliedList : addUnivToAppliedList,
 
         findSkillsByUserId : findSkillsByUserId,
         deleteSkillForUser : deleteSkillForUser,
@@ -38,6 +39,18 @@ module.exports = function(mongoose, db) {
                 }
             }
             prof.save(function(err, profs){
+                deferred.resolve(profs);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function addUnivToAppliedList(userId, univObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            prof.univsApplied.push(univObj);
+            prof.save(function(err, profs){
+            console.log("Inside model.js updating univs list: " + profs);
                 deferred.resolve(profs);
             });
         });

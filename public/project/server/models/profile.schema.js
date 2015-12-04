@@ -27,6 +27,9 @@ module.exports = function(mongoose) {
                 "members": String,
                 "description": String,
             }],
+            "univsApplied" : [{
+                "univName" : String
+            }],
             "image" : String
         }, {collection: "cs5610.project.profile"});
 

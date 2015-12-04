@@ -21,14 +21,9 @@ module.exports = function(app, model) {
             console.log("uname: " + name);
             request("https://inventory.data.gov/api/action/datastore_search?resource_id=38625c3d-5388-4c16-a30f-d105432553a4&limit=10&q="+name,
             function(error, response, body) {
-              console.log(body);
+              //console.log(body);
               res.json(body);
             });
-//            model
-//                .findUnivByName(name)
-//                .then(function(univ){
-//                    res.json(univ);
-//                });
         }
 
         function addNewUniv(req, res) {

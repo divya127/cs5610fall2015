@@ -12,7 +12,8 @@
            deleteProfile : deleteProfile,
            addNewProfile : addNewProfile,
            updateProfile : updateProfile,
-           findProfileById : findProfileById
+           findProfileById : findProfileById,
+           addUnivToAppliedList : addUnivToAppliedList
         };
         return api;
 
@@ -72,6 +73,18 @@
             var deferred = $q.defer();
 
             $http.put("/api/project/profile/"+userId, userObj)
+                .success(function(user){
+                    deferred.resolve(user);
+                });
+
+            return deferred.promise;
+        }
+
+        function addUnivToAppliedList(userId, univName) {
+            var deferred = $q.defer();
+            var univObj = {univName : univName};
+
+            $http.put("/api/project/profile/"+userId+"/univ/"+univName, univObj)
                 .success(function(user){
                     deferred.resolve(user);
                 });

@@ -6,7 +6,15 @@ module.exports = function(app, model) {
     app.post("/api/project/profile", addNewProfile);
     app.put("/api/project/profile/:id", updateProfile);
     app.get("/api/project/profile/:id", findProfileById);
+    app.put("/api/project/profile/:id/univ/:uname", addUnivToAppliedList);
 
+        function addUnivToAppliedList(req, res) {
+            model
+                .addUnivToAppliedList(req.params.id, req.body)
+                .then(function(profile){
+                    res.json(profile);
+                });
+        }
 
         function findAllProfiles(req, res) {
             model

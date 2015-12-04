@@ -6,13 +6,12 @@
         <br>
 
         <H3><b>Projects</b></H3>
-        <br>
-        <div class="col-lg-10">
+        <div class="col-lg-8">
         <table class="table table-bordered col-lg-6">
             <tr ng-repeat="proj in model.profile.projects">
                 <td>
                     <ol class="list-group">
-                        <li class="list-group-item"><b><u>{{proj.title}}</u></b>
+                        <li class="list-group-item"><b><u class="text-success">{{proj.title}}</u></b>
                             <br><br>
                             {{proj.description}}
                         </li>
@@ -22,9 +21,24 @@
         </table>
         </div>
 
+        <div class ="col-lg-8">
+            <H3><b>Recommendations</b></H3>
+            <div class ="media" ng-repeat="reco in model.profile.recommendations">
+                <div class="media-left media-top">
+                    <a href="#">
+                        <img class="media-object" src="..." alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"><a href="/profile">{{reco.authorName}}</a></h4>
+                    {{reco.content}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
         <div class="col-lg-8">
             <H3><b>Skills</b></H3>
-            <br>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="skill in model.profile.skills">
                     <span class="badge">{{skill.count}}&nbsp;</span>
@@ -36,7 +50,6 @@
         <br>
         <div class="col-lg-8">
         <H3><b>Test Scores</b></H3>
-        <br>
         <div ng-repeat = "score in model.profile.testScores">
             <div class="panel panel-success">
                 <div class="panel-heading">
@@ -50,29 +63,24 @@
         </div>
         </div>
 
-
-    <div class ="col-lg-10">
-        <H3><b>Recommendations</b></H3>
-        <br>
-        <div class ="media" ng-repeat="reco in model.profile.recommendations">
-            <div class="media-left media-top">
-                <a href="#">
-                    <img class="media-object" src="..." alt="...">
-                </a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading"><a href="/profile/{{reco.authorId}}">{{reco.authorName}}</a></h4>
-                {{reco.content}}
-            </div>
-        </div>
-    </div>
-
-    <div class="jumbotron col-lg-8">
+    <br>
+    <br>
+    <div class=" col-lg-5">
         <H3><b>Clubs & Activities</b></H3>
-        <br>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat = "club in model.profile.clubs">
-                {{club.clubName}}
+                <i class="text-default">{{club.clubName}}</i>
+            </li>
+        </ul>
+    </div>
+
+    <br>
+    <br>
+    <div class=" col-lg-5">
+        <H3><b>Universities Applied To</b></H3>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat = "univ in model.profile.univsApplied">
+                <div class="text-success">{{univ.univName}}</div>
             </li>
         </ul>
     </div>

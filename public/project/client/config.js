@@ -21,36 +21,11 @@
 					controller: "RegisterController",
 					controllerAs: "model"
 				})
-				.when("/profile",
+				.when("/profile/:userId",
                 {
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
                     controllerAs: "model"
-                })
-                .when("/clubs",
-                {
-                    templateUrl: "views/profile/club.view.html",
-                    controller: "ProfileController"
-                })
-                .when("/skills",
-                {
-                    templateUrl: "views/profile/skills.view.html",
-                    controller: "ProfileController"
-                })
-                .when("/recommendations",
-                {
-                    templateUrl: "views/profile/recommendations.view.html",
-                    controller: "ProfileController"
-                })
-                .when("/testscores",
-                {
-                    templateUrl: "views/profile/testscores.view.html",
-                    controller: "ProfileController"
-                })
-                .when("/projects",
-                {
-                    templateUrl: "views/profile/projects.view.html",
-                    controller: "ProfileController"
                 })
                 .when("/professor",
                 {

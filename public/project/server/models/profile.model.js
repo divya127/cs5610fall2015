@@ -32,6 +32,7 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
             var allSkills = prof.skills;
+            console.log("Inside updateSkills: " + allSkills);
             for(var skill in allSkills) {
                 if(allSkills[skill]._id == skillId) {
                     allSkills[skill].title = skillObj.title;
@@ -39,6 +40,7 @@ module.exports = function(mongoose, db) {
                 }
             }
             prof.save(function(err, profs){
+                console.log("Update skill: " + profs);
                 deferred.resolve(profs);
             });
         });
@@ -86,9 +88,9 @@ module.exports = function(mongoose, db) {
         return deferred.promise;
     }
 
-    function addNewRecoForUser(userId, recoObj) {
+    function addNewRecoForUser(authorId, receipientId, recoObj) {
         var deferred = q.defer();
-        profileModel.findOne({userId : userId}, function(err, prof){
+        profileModel.findOne({userId : receipientId}, function(err, prof){
             prof.recommendations.push(recoObj);
             prof.save(function(err, fields){
                 console.log("Saved prof" + fields);
@@ -116,17 +118,23 @@ module.exports = function(mongoose, db) {
 
     function deleteRecoForUser(userId, recoId) {
         var deferred = q.defer();
-        profileModel.findOne({userId : userId}, function(err, prof){
-                    var allRecos = prof.recos;
-                    for(var reco in allRecos) {
-                        if(allRecos[reco]._id == recoId) {
-                            allRecos.splice(reco, 1);
-                        }
+        console.log("Inside deletereco");
+        profileModel.findOne({userId : userId}, function(err, profile){
+                var allRecos = [];
+               allRecos = profile.recommendations;
+                console.log("All recommendations : " + allRecos);
+                for (var reco in allRecos) {
+               // console.log("Input recoId : " + recoId + " allRecos[reco]._id : " + allRecos[reco]._id);
+                    if(allRecos[reco]._id == recoId) {
+                        profile.recommendations.splice(reco, 1);
+                        console.log("Delete successful!");
+                        break;
                     }
-                    prof.save(function(err, profs){
-                        deferred.resolve(profs);
-                    });
+                }
+                profile.save(function(err, profs){
+                    deferred.resolve(profs);
                 });
+            });
         return deferred.promise;
     }
 
@@ -151,12 +159,13 @@ module.exports = function(mongoose, db) {
     function findRecoById(userId, recoId) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-            console.log("Found form! " + forms);
+            //console.log("Found prof! " + prof);
             if(!err){
                 var allRecos = prof.recommendations;
                 for(var reco in allRecos) {
                     if(allRecos[reco]._id == recoId) {
-                       deferred.resolve( allRecos[reco]);
+                        console.log("Found reco : " + allRecos[reco]);
+                       deferred.resolve(allRecos[reco]);
                     }
                 }
             }

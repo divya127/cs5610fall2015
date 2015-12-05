@@ -32,6 +32,63 @@
         model.enableEditModeSkill = enableEditModeSkill;
         model.disableEditModeSkill = disableEditModeSkill;
 
+        model.editClubmode = false;
+        model.updateClub = updateClub;
+        model.addClub = addClub;
+        model.selectClub = selectClub;
+        model.deleteClub = deleteClub;
+        model.enableEditClubmode = enableEditClubmode;
+        model.disableEditClubmode = disableEditClubmode;
+
+        // Clubs
+        function deleteClub(clubId){
+            OtherService.deleteClubForUser(clubId, model.profUserId)
+                    .then(function(resp){
+                        console.log("Deleted ! " + resp);
+                        model.profile = resp;
+                    });
+        }
+
+        function updateClub(){
+            var clubObj = {
+                "clubName" : model.clubText
+            };
+            OtherService.updateClubForUser(model.currentClubId, model.profUserId, clubObj)
+            .then(function(res){
+                model.profile = res;
+            });
+        }
+
+        function addClub(){
+            var clubObj = {
+                "clubName" : model.clubText
+            };
+            OtherService.addNewClubForUser(model.profUserId, clubObj)
+            .then(function(res){
+                console.log("Updated skill : " + res);
+                model.profile = res;
+            });
+        }
+
+        function selectClub(clubId){
+            OtherService.findClubById(clubId, model.profUserId)
+            .then(function(res){
+                model.clubText = res.clubName;
+                model.currentClubId = res._id;
+            });
+
+        }
+
+        function disableEditClubmode(){
+            model.editClubmode = false;
+        }
+
+        function enableEditClubmode() {
+            model.editClubmode = true;
+        }
+
+
+         // Skills
         function deleteSkill(skillId){
             OtherService.deleteSkillForUser(skillId, model.profUserId)
                     .then(function(resp){

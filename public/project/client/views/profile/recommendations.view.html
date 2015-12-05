@@ -1,16 +1,55 @@
-<H3>Recommendations</H3>
-    <br>
-    <div class ="col-lg-10">
-        <div class ="media">
-            <div class="media-left media-top">
-                <a href="#">
-                    <img class="media-object" src="..." alt="...">
-                </a>
+<div class ="col-lg-8">
+    <H3><b>Recommendations</b></H3>
+    <button ng-show="model.editmode" class="btn btn-default" ng-click="model.disableEditReco()" ng-model="write"
+            ng-if="$scope.user.accountType != 'professor'" >
+        Done Editing!
+    </button>
+    <button ng-show="model.editmode" class="btn btn-success" ng-click="model.updateReco()" ng-model="write"
+            ng-if="$scope.user.accountType != 'professor'" style="float:right">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    </button>
+    <button ng-show="model.editmode" class="btn btn-info" ng-click="model.addReco()" ng-model="write"
+            ng-if="$scope.user.accountType != 'professor'" style="float:right">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+    <button ng-show="!model.editmode" class="btn btn-default" ng-click="model.EditModeReco()" ng-model="write"
+            ng-if="$scope.user.accountType != 'professor'" style="float:right">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    </button>
+    <table class="table">
+        <tr>
+            <textarea ng-show="model.editmode" id="recoTxtArea" ng-model ="model.recoTextArea" class="form-control col-lg-8" rows="5"/>
+        </tr>
+        <tr ng-repeat="reco in model.profile.recommendations">
+            <div class ="media">
+                <td>
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="..." alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="/profile">
+                                {{reco.authorName}}
+                            </a>
+                        </h4>
+                        {{reco.content}}
+                    </div>
+                </td>
+                <td ng-show="model.editmode">
+                    <button class="btn btn-danger" style="float:right" ng-click="model.deleteReco(reco._id)"
+                            ng-model="write" ng-if="$scope.user.accountType != 'professor'">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+                <td ng-show="model.editmode">
+                    <button class="btn btn-primary" style="float:right" ng-click="model.selectReco(reco._id)"
+                            ng-model="write" ng-if="$scope.user.accountType != 'professor'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                </td>
             </div>
-            <div class="media-body">
-                <h4 class="media-heading">{{reco.profname}}</h4>
-                {{reco.recotxt}}
-                I have known John Doe for the past three years and I am must say as his class teacher, that he is my fav student in the class. Be it his dedication and commitment to work, passion for technology and drive to innovate, he is the best. I would highly recommend him for an admit at your university with Scholarship. He is worth it.
-            </div>
-        </div>
-    </div>
+        </tr>
+    </table>
+</div>

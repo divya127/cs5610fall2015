@@ -40,6 +40,67 @@
         model.enableEditClubmode = enableEditClubmode;
         model.disableEditClubmode = disableEditClubmode;
 
+        model.editProjmode = false;
+        model.updateProj = updateProj;
+        model.addProj = addProj;
+        model.selectProj = selectProj;
+        model.deleteProj = deleteProj;
+        model.enableEditProjmode = enableEditProjmode;
+        model.disableEditProjMode = disableEditProjMode;
+
+        // Projs
+        function deleteProj(ProjId){
+            OtherService.deleteProjectForUser(ProjId, model.profUserId)
+                    .then(function(resp){
+                        console.log("Deleted ! " + resp);
+                        model.profile = resp;
+                    });
+        }
+
+        function updateProj(){
+            var ProjObj = {
+                "title" : model.projTitle,
+                "description" : model.projDesc
+            };
+            OtherService.updateProjectForUser(model.currentProjId, model.profUserId, ProjObj)
+            .then(function(res){
+                model.profile = res;
+            });
+        }
+
+        function addProj(){
+            var ProjObj = {
+                "title" : model.projTitle,
+                "description" : model.projDesc
+            };
+            OtherService.addNewProjectForUser(model.profUserId, ProjObj)
+            .then(function(res){
+                console.log("Updated skill : " + res);
+                model.profile = res;
+            });
+        }
+
+        function selectProj(ProjId){
+            OtherService.findProjectById(ProjId, model.profUserId)
+            .then(function(res){
+                model.projTitle = res.title;
+                model.projDesc = res.description;
+                model.currentProjId = res._id;
+            });
+
+        }
+
+        function disableEditProjMode(){
+            console.log("Setting edit more to FALSE");
+            model.editProjmode = false;
+        }
+
+        function enableEditProjmode() {
+            console.log("Setting edit more to true");
+            model.editProjmode = true;
+        }
+
+
         // Clubs
         function deleteClub(clubId){
             OtherService.deleteClubForUser(clubId, model.profUserId)
@@ -86,7 +147,6 @@
         function enableEditClubmode() {
             model.editClubmode = true;
         }
-
 
          // Skills
         function deleteSkill(skillId){

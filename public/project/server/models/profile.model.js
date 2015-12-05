@@ -337,6 +337,7 @@ module.exports = function(mongoose, db) {
         profileModel.findOne({userId : userId}, function(err, prof){
             if(!err){
                 var allSkills = prof.projects;
+                console.log("Found proj: " + allSkills + " projId: " + projId);
                 for(var skill in allSkills) {
                     if(allSkills[skill]._id == projId) {
                        deferred.resolve(allSkills[skill]);

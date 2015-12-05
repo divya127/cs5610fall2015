@@ -1,6 +1,10 @@
 module.exports = function(mongoose) {
 
     var SkillSchema = require("./skills.schema.js")(mongoose);
+    var ProjectSchema = require("./projects.schema.js")(mongoose);
+    var TestScoreSchema = require("./testScores.schema.js")(mongoose);
+    var ClubSchema = require("./clubs.schema.js")(mongoose);
+    var PublicationSchema = require("./publications.schema.js")(mongoose);
     var RecommendationSchema = require("./recommendations.schema.js")(mongoose);
 
     var ProfileSchema = mongoose.Schema({
@@ -8,25 +12,11 @@ module.exports = function(mongoose) {
             "schoolName": String,
             "tagLine": String,
             "skills" : [SkillSchema],
-            "testScores": [{
-                "test": String,
-                "scoreAcheived": Number,
-                "scoreMax": Number,
-                "org": String
-            }],
-            "recommendations" : [RecommendationSchema],
-            "projects" : [{
-                "title" : String,
-                "description" : String,
-            }],
-            "clubs" : [{
-                "clubName" : String
-            }],
-            "publications":[{
-                "title" : String,
-                "members": String,
-                "description": String,
-            }],
+            "testScores": [ TestScoreSchema ],
+            "recommendations" : [ RecommendationSchema ],
+            "projects" : [ ProjectSchema ],
+            "clubs" : [ ClubSchema ],
+            "publications":[],
             "univsApplied" : [{
                 "univName" : String
             }],

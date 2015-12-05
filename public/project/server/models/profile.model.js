@@ -75,7 +75,7 @@ module.exports = function(mongoose, db) {
         return deferred.promise;
     }
 
-    function addNewSkillForUser(authorId, userId, skillObj) {
+    function addNewSkillForUser(userId, skillObj) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
             prof.skills.push(skillObj);
@@ -176,7 +176,6 @@ module.exports = function(mongoose, db) {
     function findSkillById(userId, skillId) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-            console.log("Found form! " + forms);
             if(!err){
                 var allSkills = prof.skills;
                 for(var skill in allSkills) {

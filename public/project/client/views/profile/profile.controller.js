@@ -24,6 +24,63 @@
         model.updateReco = updateReco;
         model.disableEditReco = disableEditReco;
 
+        model.editSkillmode = false;
+        model.updateSkill = updateSkill;
+        model.addSkill = addSkill;
+        model.selectSkill = selectSkill;
+        model.deleteSkill = deleteSkill;
+        model.enableEditModeSkill = enableEditModeSkill;
+        model.disableEditModeSkill = disableEditModeSkill;
+
+        function deleteSkill(skillId){
+            OtherService.deleteSkillForUser(skillId, model.profUserId)
+                    .then(function(resp){
+                        console.log("Deleted ! " + resp);
+                        model.profile = resp;
+                    });
+        }
+
+        function updateSkill(){
+            var skillObj = {
+                "title" : model.skillText,
+                "count" : model.currentSkillCount
+            };
+            OtherService.updateSkillsForUser(model.currentSkillId, model.profUserId, skillObj)
+            .then(function(res){
+                model.profile = res;
+            });
+        }
+
+        function addSkill(){
+            var skillObj = {
+                "title" : model.skillText,
+                "count" : 0
+            };
+            OtherService.addNewSkillForUser(model.profUserId, skillObj)
+            .then(function(res){
+                console.log("Updated skill : " + res);
+                model.profile = res;
+            });
+        }
+
+        function selectSkill(skillId){
+            OtherService.findSkillById(skillId, model.profUserId)
+            .then(function(res){
+                model.skillText = res.title;
+                model.currentSkillId = res._id;
+                model.currentSkillCount = res.count;
+            });
+
+        }
+
+        function disableEditModeSkill(){
+            model.editSkillmode = false;
+        }
+
+        function enableEditModeSkill() {
+            model.editSkillmode = true;
+        }
+
         function addReco() {
             var authorId = "456"; //$rootScope.user._id
             var authorName = "Jose Annunziato"; // $rootScope.user.firstName

@@ -14,17 +14,48 @@ module.exports = function(mongoose, db) {
         findProfileById : findProfileById,
         addUnivToAppliedList : addUnivToAppliedList,
 
+        //Skills
         findSkillsByUserId : findSkillsByUserId,
         deleteSkillForUser : deleteSkillForUser,
         addNewSkillForUser : addNewSkillForUser,
         updateSkillsForUser : updateSkillsForUser,
         findSkillById : findSkillById,
 
+        //Recommendations
         findRecoByUserId : findRecoByUserId,
         deleteRecoForUser : deleteRecoForUser,
         addNewRecoForUser : addNewRecoForUser,
         updateRecoForUser : updateRecoForUser,
-        findRecoById : findRecoById
+        findRecoById : findRecoById,
+
+        //Projects
+        findProjectsByUserId : findProjectsByUserId,
+        deleteProjectForUser : deleteProjectForUser,
+        addNewProjectForUser : addNewProjectForUser,
+        updateProjectForUser : updateProjectForUser,
+        findProjectById : findProjectById,
+
+        //Clubs
+        findClubsByUserId : findClubsByUserId,
+        deleteClubForUser : deleteClubForUser,
+        addNewClubForUser : addNewClubForUser,
+        updateClubForUser : updateClubForUser,
+        findClubById : findClubById,
+
+        //TestScores
+        findTestScoresByUserId : findTestScoresByUserId,
+        deleteTestScoreForUser : deleteTestScoreForUser,
+        addNewTestScoreForUser : addNewTestScoreForUser,
+        updateTestScoreForUser : updateTestScoreForUser,
+        findTestScoreById : findTestScoreById,
+
+        //Publications
+        findPublicationsByUserId : findPublicationsByUserId,
+        deletePublicationForUser : deletePublicationForUser,
+        addNewPublicationForUser : addNewPublicationForUser,
+        updatePublicationForUser : updatePublicationForUser,
+        findPublicationById : findPublicationById
+
     };
     return api;
 
@@ -251,4 +282,299 @@ module.exports = function(mongoose, db) {
              });
         return deferred.promise;
     }
+
+//*********************************************************************
+    function updateProjectForUser(userId, projId, projObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, proj){
+            var allSkills = proj.projects;
+            console.log("Inside updateProjects: " + allSkills);
+            for(var skill in allSkills) {
+                if(allSkills[skill]._id == projId) {
+                    allSkills[skill].title = projObj.title;
+                    allSkills[skill].description = projObj.description;
+                }
+            }
+            proj.save(function(err, profs){
+                console.log("Update projects: " + profs);
+                deferred.resolve(profs);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function addNewProjectForUser(userId, projObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            prof.projects.push(projObj);
+            prof.save(function(err, fields){
+                console.log("Saved prof" + fields);
+                deferred.resolve(fields);
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function deleteProjectForUser(userId, projId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+                    var allSkills = prof.projects;
+                    for(var skill in allSkills) {
+                        if(allSkills[skill]._id == projId) {
+                            allSkills.splice(skill, 1);
+                        }
+                    }
+                    prof.save(function(err, profs){
+                        deferred.resolve(profs);
+                    });
+                });
+        return deferred.promise;
+    }
+
+    function findProjectById(userId, projId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            if(!err){
+                var allSkills = prof.projects;
+                for(var skill in allSkills) {
+                    if(allSkills[skill]._id == projId) {
+                       deferred.resolve(allSkills[skill]);
+                    }
+                }
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findProjectsByUserId(userId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            //console.log("Found profile! " + prof);
+            deferred.resolve(prof.projects);
+        });
+        return deferred.promise;
+    }
+
+    //*********************************************************************
+    function updateClubForUser(userId, clubId, clubObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, proj){
+            var allSkills = proj.clubs;
+            console.log("Inside updateClubs: " + allSkills);
+            for(var skill in allSkills) {
+                if(allSkills[skill]._id == clubId) {
+                    allSkills[skill].clubName = clubObj.clubName;
+                }
+            }
+            proj.save(function(err, profs){
+                console.log("Update clubs: " + profs);
+                deferred.resolve(profs);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function addNewClubForUser(userId, clubObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            prof.clubs.push(clubObj);
+            prof.save(function(err, fields){
+                console.log("Saved prof" + fields);
+                deferred.resolve(fields);
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function deleteClubForUser(userId, clubId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+                    var allSkills = prof.clubs;
+                    for(var skill in allSkills) {
+                        if(allSkills[skill]._id == clubId) {
+                            allSkills.splice(skill, 1);
+                        }
+                    }
+                    prof.save(function(err, profs){
+                        deferred.resolve(profs);
+                    });
+                });
+        return deferred.promise;
+    }
+
+    function findClubById(userId, clubId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            if(!err){
+                var allSkills = prof.clubs;
+                for(var skill in allSkills) {
+                    if(allSkills[skill]._id == clubId) {
+                       deferred.resolve(allSkills[skill]);
+                    }
+                }
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findClubsByUserId(userId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            //console.log("Found profile! " + prof);
+            deferred.resolve(prof.clubs);
+        });
+        return deferred.promise;
+    }
+
+    //*********************************************************************
+    function updateTestScoreForUser(userId, testScoreId, testScoreObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, proj){
+            var allSkills = proj.testscores;
+            console.log("Inside updateTestScores: " + allSkills);
+            for(var skill in allSkills) {
+                if(allSkills[skill]._id == testScoreId) {
+                    allSkills[skill].test = testScoreObj.test;
+                    allSkills[skill].scoreAcheived = testScoreObj.scoreAcheived;
+                    allSkills[skill].scoreMax = testScoreObj.scoreMax;
+                    allSkills[skill].org = testScoreObj.org;
+                }
+            }
+            proj.save(function(err, profs){
+                console.log("Update TestScores: " + profs);
+                deferred.resolve(profs);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function addNewTestScoreForUser(userId, testScoreObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            prof.testscores.push(testScoreObj);
+            prof.save(function(err, fields){
+                console.log("Saved prof" + fields);
+                deferred.resolve(fields);
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function deleteTestScoreForUser(userId, testScoreId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+                    var allSkills = prof.testscores;
+                    for(var skill in allSkills) {
+                        if(allSkills[skill]._id == testScoreId) {
+                            allSkills.splice(skill, 1);
+                        }
+                    }
+                    prof.save(function(err, profs){
+                        deferred.resolve(profs);
+                    });
+                });
+        return deferred.promise;
+    }
+
+    function findTestScoreById(userId, testScoreId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            if(!err){
+                var allSkills = prof.testscores;
+                for(var skill in allSkills) {
+                    if(allSkills[skill]._id == testScoreId) {
+                       deferred.resolve(allSkills[skill]);
+                    }
+                }
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findTestScoresByUserId(userId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            //console.log("Found profile! " + prof);
+            deferred.resolve(prof.testscores);
+        });
+        return deferred.promise;
+    }
+
+    //*********************************************************************
+    function updatePublicationForUser(userId, pubId, pubObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, proj){
+            var allSkills = proj.publications;
+            console.log("Inside updateTestScores: " + allSkills);
+            for(var skill in allSkills) {
+                if(allSkills[skill]._id == pubId) {
+                    allSkills[skill].title = pubObj.title;
+                    allSkills[skill].members = pubObj.members;
+                    allSkills[skill].description = pubObj.description;
+                }
+            }
+            proj.save(function(err, profs){
+                console.log("Update TestScores: " + profs);
+                deferred.resolve(profs);
+            });
+        });
+        return deferred.promise;
+    }
+
+    function addNewPublicationForUser(userId, pubObj) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            prof.publications.push(pubObj);
+            prof.save(function(err, fields){
+                console.log("Saved prof" + fields);
+                deferred.resolve(fields);
+            });
+        });
+
+        return deferred.promise;
+    }
+
+    function deletePublicationForUser(userId, pubId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+                    var allSkills = prof.publications;
+                    for(var skill in allSkills) {
+                        if(allSkills[skill]._id == pubId) {
+                            allSkills.splice(skill, 1);
+                        }
+                    }
+                    prof.save(function(err, profs){
+                        deferred.resolve(profs);
+                    });
+                });
+        return deferred.promise;
+    }
+
+    function findPublicationById(userId, pubId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            if(!err){
+                var allSkills = prof.publications;
+                for(var skill in allSkills) {
+                    if(allSkills[skill]._id == pubId) {
+                       deferred.resolve(allSkills[skill]);
+                    }
+                }
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findPublicationsByUserId(userId) {
+        var deferred = q.defer();
+        profileModel.findOne({userId : userId}, function(err, prof){
+            //console.log("Found profile! " + prof);
+            deferred.resolve(prof.publications);
+        });
+        return deferred.promise;
+    }
+
 }

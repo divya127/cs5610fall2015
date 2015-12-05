@@ -33,7 +33,7 @@
 				};
 
 				ProfileService.addUnivToAppliedList("123" , univName).then(function(response){
-                				$location.url("/profile");
+                				$location.url("/profile/123"); //replace by USerId
                 			});
 
 			})

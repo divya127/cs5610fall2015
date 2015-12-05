@@ -433,7 +433,7 @@ module.exports = function(mongoose, db) {
     function updateTestScoreForUser(userId, testScoreId, testScoreObj) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, proj){
-            var allSkills = proj.testscores;
+            var allSkills = proj.testScores;
             console.log("Inside updateTestScores: " + allSkills);
             for(var skill in allSkills) {
                 if(allSkills[skill]._id == testScoreId) {
@@ -454,7 +454,7 @@ module.exports = function(mongoose, db) {
     function addNewTestScoreForUser(userId, testScoreObj) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-            prof.testscores.push(testScoreObj);
+            prof.testScores.push(testScoreObj);
             prof.save(function(err, fields){
                 console.log("Saved prof" + fields);
                 deferred.resolve(fields);
@@ -467,7 +467,7 @@ module.exports = function(mongoose, db) {
     function deleteTestScoreForUser(userId, testScoreId) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-                    var allSkills = prof.testscores;
+                    var allSkills = prof.testScores;
                     for(var skill in allSkills) {
                         if(allSkills[skill]._id == testScoreId) {
                             allSkills.splice(skill, 1);
@@ -484,7 +484,7 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
             if(!err){
-                var allSkills = prof.testscores;
+                var allSkills = prof.testScores;
                 for(var skill in allSkills) {
                     if(allSkills[skill]._id == testScoreId) {
                        deferred.resolve(allSkills[skill]);
@@ -499,7 +499,7 @@ module.exports = function(mongoose, db) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
             //console.log("Found profile! " + prof);
-            deferred.resolve(prof.testscores);
+            deferred.resolve(prof.testScores);
         });
         return deferred.promise;
     }

@@ -48,6 +48,73 @@
         model.enableEditProjmode = enableEditProjmode;
         model.disableEditProjMode = disableEditProjMode;
 
+        model.editTestScoremode = false;
+        model.updateScore = updateScore;
+        model.addScore = addScore;
+        model.selectScore = selectScore;
+        model.deleteScore = deleteScore;
+        model.enableEditTestScoremode = enableEditTestScoremode;
+        model.disableEditTestScoremode = disableEditTestScoremode;
+
+        // Test Scores
+        function deleteScore(testId){
+            OtherService.deleteTestScoreForUser(testId, model.profUserId)
+                    .then(function(resp){
+                        console.log("Deleted ! " + resp);
+                        model.profile = resp;
+                    });
+        }
+
+        function updateScore(){
+            var ProjObj = {
+                "test" : model.testnameText,
+                "scoreAcheived" : model.scoreText,
+                "org" : model.testOrgText,
+                "scoreMax" : model.scoreMaxText
+            };
+            OtherService.updateTestScoreForUser(model.currentScoreId, model.profUserId, ProjObj)
+            .then(function(res){
+                model.profile = res;
+            });
+        }
+
+        function addScore(){
+            var ProjObj = {
+                "test" : model.testnameText,
+                "scoreAcheived" : model.scoreText,
+                "org" : model.testOrgText,
+                "scoreMax" : model.scoreMaxText
+            };
+            OtherService.addNewTestScoreForUser(model.profUserId, ProjObj)
+            .then(function(res){
+                console.log("Updated skill : " + res);
+                model.profile = res;
+            });
+        }
+
+        function selectScore(testId){
+            OtherService.findTestScoreById(testId, model.profUserId)
+            .then(function(res){
+                model.testnameText = res.test;
+                model.scoreText = res.scoreAcheived;
+                model.testOrgText = res.org;
+                model.scoreMaxText = res.scoreMax;
+                model.currentScoreId = res._id;
+            });
+
+        }
+
+        function disableEditTestScoremode(){
+            console.log("Setting edit more to FALSE");
+            model.editTestScoremode = false;
+        }
+
+        function enableEditTestScoremode() {
+            console.log("Setting edit more to true");
+            model.editTestScoremode = true;
+        }
+
+
         // Projs
         function deleteProj(ProjId){
             OtherService.deleteProjectForUser(ProjId, model.profUserId)

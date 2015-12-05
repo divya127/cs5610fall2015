@@ -250,6 +250,7 @@ module.exports = function(app, model) {
         }
 
         function findPublicationById(req, res) {
+        console.log("Inside server side find publication");
             model
                 .findPublicationById(req.params.userId, req.params.id)
                 .then(function(skill){

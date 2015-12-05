@@ -335,6 +335,7 @@
 
         function findPublicationById(pubId, userId) {
             var deferred = $q.defer();
+            console.log("INside client pub");
             $http.get("/api/project/profile/pubs/"+pubId+"/user/"+userId)
                 .success(function(user){
                     deferred.resolve(user);

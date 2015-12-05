@@ -11,7 +11,7 @@
     <table class="table col-lg-6">
         <tr>
             <td ng-show="model.editProjmode">
-                <input ng-model ="model.projTitle" class="form-control" type="text">
+                <input ng-model ="model.projTitle" class="form-control" type="text" placeholder="Title">
             </td>
             <td ng-show="model.editProjmode">
                 <button class="btn btn-success" ng-click="model.updateProj()" ng-model="write"
@@ -28,7 +28,8 @@
         </tr>
         <tr>
             <td ng-show="model.editProjmode">
-                <textarea ng-show="model.editProjmode" ng-model ="model.projDesc" class="form-control col-lg-8" rows="5"/>
+                <textarea ng-show="model.editProjmode" ng-model ="model.projDesc"
+                          class="form-control col-lg-8" rows="5" placeholder="Description"/>
             </td>
         </tr>
         <tr ng-repeat="proj in model.profile.projects">

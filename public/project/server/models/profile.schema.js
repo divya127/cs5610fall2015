@@ -16,7 +16,7 @@ module.exports = function(mongoose) {
             "recommendations" : [ RecommendationSchema ],
             "projects" : [ ProjectSchema ],
             "clubs" : [ ClubSchema ],
-            "publications":[],
+            "publications":[PublicationSchema],
             "univsApplied" : [{
                 "univName" : String
             }],

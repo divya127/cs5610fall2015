@@ -556,8 +556,10 @@ module.exports = function(mongoose, db) {
 
     function findPublicationById(userId, pubId) {
         var deferred = q.defer();
+        console.log("Inside find publication! ");
         profileModel.findOne({userId : userId}, function(err, prof){
             if(!err){
+                console.log("Found profile! " + prof);
                 var allSkills = prof.publications;
                 for(var skill in allSkills) {
                     if(allSkills[skill]._id == pubId) {
@@ -572,7 +574,6 @@ module.exports = function(mongoose, db) {
     function findPublicationsByUserId(userId) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-            //console.log("Found profile! " + prof);
             deferred.resolve(prof.publications);
         });
         return deferred.promise;

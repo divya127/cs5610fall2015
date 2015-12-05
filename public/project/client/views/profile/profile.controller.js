@@ -56,6 +56,72 @@
         model.enableEditTestScoremode = enableEditTestScoremode;
         model.disableEditTestScoremode = disableEditTestScoremode;
 
+        model.editPubmode = false;
+        model.updatePub = updatePub;
+        model.addPub = addPub;
+        model.selectPub = selectPub;
+        model.deletePub = deletePub;
+        model.enableEditPubmode = enableEditPubmode;
+        model.disableEditPubMode = disableEditPubMode;
+
+
+        // Publications
+        function deletePub(ProjId){
+            OtherService.deletePublicationForUser(ProjId, model.profUserId)
+                    .then(function(resp){
+                        console.log("Deleted ! " + resp);
+                        model.profile = resp;
+                    });
+        }
+
+        function updatePub(){
+            var ProjObj = {
+                "title" : model.pubTitle,
+                "members" : model.pubMembers,
+                "description" : model.pubDesc
+            };
+            OtherService.updatePublicationForUser(model.currentPubId, model.profUserId, ProjObj)
+            .then(function(res){
+                model.profile = res;
+            });
+        }
+
+        function addPub(){
+            var ProjObj = {
+                "title" : model.pubTitle,
+                "members" : model.pubMembers,
+                "description" : model.pubDesc
+            };
+            OtherService.addNewPublicationForUser(model.profUserId, ProjObj)
+            .then(function(res){
+                console.log("Updated skill : " + res);
+                model.profile = res;
+            });
+        }
+
+        function selectPub(ProjId){
+            console.log("Inside select");
+            OtherService.findPublicationById(ProjId, model.profUserId)
+            .then(function(res){
+            console.log("selected pub: " + res);
+                model.pubTitle = res.title;
+                model.pubMembers = res.members;
+                model.pubDesc = res.description;
+                model.currentPubId = res._id;
+            });
+
+        }
+
+        function disableEditPubMode(){
+            console.log("Setting edit more to FALSE");
+            model.editPubmode = false;
+        }
+
+        function enableEditPubmode() {
+            console.log("Setting edit more to true");
+            model.editPubmode = true;
+        }
+
         // Test Scores
         function deleteScore(testId){
             OtherService.deleteTestScoreForUser(testId, model.profUserId)

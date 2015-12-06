@@ -3,16 +3,16 @@
         <p>{{model.user.firstName}}&nbsp;{{model.user.lastName}}</p>
         <p ng-if="model.user.accountType == 'Student'">
             <span>Studies at </span>
-            <b class="text-primary">{{model.profile.schoolName}}</b>
+            <b class="text-primary">{{model.user.schoolName}}</b>
         </p>
         <p ng-if="model.user.accountType == 'Professor'">
             <span>Works at </span>
-            {{model.profile.schoolName}}
+            {{model.user.schoolName}}
         </p>
-        <p>Tag Line: <i class="text-success">{{model.profile.tagLine}}</i></p>
+        <p>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></p>
         <br>
 
-
+        <button class="btn btn-danger" ng-click="model.exportProfile()">Generate Profile Summary</button>
         <div ng-include src="'views/profile/projects.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/recommendations.view.html'"></div>
         <div ng-include src="'views/profile/skills.view.html'"></div>

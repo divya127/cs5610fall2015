@@ -1,12 +1,18 @@
 <h1> Account Details Page</h1>
     <img src="{{model.currentUser.photo}}"/>
+<br>
 
-<input ng-model="model.currentUser.username" type="text" class="form-control" placeholder="username">
-<input ng-model="model.currentUser.password" type="password" class="form-control" placeholder="username">
-<input ng-model="model.currentUser.firstName" type="text" class="form-control" placeholder="username">
-<input ng-model="model.currentUser.lastName" type="text" class="form-control" placeholder="username">
-<input ng-model="model.currentUser.email" type="text" class="form-control" placeholder="username">
-<input ng-model="model.currentUser.accountType" type="text" class="form-control" placeholder="username">
+<div class="col-lg-7">
+    Username : <input ng-model="model.currentUser.username" type="text" class="form-control" placeholder="username">
+    Password : <input ng-model="model.currentUser.password" type="password" class="form-control" placeholder="password">
+    First Name : <input ng-model="model.currentUser.firstName" type="text" class="form-control" placeholder="First Name">
+    Last Name : <input ng-model="model.currentUser.lastName" type="text" class="form-control" placeholder="Last Name">
+    Email : <input ng-model="model.currentUser.email" type="text" class="form-control" placeholder="Email">
+    Phone : <input ng-model="model.currentUser.phone" type="text" class="form-control" placeholder="Phone">
+    Account Type : <input ng-model="model.currentUser.accountType" type="text" class="form-control" placeholder="AccountType">
+    School Name : <input ng-model="model.currentUser.schoolName" type="text" class="form-control" placeholder="School Name">
+    Tag Line :<input ng-model="model.currentUser.tagLine" type="text" class="form-control" placeholder="Tag Line">
+    <button class="btn btn-info" ng-click="model.update()">Update</button>
+</div>
 
-<button class="btn btn-info" ng-click="updateAccount()">Update</button>
-
+<button class="btn btn-success" ng-click="model.goToProfile()">Go to My Profile</button>

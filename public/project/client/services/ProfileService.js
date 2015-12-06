@@ -14,9 +14,20 @@
            updateProfile : updateProfile,
            findProfileById : findProfileById,
            addUnivToAppliedList : addUnivToAppliedList,
+           exportProfile : exportProfile
 
         };
         return api;
+
+        function exportProfile(userObj) {
+            var deferred = $q.defer();
+            $http.post("/api/project/profile/export", userObj)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+        }
 
         function addNewProfile(userObj) {
             var deferred = $q.defer();

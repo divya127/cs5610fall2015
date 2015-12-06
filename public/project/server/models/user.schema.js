@@ -6,6 +6,8 @@ module.exports = function(mongoose) {
             "password" : String,
             "email"    : String,
             "phone"    : String,
+            "schoolName": String,
+            "tagLine": String,
             "accountType": {
                      type: String,
                      enum: ["Student", "Professor"]

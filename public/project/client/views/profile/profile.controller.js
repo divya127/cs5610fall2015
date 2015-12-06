@@ -16,6 +16,7 @@
         model.lastName = $rootScope.lastName;
 
         model.profUserId = $routeParams.userId;
+        model.exportProfile = exportProfile;
 
         model.endorse = endorse;
         model.editmode = false;
@@ -417,6 +418,13 @@
             .then(function(resp){
                 console.log("Update reco: " + resp);
                 model.profile = resp;
+            });
+        }
+
+        function exportProfile(){
+            ProfileService.exportProfile(model.profile)
+            .then(function(res){
+                alert("File downloaded successfully!");
             });
         }
     }

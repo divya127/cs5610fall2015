@@ -9,8 +9,6 @@ module.exports = function(mongoose) {
 
     var ProfileSchema = mongoose.Schema({
             "userId": String,
-            "schoolName": String,
-            "tagLine": String,
             "skills" : [SkillSchema],
             "testScores": [ TestScoreSchema ],
             "recommendations" : [ RecommendationSchema ],
@@ -19,8 +17,7 @@ module.exports = function(mongoose) {
             "publications":[PublicationSchema],
             "univsApplied" : [{
                 "univName" : String
-            }],
-            "image" : String
+            }]
         }, {collection: "cs5610.project.profile"});
 
         return ProfileSchema;

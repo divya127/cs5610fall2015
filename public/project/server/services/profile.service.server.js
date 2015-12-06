@@ -4,10 +4,20 @@ module.exports = function(app, model) {
     app.get("/api/project/profile", findAllProfiles);
     app.delete("/api/project/profile/:id", deleteProfile);
     app.post("/api/project/profile", addNewProfile);
+    app.post("/api/project/profile/export", exportProfile);
     app.put("/api/project/profile/:id", updateProfile);
     app.get("/api/project/profile/:id", findProfileById);
     app.put("/api/project/profile/:id/univ/:uname", addUnivToAppliedList);
 
+        function exportProfile(req, res) {
+            console.log("Reached exxport server!");
+            res.setHeader('Content-disposition', 'attachment; filename=theDocument.txt');
+            res.setHeader('Content-type', 'text/plain');
+            res.charset = 'UTF-8';
+            res.write(req.body);
+            res.end();
+            console.log("Downloaded file!!!");
+        }
 
         function addUnivToAppliedList(req, res) {
             model

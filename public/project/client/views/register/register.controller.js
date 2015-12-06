@@ -27,7 +27,9 @@
                     accountType : model.user.accountType,
                     firstName : model.user.firstName,
                     lastName : model.user.lastName,
-                    phone : model.user.phone
+                    phone : model.user.phone,
+                    schoolName : model.user.schoolName,
+                    tagLine : model.user.tagLine
                 };
                 console.log("Inside register!");
                 var user = UserService.createUser(userObj)
@@ -44,8 +46,6 @@
 
                         var profObj= {
                             "userId" : response._id,
-                            "schoolName" : model.user.schoolName,
-                            "tagLine" : model.user.tagLine
                         };
                         ProfileService.addNewProfile(profObj)
                         .then(function(res){

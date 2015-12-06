@@ -32,7 +32,7 @@
                     <li class="list-group-item">
                         <span class="badge">{{skill.count}}&nbsp;</span>
                         {{skill.title}}
-                        <button type="button" ng-if="model.user._id != model.curUserId"
+                        <button type="button" ng-show="model.curUserId != null && model.user._id != model.curUserId"
                                 ng-click="model.endorse(skill._id, skill.title, skill.count)"
                                 style="float: right"><i class="glyphicon glyphicon-plus"/>
                         </button>

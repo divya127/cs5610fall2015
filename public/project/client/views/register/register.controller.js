@@ -38,6 +38,9 @@
                         $rootScope.curpwd = response.password;
                         $rootScope.curid = response._id;
                         $rootScope.curemail = response.email;
+                        $rootScope.accountType = response.accountType;
+                        $rootScope.firstName = response.firstName;
+                        $rootScope.lastName = response.lastName;
 
                         var profObj= {
                             "userId" : response._id,

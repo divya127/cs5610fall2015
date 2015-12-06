@@ -1,6 +1,6 @@
 <h1 class="page-header">Search Results</h1>
 
-<p>People matching the search query:</p>
+<p><b>People</b> matching the search query:  <b class="text-warning">{{model.searchTerm}}</b></p>
 <table class="table table-striped" ng-repeat="res in model.fnresults">
     <tr>
         <td>
@@ -8,7 +8,7 @@
         </td>
     </tr>
 </table>
-<table class="table table-bordered" ng-repeat="res in model.lnresults">
+<table class="table" ng-repeat="res in model.lnresults">
     <tr>
         <td>
             <a href="#/profile/{{res._id}}">{{res.firstName}} {{res.lastName}}</a>
@@ -17,7 +17,7 @@
 </table>
 
 
-<p>Univs matching the search query: </p>
+<p><b>Universities</b> matching the search query :  <b class="text-warning">{{model.searchTerm}}</b></p>
 <table class="table table-striped">
     <thead>
     <th>University Name</th>

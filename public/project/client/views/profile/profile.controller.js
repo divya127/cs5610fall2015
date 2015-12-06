@@ -11,6 +11,9 @@
         model.pwd = $rootScope.curpwd;
         model.email = $rootScope.curemail;
         model.curUserId = $rootScope.curid;
+        model.accountType = $rootScope.accountType;
+        model.firstName = $rootScope.firstName;
+        model.lastName = $rootScope.lastName;
 
         model.profUserId = $routeParams.userId;
 
@@ -332,13 +335,13 @@
         }
 
         function addReco() {
-            var authorId = "456"; //$rootScope.user._id
-            var authorName = "Jose Annunziato"; // $rootScope.user.firstName
+            var authorId = model.curUserId;
+            var authorName = model.firstName + " " + model.lastName;
 
             var recoObj = {
                 "content" : model.recoTextArea,
-                "authorId" : "456",
-                "authorName" : "Jose Annunziato",
+                "authorId" : authorId,
+                "authorName" : authorName,
                 "receipientId" : model.profUserId
                 };
 

@@ -9,6 +9,7 @@
         var model = this;
         $scope.$location = $location;
         var searchTerm = $routeParams.term;
+        model.searchTerm = searchTerm;
 
 
         function init() {

@@ -4,24 +4,27 @@
         .module("AcademiaApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, UserService, $rootScope) {
+    function LoginController(UserService, $rootScope, $location) {
+        var model = this;
+        model.login = login;
 
-        $scope.login = function() {
-            var username = $scope.user.username;
-            var pwd = $scope.user.pwd;
-            UserService.findUserByUsernameAndPassword(username, pwd, finduser);
-        }
+        function login() {
+            var username = model.username;
+            var pwd = model.pwd;
+            console.log("Inside Login");
+            UserService.findUserByUsernameAndPassword(username, pwd)
+            .then(function(response){
+                console.log("FOund user: " + response[0].username);
+                $rootScope.curusername = response[0].username;
+                $rootScope.curpwd = response[0].password;
+                $rootScope.curid = response[0]._id;
+                $rootScope.curemail = response[0].email;
+                $rootScope.accountType = response[0].accountType;
+                $rootScope.firstName = response[0].firstName;
+                $rootScope.lastName = response[0].lastName;
 
-    function finduser(response){
-        if (response != null) {
-            $rootScope.curusername = response.username;
-            $rootScope.curpwd = response.password;
-            $rootScope.curid = response.id;
-            $rootScope.curemail = response.email;
-            $rootScope.firstname = response.firstName;
-            $rootScope.lastname = response.lastName;
-            $scope.$location.url("/profile");
-            }
+                $location.url("/profile/"+response[0]._id);
+            });
         }
     }
 })();

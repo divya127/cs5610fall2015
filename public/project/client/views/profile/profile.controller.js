@@ -7,11 +7,10 @@
     function ProfileController($scope, $rootScope, ProfileService, OtherService, $routeParams, UserService) {
 
         var model = this;
-        $scope.username = $rootScope.curusername;
-        $scope.pwd = $rootScope.curpwd;
-        $scope.email = $rootScope.curemail;
-        $scope.firstname = $rootScope.firstname;
-        $scope.lastname = $rootScope.lastname;
+        model.username = $rootScope.curusername;
+        model.pwd = $rootScope.curpwd;
+        model.email = $rootScope.curemail;
+        model.curUserId = $rootScope.curid;
 
         model.profUserId = $routeParams.userId;
 

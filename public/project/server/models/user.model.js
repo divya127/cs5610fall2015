@@ -13,10 +13,29 @@ module.exports = function(mongoose, db) {
             deleteUser : deleteUser,
             addNewUser : addNewUser,
             updateUser: updateUser,
-            createGoogleUser : createGoogleUser
+            createGoogleUser : createGoogleUser,
+            findByFirstNameOrLastName : findByFirstNameOrLastName,
 
         };
         return api;
+
+        function findByFirstNameOrLastName(term){
+            var deferred = q.defer();
+            var results = [];
+            console.log("****************Search term model : " + term);
+            usersModel.find({firstName : term}, function(err, profs){
+                 console.log("Found profile match firstName : ! " + profs);
+                 results.push(profs);
+
+                usersModel.find({lastName : term}, function(err, users){
+                      console.log("Found profile match lastName : ! " + users);
+                      results.push(users);
+
+                     deferred.resolve(results);
+                        });
+             });
+            return deferred.promise;
+        }
 
         function findUserById(userId) {
         console.log("inside user.model.js findUserById!!!!!");

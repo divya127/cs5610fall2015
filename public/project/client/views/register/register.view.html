@@ -14,6 +14,18 @@
             <input id="verifypwd" ng-model="model.user.verifypwd" type="password" class="form-control" placeholder="Verify Password">
         </div>
         <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input id="firstName" ng-model="model.user.firstName" type="text" class="form-control" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input id="lastName" ng-model="model.user.lastName" type="text" class="form-control" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input id="phone" ng-model="model.user.phone" type="text" class="form-control" placeholder="xxx-xx-xxxx">
+        </div>
+        <div class="form-group">
             <label for="mail">Email:</label>
             <input id="mail" ng-model="model.user.email" type="email" class="form-control" placeholder="Email">
         </div>
@@ -25,8 +37,13 @@
                     <option>Professor</option>
                 </select>
         </div>
-        <div class="form-group">
-            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter School Name or Alma Matter">
+        <div class="form-group" ng-if= "model.user.accountType == 'Student'">
+            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter School Name">
+            <br>
+            <input ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!">
+        </div>
+        <div class="form-group" ng-if= "model.user.accountType == 'Professor'">
+            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter current university ">
             <br>
             <input ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!">
         </div>

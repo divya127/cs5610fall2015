@@ -13,7 +13,8 @@
            addNewProfile : addNewProfile,
            updateProfile : updateProfile,
            findProfileById : findProfileById,
-           addUnivToAppliedList : addUnivToAppliedList
+           addUnivToAppliedList : addUnivToAppliedList,
+
         };
         return api;
 

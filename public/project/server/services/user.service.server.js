@@ -7,6 +7,15 @@ module.exports = function(app, model) {
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
     app.get("/api/project/user/username=:username", findUserByUsername);
+    app.get("/api/project/user/search/:term", findByFirstNameOrLastName);
+
+
+    function findByFirstNameOrLastName(req, res) {
+        model.findByFirstNameOrLastName(req.params.term)
+        .then(function(users){
+            res.json(users);
+        });
+    }
 
     function findAllUsers(req, res) {
     console.log("Inside findAllUsers!");

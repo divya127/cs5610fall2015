@@ -24,7 +24,10 @@
                     username: username,
                     password: pwd ,
                     email: email,
-                    accountType : model.user.accountType
+                    accountType : model.user.accountType,
+                    firstName : model.user.firstName,
+                    lastName : model.user.lastName,
+                    phone : model.user.phone
                 };
                 console.log("Inside register!");
                 var user = UserService.createUser(userObj)
@@ -35,7 +38,6 @@
                         $rootScope.curpwd = response.password;
                         $rootScope.curid = response._id;
                         $rootScope.curemail = response.email;
-                        $rootScope.curAccType = response.accountType;
 
                         var profObj= {
                             "userId" : response._id,

@@ -7,12 +7,19 @@
 			$routeProvider
 				.when("/home",
 				{
-					templateUrl: "views/home/home.view.html"
+					templateUrl: "views/home/home.view.html",
+					controller: "HeaderController"
 				})
 				.when("/login",
                 {
                     templateUrl: "views/login/login.view.html",
                     controller: "LoginController",
+                    controllerAs: "model"
+                })
+                .when("/header",
+                {
+                    templateUrl: "views/header/header.view.html",
+                    controller: "HeaderController",
                     controllerAs: "model"
                 })
                 .when("/register",
@@ -45,7 +52,7 @@
                     controller: "StudentController",
                     controllerAs: "model"
                 })
-                .when("/search",
+                .when("/search/:term",
                 {
                     templateUrl: "views/search/searchResults.view.html",
                     controller: "SearchController",

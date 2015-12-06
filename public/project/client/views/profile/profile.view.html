@@ -1,8 +1,15 @@
 <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
     <h1 class="page-header">Profile</h1>
         <p>{{model.user.firstName}}&nbsp;{{model.user.lastName}}</p>
-        <p>{{model.profile.schoolName}}</p>
-        <p>{{model.profile.tagLine}}</p>
+        <p ng-if="model.user.accountType == 'Student'">
+            <span>Studies at </span>
+            <b class="text-primary">{{model.profile.schoolName}}</b>
+        </p>
+        <p ng-if="model.user.accountType == 'Professor'">
+            <span>Works at </span>
+            {{model.profile.schoolName}}
+        </p>
+        <p>Tag Line: <i class="text-success">{{model.profile.tagLine}}</i></p>
         <br>
 
 

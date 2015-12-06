@@ -1,0 +1,42 @@
+<h1 class="page-header">Search Results</h1>
+
+<p>People matching the search query:</p>
+<table class="table table-striped" ng-repeat="res in model.fnresults">
+    <tr>
+        <td>
+            <a href="#/profile/{{res._id}}">{{res.firstName}} {{res.lastName}}</a>
+        </td>
+    </tr>
+</table>
+<table class="table table-bordered" ng-repeat="res in model.lnresults">
+    <tr>
+        <td>
+            <a href="#/profile/{{res._id}}">{{res.firstName}} {{res.lastName}}</a>
+        </td>
+    </tr>
+</table>
+
+
+<p>Univs matching the search query: </p>
+<table class="table table-striped">
+    <thead>
+    <th>University Name</th>
+    <th>City</th>
+    <th>Admissions URL</th>
+    <th>Financial Aid URL</th>
+    </thead>
+    <tr ng-repeat="univ in model.univresults">
+        <td>
+            <a ng-href="http://{{univ.WEBADDR}}" target="_blank">{{univ.INSTNM}}</a>
+        </td>
+        <td>
+            {{univ.CITY}}
+        </td>
+        <td>
+            <a ng-href="http://{{univ.ADMINURL}}" target="_blank">Admissions</a>
+        </td>
+        <td>
+            <a ng-href="http://{{univ.NPRICURL}}" target="_blank">Financial Aid</a>
+        </td>
+    </tr>
+</table>

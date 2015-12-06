@@ -18,11 +18,11 @@
 		}
 
 		function mail (univName, adminurl) {
-		ProfileService.findProfileForUser("123").then(function(response){
+		ProfileService.findProfileForUser($rootScope.curid).then(function(response){
 				var recos = response[0].recommendations;
 				var mailString = "";
 				for(var reco in recos){
-					mailString += "Professor Name: " + recos[reco].authorName + " \nrecommendation Letter: " + recos[reco].content + " ";
+					mailString += "\nProfessor Name: " + recos[reco].authorName + " \nrecommendation Letter: " + recos[reco].content + " ";
 				}
 
 				console.log("mailString " + mailString);
@@ -32,8 +32,8 @@
 					"content" : mailString
 				};
 
-				ProfileService.addUnivToAppliedList("123" , univName).then(function(response){
-                				$location.url("/profile/123"); //replace by USerId
+				ProfileService.addUnivToAppliedList($rootScope.curid , univName).then(function(response){
+                				$location.url("/profile/"+$rootScope.curid); //replace by USerId
                 			});
 
 			})

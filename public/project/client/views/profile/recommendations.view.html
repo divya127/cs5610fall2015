@@ -1,15 +1,15 @@
 <div class ="col-lg-8">
     <H3><b>Recommendations</b></H3>
     <button ng-show="model.editmode" class="btn btn-default" ng-click="model.disableEditReco()" ng-model="write"
-            ng-if="model.user.accountType != 'Professor'" >
+            ng-if="model.user.accountType == 'Professor'" >
         Done Editing!
     </button>
     <button ng-show="model.editmode" class="btn btn-success" ng-click="model.updateReco()" ng-model="write"
-            ng-if="model.user.accountType != 'Professor'" style="float:right">
+            ng-if="model.user.accountType == 'Professor'" style="float:right">
         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
     </button>
     <button ng-show="model.editmode" class="btn btn-info" ng-click="model.addReco()" ng-model="write"
-            ng-if="model.user.accountType != 'Professor'" style="float:right">
+            ng-if="model.user.accountType == 'Professor'" style="float:right">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
     <button ng-show="!model.editmode" class="btn btn-default" ng-click="model.EditModeReco()" ng-model="write"
@@ -18,7 +18,8 @@
     </button>
     <table class="table">
         <tr>
-            <textarea ng-show="model.editmode" id="recoTxtArea" ng-model ="model.recoTextArea" class="form-control col-lg-8" rows="5"/>
+            <textarea ng-show="model.editmode" id="recoTxtArea" ng-model ="model.recoTextArea"
+                      class="form-control col-lg-8" rows="5"/>
         </tr>
         <tr ng-repeat="reco in model.profile.recommendations">
             <div class ="media">
@@ -30,7 +31,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <a href="/profile">
+                            <a href="/profile/{{reco.authorId}}">
                                 {{reco.authorName}}
                             </a>
                         </h4>
@@ -38,14 +39,14 @@
                     </div>
                 </td>
                 <td ng-show="model.editmode">
-                    <button class="btn btn-danger" style="float:right" ng-click="model.deleteReco(reco._id)"
-                            ng-model="write" ng-if="model.user.accountType != 'Professor'">
+                    <button class="btn btn-danger" ng-click="model.deleteReco(reco._id)"
+                            ng-model="write" ng-if="model.user._id == reco.authorId">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </td>
                 <td ng-show="model.editmode">
-                    <button class="btn btn-primary" style="float:right" ng-click="model.selectReco(reco._id)"
-                            ng-model="write" ng-if="model.user.accountType != 'Professor'">
+                    <button class="btn btn-primary" ng-click="model.selectReco(reco._id)"
+                            ng-model="write" ng-if="model.user._id == reco.authorId">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </button>
                 </td>

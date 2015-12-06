@@ -13,9 +13,21 @@
             findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             createUser: createUser,
             deleteUserById: deleteUserById,
-            updateUser: updateUser
+            updateUser: updateUser,
+            findByFirstNameOrLastName : findByFirstNameOrLastName
         };
         return api;
+
+        function findByFirstNameOrLastName(term){
+            var deferred = $q.defer();
+            $http.get("/api/project/user/search/"+term)
+                .success(function(users){
+                    deferred.resolve(users);
+                });
+
+            return deferred.promise;
+
+        }
 
         function createUser(userObj) {
             var deferred = $q.defer();

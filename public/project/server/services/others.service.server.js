@@ -143,9 +143,11 @@ module.exports = function(app, model) {
         }
 
         function addNewProjectForUser(req, res) {
+        console.log("server side: add new project, usr id: "+ req.params.userId + " " + req.body);
             model
                 .addNewProjectForUser(req.params.userId, req.body)
                 .then(function(profile){
+                console.log("@@@@@@@@@@@@@@@@@@ new profile " + profile);
                     res.json(profile);
                 });
         }

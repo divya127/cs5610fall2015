@@ -259,8 +259,9 @@ module.exports = function(mongoose, db) {
 
     function addNewProfile(newProfile) {
         var deferred = q.defer();
-        console.log(newProfile);
+        console.log("New user profile " + newProfile);
         profileModel.create(newProfile, function(err, prof){
+              console.log("Received new prof ! " + prof);
              deferred.resolve(prof);
         });
         return deferred.promise;
@@ -305,6 +306,7 @@ module.exports = function(mongoose, db) {
 
     function addNewProjectForUser(userId, projObj) {
         var deferred = q.defer();
+        console.log("MODEL JS: Receive userId " + userId + " obj "+ projObj);
         profileModel.findOne({userId : userId}, function(err, prof){
             prof.projects.push(projObj);
             prof.save(function(err, fields){

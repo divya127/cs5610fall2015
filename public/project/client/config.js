@@ -21,11 +21,17 @@
 					controller: "RegisterController",
 					controllerAs: "model"
 				})
+				.when("/account",
+                {
+                    templateUrl: "views/account/account.view.html",
+                    controller: "AccountController",
+                    controllerAs: "model"
+                })
 				.when("/profile/:userId",
                 {
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
-                    controllerAs: "model"
+                    controllerAs: "model",
                 })
                 .when("/professor",
                 {
@@ -56,3 +62,4 @@
                 })
 		});
 })();
+

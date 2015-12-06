@@ -49,6 +49,7 @@ module.exports = function(app, model) {
         model
             .addNewUser(user)
             .then(function(users){
+                console.log("New user server: "+ users);
                 res.json(users);
             });
     }

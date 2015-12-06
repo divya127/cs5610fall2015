@@ -3,30 +3,35 @@
     <form class="form-horizontal">
         <div class="form-group">
             <label for="userName">Username:</label>
-            <input id="userName" ng-model="user.userName" type="text" class="form-control" placeholder="Username">
+            <input id="userName" ng-model="model.user.username" type="text" class="form-control" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-            <input id="pwd" ng-model="user.pwd" type="password" class="form-control" placeholder="Password">
+            <input id="pwd" ng-model="model.user.pwd" type="password" class="form-control" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="verifypwd">Verify Password:</label>
-            <input id="verifypwd" ng-model="user.verifypwd" type="password" class="form-control" placeholder="Verify Password">
+            <input id="verifypwd" ng-model="model.user.verifypwd" type="password" class="form-control" placeholder="Verify Password">
         </div>
         <div class="form-group">
             <label for="mail">Email:</label>
-            <input id="mail" ng-model="user.email" type="email" class="form-control" placeholder="Email">
+            <input id="mail" ng-model="model.user.email" type="email" class="form-control" placeholder="Email">
         </div>
         <div class="form-group">
             <label for="accountType">Account Type:</label>
                 <br>
-                <select id="accountType" class="col-lg-4 form-control">
+                <select id="accountType" ng-model= "model.user.accountType" class="col-lg-4 form-control">
                     <option>Student</option>
                     <option>Professor</option>
                 </select>
         </div>
         <div class="form-group">
-            <button id="submit" ng-click="register()" type="register" class="btn btn-warning form-control">Register</button>
+            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter School Name or Alma Matter">
+            <br>
+            <input ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!">
+        </div>
+        <div class="form-group">
+            <button id="submit" ng-click="model.register()" type="register" class="btn btn-warning form-control">Register</button>
         </div>
     </form>
 </div>

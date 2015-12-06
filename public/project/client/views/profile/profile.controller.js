@@ -4,7 +4,7 @@
         .module("AcademiaApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, ProfileService, OtherService, $routeParams) {
+    function ProfileController($scope, $rootScope, ProfileService, OtherService, $routeParams, UserService) {
 
         var model = this;
         $scope.username = $rootScope.curusername;
@@ -206,9 +206,10 @@
                 "title" : model.projTitle,
                 "description" : model.projDesc
             };
+            console.log("New proj " + ProjObj.title + " " + ProjObj.description);
             OtherService.addNewProjectForUser(model.profUserId, ProjObj)
             .then(function(res){
-                console.log("Updated skill : " + res);
+                console.log("Updated proj : " + res.title + " " + res.description);
                 model.profile = res;
             });
         }
@@ -366,12 +367,16 @@
 
         function init() {
         console.log("inside form controller" + $rootScope.curid);
-            var userId = "123";
+            //var userId = "123";
          ProfileService.findProfileForUser(model.profUserId)
                     .then(function(forms){
                         console.log("Fetched profile: " + forms);
                         model.profile = forms[0];
                     });
+             UserService.findUserById(model.profUserId)
+             .then(function(usr){
+                    model.user = usr;
+             });
          }
          init();
 

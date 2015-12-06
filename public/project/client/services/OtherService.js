@@ -197,6 +197,7 @@
 
         function addNewProjectForUser(userId, projObj) {
             var deferred = $q.defer();
+            console.log("Sending from client to servre projObj: "+ projObj.title + " " + projObj.description);
             $http.post("/api/project/profile/projects/user/"+userId, projObj)
                 .success(function(forms){
                     deferred.resolve(forms);

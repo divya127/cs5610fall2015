@@ -5,10 +5,17 @@ module.exports = function(mongoose) {
             "username" : String,
             "password" : String,
             "email"    : String,
+            "phone"    : String,
             "accountType": {
                      type: String,
-                     enum: ["student", "professor"]
+                     enum: ["Student", "Professor"]
                  },
+            "googleId" : String,
+            "linkedinId" : String,
+            "facebookId" : String,
+            "githubId" : String,
+            "photo" : String,
+            "displayName" : String
         }, {collection: "cs5610.project.user"});
 
         return UserSchema;

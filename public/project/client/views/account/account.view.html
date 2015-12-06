@@ -1,0 +1,12 @@
+<h1> Account Details Page</h1>
+    <img src="{{model.currentUser.photo}}"/>
+
+<input ng-model="model.currentUser.username" type="text" class="form-control" placeholder="username">
+<input ng-model="model.currentUser.password" type="password" class="form-control" placeholder="username">
+<input ng-model="model.currentUser.firstName" type="text" class="form-control" placeholder="username">
+<input ng-model="model.currentUser.lastName" type="text" class="form-control" placeholder="username">
+<input ng-model="model.currentUser.email" type="text" class="form-control" placeholder="username">
+<input ng-model="model.currentUser.accountType" type="text" class="form-control" placeholder="username">
+
+<button class="btn btn-info" ng-click="updateAccount()">Update</button>
+

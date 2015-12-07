@@ -7,7 +7,7 @@
     function HeaderController($scope, $location, ProfileService, $rootScope, UserService)
     {
         $scope.$location = $location;
-        $scope.curid = $rootScope.curid;
+        var curid = $rootScope.curid;
 
         $scope.search = function() {
             console.log("Inside search: " + $scope.model.searchTerm);

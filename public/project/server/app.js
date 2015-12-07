@@ -1,7 +1,7 @@
-module.exports = function(app, db, mongoose) {
+module.exports = function(app, db, mongoose, passport, LocalStrategy) {
 
-    var userModel = require("./models/user.model.js") (mongoose, db);
-    require("./services/user.service.server.js")(app, userModel);
+    var userModel = require("./models/user.model.js") (mongoose, db, passport, LocalStrategy);
+    require("./services/user.service.server.js")(app, userModel, passport);
 
     var model = require("./models/univs.model.js") (mongoose, db);
     require("./services/univ.service.server.js")(app, model);

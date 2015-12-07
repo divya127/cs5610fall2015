@@ -1,6 +1,6 @@
 var q = require("q");
 
-module.exports = function(mongoose, db) {
+module.exports = function(mongoose, db, passport, LocalStrategy) {
 
     var UsersSchema = require("./user.schema.js")(mongoose);
     var usersModel = mongoose.model("usersModel", UsersSchema);
@@ -17,6 +17,31 @@ module.exports = function(mongoose, db) {
             findByFirstNameOrLastName : findByFirstNameOrLastName,
 
         };
+
+        passport.use(new LocalStrategy(
+        function(username, password, done)
+        {
+            usersModel.findOne({username: username, password: password}, function(err, user)
+            {
+                if (err) { return done(err); }
+                if (!user) { return done(null, false); }
+                return done(null, user);
+            })
+        }));
+
+        passport.serializeUser(function(user, done)
+        {
+            done(null, user);
+        });
+
+        passport.deserializeUser(function(user, done)
+        {
+            usersModel.findById(user._id, function(err, user)
+            {
+                done(err, user);
+            });
+        });
+
         return api;
 
         function findByFirstNameOrLastName(term){

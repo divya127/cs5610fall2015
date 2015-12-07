@@ -1,13 +1,36 @@
-module.exports = function(app, model) {
+module.exports = function(app, model, passport) {
 
-    app.get("/api/project/user/username=:username&password=:password", findUserByUsernameAndPassword);
-    app.get("/api/project/user", findAllUsers);
-    app.get("/api/project/user/:id", findUserById);
-    app.post("/api/project/user", addNewUser);
-    app.put("/api/project/user/:id", updateUser);
-    app.delete("/api/project/user/:id", deleteUser);
-    app.get("/api/project/user/username=:username", findUserByUsername);
+    var auth = function(req, res, next)
+    {
+        if (!req.isAuthenticated())
+        {
+            res.send(401);
+        }
+        else
+        {
+            next();
+        }
+    };
+
+    app.post("/api/project/login", passport.authenticate('local'), findUserByUsernameAndPassword);
+    app.get("/api/project/user", auth, findAllUsers);
+    app.get("/api/project/user/:id", auth, findUserById);
+    app.post("/api/project/user", auth, addNewUser);
+    app.put("/api/project/user/:id", auth, updateUser);
+    app.delete("/api/project/user/:id", auth, deleteUser);
+    app.get("/api/project/user/username=:username", auth, findUserByUsername);
     app.get("/api/project/user/search/:term", findByFirstNameOrLastName);
+    app.post("/api/project/logout", logout);
+    app.get("/api/project/loggedin", getLoggedIn);
+
+    function getLoggedIn(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
 
 
     function findByFirstNameOrLastName(req, res) {
@@ -38,14 +61,14 @@ module.exports = function(app, model) {
 
     function findUserByUsernameAndPassword(req, res) {
     console.log("Inside server side findUserByUsernameAndPassword");
-        var username = req.params.username;
-        var pwd = req.params.password;
-        var credentials = {
-            username: username,
-            password: pwd
-        };
+//        var username = req.body.username;
+//        var pwd = req.body.password;
+//        var credentials = {
+//            username: username,
+//            password: pwd
+//        };
         model
-            .findUserByCredentials(credentials)
+            .findUserByCredentials(req.body)
             .then(function(user){
                 console.log(user);
                 res.json(user);

@@ -14,7 +14,7 @@
             console.log("Inside Login");
             UserService.findUserByUsernameAndPassword(username, pwd)
             .then(function(response){
-                console.log("FOund user: " + response[0].username);
+                console.log("FOund user: " + response);
                 $rootScope.curusername = response[0].username;
                 $rootScope.curpwd = response[0].password;
                 $rootScope.curid = response[0]._id;

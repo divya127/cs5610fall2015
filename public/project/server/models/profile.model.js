@@ -180,9 +180,10 @@ module.exports = function(mongoose, db) {
 
     function findRecoByUserId(userId) {
         var deferred = q.defer();
+        console.log("input userID findrecofor user : " + userId);
         profileModel.findOne({userId : userId}, function(err, prof){
-            console.log("Found profile! " + prof);
-            deferred.resolve(prof.recos);
+            console.log("Found profile! " + prof.recommendations);
+            deferred.resolve(prof.recommendations);
         });
         return deferred.promise;
     }
@@ -353,7 +354,7 @@ module.exports = function(mongoose, db) {
     function findProjectsByUserId(userId) {
         var deferred = q.defer();
         profileModel.findOne({userId : userId}, function(err, prof){
-            //console.log("Found profile! " + prof);
+            console.log("Found profile! " + prof.projects);
             deferred.resolve(prof.projects);
         });
         return deferred.promise;

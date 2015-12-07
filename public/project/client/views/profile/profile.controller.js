@@ -421,8 +421,9 @@
             });
         }
 
-        function exportProfile(){
-            ProfileService.exportProfile(model.profile)
+        function exportProfile() {
+        console.log("Exporting prof for usr: " + model.profUserId);
+            ProfileService.exportProfile(model.profUserId)
             .then(function(res){
                 alert("File downloaded successfully!");
             });

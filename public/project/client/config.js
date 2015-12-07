@@ -39,6 +39,9 @@
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
                     controllerAs: "model",
+                    resolve    : {
+                        loggedin : checkLoggedin
+                      }
                 })
                 .when("/professor",
                 {
@@ -69,4 +72,32 @@
                 })
 		});
 })();
+
+var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
+{
+  var deferred = $q.defer();
+
+  $http.get('/api/project/loggedin').success(function(response)
+  {
+    if (response !== '0')
+    {
+      $rootScope.curusername = response.username;
+      $rootScope.curpwd = response.password;
+      $rootScope.curid = response._id;
+      $rootScope.curemail = response.email;
+      $rootScope.accountType = response.accountType;
+      $rootScope.firstName = response.firstName;
+      $rootScope.lastName = response.lastName;
+      deferred.resolve();
+    }
+    else
+    {
+      $rootScope.errorMessage = 'You need to log in.';
+      deferred.reject();
+      $location.url('/login');
+    }
+  });
+
+  return deferred.promise;
+};
 

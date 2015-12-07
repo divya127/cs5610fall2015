@@ -14,9 +14,20 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
-            findByFirstNameOrLastName : findByFirstNameOrLastName
+            findByFirstNameOrLastName : findByFirstNameOrLastName,
+            logout : logout
         };
         return api;
+
+        function logout() {
+            var deferred = $q.defer();
+            $http.post("/api/project/logout")
+                .success(function(res){
+                    deferred.resolve(res);
+                });
+
+            return deferred.promise;
+        }
 
         function findByFirstNameOrLastName(term){
             var deferred = $q.defer();
@@ -60,8 +71,12 @@
         }
 
         function findUserByUsernameAndPassword(username, password) {
+            var user = {
+                username : username,
+                password : password
+            };
             var deferred = $q.defer();
-            $http.get("/api/project/user/username=" + username + "&password=" + password)
+            $http.post("/api/project/login", user)
                 .success(function(user12){
                     console.log("inside client side" + user12);
                     deferred.resolve(user12);

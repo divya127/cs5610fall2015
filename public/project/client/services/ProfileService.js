@@ -19,9 +19,9 @@
         };
         return api;
 
-        function exportProfile(userObj) {
+        function exportProfile(userId) {
             var deferred = $q.defer();
-            $http.post("/api/project/profile/export", userObj)
+            $http.get("/api/project/profile/export/" + userId)
                 .success(function(users){
                     deferred.resolve(users);
                 });

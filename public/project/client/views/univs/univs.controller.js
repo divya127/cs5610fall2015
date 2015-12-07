@@ -8,6 +8,7 @@
 		var model = this;
 		model.search = search;
 		model.mail = mail;
+		model.accType = $rootScope.accountType;
 
 		function search () {
 			UnivService.findUnivByName(model.name).then(function(response){

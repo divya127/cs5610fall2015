@@ -39,9 +39,7 @@
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
                     controllerAs: "model",
-                    resolve    : {
-                        loggedin : checkLoggedin
-                      }
+
                 })
                 .when("/professor",
                 {
@@ -65,7 +63,10 @@
                 {
                     templateUrl: "views/univs/univs.view.html",
                     controller: "UnivController",
-                    controllerAs: "model"
+                    controllerAs: "model",
+                    resolve    : {
+                        loggedin : checkLoggedin
+                      }
                 })
                 .otherwise({
                     redirectTo: "/home"

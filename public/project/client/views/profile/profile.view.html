@@ -12,7 +12,7 @@
         <p>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></p>
         <br>
 
-        <a ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Generate Profile Summary</button></a>
+        <a ng-if="model.user._id == model.curUserId && model.user.accountType == 'Student' " ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Download Profile Summary</button></a>
         <div ng-include src="'views/profile/projects.view.html'"></div>
         <div ng-include src="'views/profile/publications.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/recommendations.view.html'"></div>

@@ -40,7 +40,7 @@
                 <a ng-href="http://{{univ.NPRICURL}}" target="_blank">Financial Aid</a>
             </td>
             <td>
-                <button class="btn btn-success" ng-click="model.mail(univ.INSTNM, univ.ADMINURL)">Mail</button>
+                <button class="btn btn-success" ng-if="model.accType == 'Student'" ng-click="model.mail(univ.INSTNM, univ.ADMINURL)">Mail</button>
             </td>
         </tr>
         </tbody>

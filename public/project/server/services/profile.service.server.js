@@ -11,6 +11,7 @@ var smtpTransport = nodemailer.createTransport({
 
 module.exports = function(app, model) {
 
+
     app.get("/api/project/profile/user/:userId", findProfileForUser);
     app.get("/api/project/profile", findAllProfiles);
     app.delete("/api/project/profile/:id", deleteProfile);
@@ -20,6 +21,7 @@ module.exports = function(app, model) {
     app.get("/api/project/profile/:id", findProfileById);
     app.post("/send", mailReco);
     app.put("/api/project/profile/:id/univ/:uname", addUnivToAppliedList);
+
 
         function mailReco(req,res) {
         var mailOBj = req.body;

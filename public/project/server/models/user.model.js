@@ -15,7 +15,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
             updateUser: updateUser,
             createGoogleUser : createGoogleUser,
             findByFirstNameOrLastName : findByFirstNameOrLastName,
-
+            getRandomProfiles : getRandomProfiles,
         };
 
         passport.use(new LocalStrategy(
@@ -43,6 +43,24 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
         });
 
         return api;
+
+
+        function getRandomProfiles(userId){
+            var deferred = q.defer();
+            var n;
+            usersModel.count(function (e, count) {
+                   console.log("Count : " + count);
+                   n = count;
+                   var r = function(){return Math.floor( Math.random() * n )};
+                   console.log("random " + r());
+                   usersModel.find({}, {} ,{ limit: 3 , skip : r()}, function(err, results) {
+                           console.log("2 Random records ! : " + results);
+                           deferred.resolve(results);
+                        });
+                 });
+            console.log("%%%%%%%%%%%%%%%%%%%%INside randome profiles model.js!!!");
+            return deferred.promise;
+        }
 
         function findByFirstNameOrLastName(term){
             var deferred = q.defer();

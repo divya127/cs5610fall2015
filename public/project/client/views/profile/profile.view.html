@@ -12,6 +12,22 @@
         <p>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></p>
         <br>
 
+
+        <div class="list-group col-lg-4" ng-repeat="prof in model.randomProfs">
+            <a href="#/profile/{{prof._id}}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{prof.firstName}} {{prof.lastName}}</h4>
+                <p class="list-group-item-text">{{prof.tagLine}}</p>
+                <p class="list-group-item-text" ng-if="prof.accountType == 'Student'">
+                    <span>Studies at </span>
+                    <b class="text-primary">{{prof.schoolName}}</b>
+                </p>
+                <p class="list-group-item-text" ng-if="prof.accountType == 'Professor'">
+                    <span>Works at </span>
+                    {{prof.schoolName}}
+                </p>
+            </a>
+        </div>
+
         <a ng-if="model.user._id == model.curUserId && model.user.accountType == 'Student' " ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Download Profile Summary</button></a>
         <div ng-include src="'views/profile/projects.view.html'"></div>
         <div ng-include src="'views/profile/publications.view.html'"></div>

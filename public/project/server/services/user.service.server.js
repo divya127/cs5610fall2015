@@ -12,6 +12,7 @@ module.exports = function(app, model, passport) {
         }
     };
 
+    app.get("/api/project/profile/random/:userId", getRandomProfiles)
     app.post("/api/project/login", passport.authenticate('local'), findUserByUsernameAndPassword);
     app.get("/api/project/user", auth, findAllUsers);
     app.get("/api/project/user/:id", findUserById);
@@ -22,6 +23,15 @@ module.exports = function(app, model, passport) {
     app.get("/api/project/user/search/:term", findByFirstNameOrLastName);
     app.post("/api/project/logout", logout);
     app.get("/api/project/loggedin", getLoggedIn);
+
+    function getRandomProfiles(req, res) {
+        console.log("**************INside randome profiles server side!!!");
+            model
+                .getRandomProfiles(req.params.userId)
+                .then(function(profiles){
+                    res.json(profiles);
+                });
+        }
 
     function getLoggedIn(req, res) {
         res.send(req.isAuthenticated() ? req.user : '0');

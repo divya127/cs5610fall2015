@@ -15,9 +15,21 @@
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             findByFirstNameOrLastName : findByFirstNameOrLastName,
-            logout : logout
+            logout : logout,
+            getRandomProfiles : getRandomProfiles
         };
         return api;
+
+        function getRandomProfiles(userId) {
+            console.log("INside randome profiles Client side service!!!");
+                 var deferred = $q.defer();
+                $http.get("/api/project/profile/random/"+ userId)
+                    .success(function(users){
+                        deferred.resolve(users);
+                    });
+
+                return deferred.promise;
+            }
 
         function logout() {
             var deferred = $q.defer();

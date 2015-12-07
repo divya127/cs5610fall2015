@@ -67,6 +67,17 @@
         model.enableEditPubmode = enableEditPubmode;
         model.disableEditPubMode = disableEditPubMode;
 
+        model.getRandom = getRandom;
+
+        function getRandom() {
+            console.log("INside randome profiles client controller.js!!!");
+            UserService.getRandomProfiles(model.profUserId)
+            .then(function(users){
+                console.log("Random users: " + users);
+                model.randomProfs = users;
+            });
+        }
+
 
         // Publications
         function deletePub(ProjId){
@@ -380,6 +391,12 @@
              .then(function(usr){
                     model.user = usr;
              });
+             UserService.getRandomProfiles(model.profUserId)
+             .then(function(users){
+                 console.log("Random users: " + users);
+                 model.randomProfs = users;
+             });
+
          }
          init();
 

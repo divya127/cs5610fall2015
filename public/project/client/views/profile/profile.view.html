@@ -14,11 +14,11 @@
 
         <button class="btn btn-danger" ng-click="model.exportProfile()">Generate Profile Summary</button>
         <div ng-include src="'views/profile/projects.view.html'"></div>
+        <div ng-include src="'views/profile/publications.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/recommendations.view.html'"></div>
         <div ng-include src="'views/profile/skills.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/testscores.view.html'"></div>
-        <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/clubs.view.html'"></div>
-        <div ng-include src="'views/profile/publications.view.html'"></div>
+        <div ng-include src="'views/profile/clubs.view.html'"></div>
 
 
     <div class=" col-lg-5" ng-if="model.user.accountType == 'Student'">

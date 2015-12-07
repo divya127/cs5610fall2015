@@ -13,5 +13,9 @@
             console.log("Inside search: " + $scope.model.searchTerm);
                 $location.url("/search/" + $scope.model.searchTerm);
         }
+
+        $scope.getUrl = function() {
+            $location.url("/profile/" + $rootScope.curid);
+        }
     }
 })();

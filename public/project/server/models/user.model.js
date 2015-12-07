@@ -23,11 +23,11 @@ module.exports = function(mongoose, db) {
             var deferred = q.defer();
             var results = [];
             console.log("****************Search term model : " + term);
-            usersModel.find({firstName : term}, function(err, profs){
+            usersModel.find({firstName : new RegExp(term)}, function(err, profs){
                  console.log("Found profile match firstName : ! " + profs);
                  results.push(profs);
 
-                usersModel.find({lastName : term}, function(err, users){
+                usersModel.find({lastName : new RegExp(term)}, function(err, users){
                       console.log("Found profile match lastName : ! " + users);
                       results.push(users);
 

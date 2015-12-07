@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var mongoose = require('mongoose');
-var nodemailer = require("nodemailer");
+var nodemailer = require('nodemailer');
 //var passport = require('passport');
 //var LocalStrategy = require('passport-local').Strategy;
 //var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -35,11 +35,11 @@ app.use(multer()); //for parsing multipart/form-data
 //require("./public/assignment/server/app.js")(app, db, mongoose);
 require("./public/project/server/app.js")(app, db, mongoose);
 
-app.get('/send/:to/:subs',function(req,res){
+app.get('/send',function(req,res){
     var mailOptions={
         to : req.params.to,
         subject : req.params.sub,
-        text : req.body
+        text : req.params.content
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){

@@ -92,13 +92,16 @@
             return deferred.promise;
         }
 
-        function addUnivToAppliedList(userId, univName) {
+        function addUnivToAppliedList(userId, univName, mailObj) {
             var deferred = $q.defer();
             var univObj = {univName : univName};
 
-            $http.put("/api/project/profile/"+userId+"/univ/"+univName, univObj)
+            $http.post("/send", mailObj) //:to/:subs/:content
                 .success(function(user){
-                    deferred.resolve(user);
+                    $http.put("/api/project/profile/"+userId+"/univ/"+univName, univObj)
+                            .success(function(user){
+                                deferred.resolve(user);
+                            });
                 });
 
             return deferred.promise;

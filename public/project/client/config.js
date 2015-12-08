@@ -32,7 +32,10 @@
                 {
                     templateUrl: "views/account/account.view.html",
                     controller: "AccountController",
-                    controllerAs: "model"
+                    controllerAs: "model",
+                    resolve    : {
+                        loggedin : checkLoggedin
+                      }
                 })
 				.when("/profile/:userId",
                 {

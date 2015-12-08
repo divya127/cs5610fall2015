@@ -24,6 +24,19 @@ module.exports = function(app, model, passport) {
     app.post("/api/project/logout", logout);
     app.get("/api/project/loggedin", getLoggedIn);
 
+        app.get('/auth/google',
+            passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/plus.login']}),
+            function(req, res) {
+
+            });
+
+        app.get('/auth/google/callback',
+            passport.authenticate('google', {failureRedirect: '/#/login'}),
+            function(req, res) {
+                console.log("^^^^^^^^^Server side google: " + res);
+                res.redirect('/project/client/#/account');
+            });
+
     function getRandomProfiles(req, res) {
         console.log("**************INside randome profiles server side!!!");
             model

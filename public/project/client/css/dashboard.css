@@ -98,13 +98,6 @@
   border-radius: 50%;
 }
 
-
-@media (min-width: 768px) {
-    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-        margin-left: 25%;
-    }
-}
-
 .omb_login .omb_authTitle {
     text-align: center;
 	line-height: 300%;
@@ -118,10 +111,7 @@
     color: white;
 	opacity:1;
 }
-.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
-.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
 .omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
-
 
 .omb_login .omb_loginOr {
 	position: relative;
@@ -148,6 +138,7 @@
 	width: 3em;
 	text-align: center;
 }
+
 
 .omb_login .omb_loginForm .input-group.i {
 	width: 2em;

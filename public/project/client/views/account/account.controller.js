@@ -12,9 +12,10 @@
         model.goToProfile = goToProfile;
 
         function init(){
+            console.log("Fetching account info for user: " + model.curUserId);
             UserService.findUserById(model.curUserId)
                  .then(function(usr){
-                        console.log("Found user! " + usr);
+                        console.log("Found user! " + usr.googleId);
                         model.currentUser = usr;
                  });
         } init();

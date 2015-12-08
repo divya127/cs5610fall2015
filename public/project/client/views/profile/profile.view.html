@@ -1,6 +1,7 @@
 <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
     <h1 class="page-header">Profile</h1>
     <div>
+        <img src="{{model.user.photo}}"/>
         <h3 class="text-success">{{model.user.firstName}}&nbsp;{{model.user.lastName}}</h3>
         <h4 ng-if="model.user.accountType == 'Student'">
             <span>Student at </span>
@@ -15,24 +16,26 @@
     </div>
 
         <a ng-if="model.user._id == model.curUserId && model.user.accountType == 'Student' " ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Download Profile Summary</button></a>
+
         <div ng-include src="'views/profile/projects.view.html'"></div>
 
-        <H3><b>People also viewed</b></H3>
-        <div class="list-group col-lg-4">
-            <a href="#/profile/{{prof._id}}" class="list-group-item" ng-repeat="prof in model.randomProfs">
-                <h4 class="list-group-item-heading" style="color: #18bc9c;">{{prof.firstName}} {{prof.lastName}}</h4>
-                <p class="list-group-item-text">{{prof.tagLine}}</p>
-                <p class="list-group-item-text" ng-if="prof.accountType == 'Student'">
-                    <span>Studies at </span>
-                    <b class="text-primary">{{prof.schoolName}}</b>
-                </p>
-                <p class="list-group-item-text" ng-if="prof.accountType == 'Professor'">
-                    <span>Works at </span>
-                    <b class="text-primary">{{prof.schoolName}}</b>
-                </p>
-            </a>
-        </div>
+<H3><b>People also viewed</b></H3>
+<div class="model.rightCol list-group col-lg-4" >
+    <a href="#/profile/{{prof._id}}" class="list-group-item" ng-repeat="prof in model.randomProfs">
+        <img src="{{prof.photo}}"/>&nbsp;<h4 class="list-group-item-heading" style="color: #18bc9c;">{{prof.firstName}} {{prof.lastName}}</h4>
+        <p class="list-group-item-text">{{prof.tagLine}}</p>
+        <p class="list-group-item-text" ng-if="prof.accountType == 'Student'">
+            <span>Studies at </span>
+            <b class="text-primary">{{prof.schoolName}}</b>
+        </p>
+        <p class="list-group-item-text" ng-if="prof.accountType == 'Professor'">
+            <span>Works at </span>
+            <b class="text-primary">{{prof.schoolName}}</b>
+        </p>
+    </a>
+</div>
 
+<div class="model.leftCol">
         <div ng-include src="'views/profile/publications.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/recommendations.view.html'"></div>
         <div ng-include src="'views/profile/skills.view.html'"></div>
@@ -40,7 +43,7 @@
         <div ng-include src="'views/profile/clubs.view.html'"></div>
 
 
-    <div class=" col-lg-5" ng-if="model.user.accountType == 'Student'">
+    <div class=" col-lg-5" ng-if="model.user.accountType == 'Student' && model.user._id == model.curUserId">
         <H3><b>Universities Applied To</b></H3>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat = "univ in model.profile.univsApplied">
@@ -48,4 +51,6 @@
             </li>
         </ul>
     </div>
+</div>
+
 <!--</div>-->

@@ -1,9 +1,10 @@
 var q = require("q");
 
-module.exports = function(mongoose, db, passport, LocalStrategy) {
+module.exports = function(mongoose, db, passport, LocalStrategy, GoogleStrategy) {
 
     var UsersSchema = require("./user.schema.js")(mongoose);
     var usersModel = mongoose.model("usersModel", UsersSchema);
+    var googleCredentials = require("./google.js");
 
     var api = {
             findUserById : findUserById,
@@ -42,6 +43,24 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
             });
         });
 
+        passport.use(new GoogleStrategy({
+            clientID : googleCredentials.clientID,
+            clientSecret : googleCredentials.clientSecret,
+            callbackURL : "http://127.0.0.1:3000/auth/google/callback"
+        },
+        function(accessToken, refreshToken, profile, done) {
+            process.nextTick(function(){
+                createGoogleUser(profile)
+                .then(function(user){
+                    console.log("New User from google: " + user);
+                    return done(null, user);
+                });
+            });
+        }
+
+        ));
+
+
         return api;
 
 
@@ -51,7 +70,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
             usersModel.count(function (e, count) {
                    console.log("Count : " + count);
                    n = count;
-                   var r = function(){return Math.floor( Math.random() * n ) + 2};
+                   var r = function(){return Math.floor( Math.random() * n )};
                    console.log("random " + r());
                    usersModel.find({'_id': {$ne: userId}}, {} ,{ limit: 3 , skip : r()}, function(err, results) {
                            console.log("2 Random records ! : " + results);
@@ -167,6 +186,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
 
         function createGoogleUser(googleUser) {
             var deferred = q.defer();
+            console.log("Inside createGoogleUser: " + googleUser);
             usersModel.find({googleId: googleUser.id}, function(err, doc) {
                 var user = null;
                 if (doc && doc.length > 0) {
@@ -176,7 +196,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
                 }
 
                 user.googleId = googleUser.id;
-                user.displayName = googleUser.name.displayName;
+                user.displayName = googleUser.displayName;
                 user.firstName = googleUser.name.givenName;
                 user.lastName = googleUser.name.familyName;
                 user.photo = googleUser.photos[0].value;
@@ -185,6 +205,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
                 });
 
             });
+            return deferred.promise;
         }
 
 }

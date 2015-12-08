@@ -23,7 +23,7 @@
             console.log("Inside update");
             UserService.updateUser(model.curUserId, model.currentUser)
             .then(function(res){
-                alert("Updated Successfully!!");
+                //alert("Updated Successfully!!");
             });
         }
 

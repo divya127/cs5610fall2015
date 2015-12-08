@@ -51,9 +51,9 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
             usersModel.count(function (e, count) {
                    console.log("Count : " + count);
                    n = count;
-                   var r = function(){return Math.floor( Math.random() * n )};
+                   var r = function(){return Math.floor( Math.random() * n ) + 2};
                    console.log("random " + r());
-                   usersModel.find({}, {} ,{ limit: 3 , skip : r()}, function(err, results) {
+                   usersModel.find({'_id': {$ne: userId}}, {} ,{ limit: 3 , skip : r()}, function(err, results) {
                            console.log("2 Random records ! : " + results);
                            deferred.resolve(results);
                         });
@@ -66,11 +66,11 @@ module.exports = function(mongoose, db, passport, LocalStrategy) {
             var deferred = q.defer();
             var results = [];
             console.log("****************Search term model : " + term);
-            usersModel.find({firstName : new RegExp(term)}, function(err, profs){
+            usersModel.find({firstName : new RegExp(term, "i")}, function(err, profs){
                  console.log("Found profile match firstName : ! " + profs);
                  results.push(profs);
 
-                usersModel.find({lastName : new RegExp(term)}, function(err, users){
+                usersModel.find({lastName : new RegExp(term, "i")}, function(err, users){
                       console.log("Found profile match lastName : ! " + users);
                       results.push(users);
 

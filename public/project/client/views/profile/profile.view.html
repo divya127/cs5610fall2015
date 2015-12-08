@@ -7,7 +7,7 @@
         </p>
         <p ng-if="model.user.accountType == 'Professor'">
             <span>Works at </span>
-            {{model.user.schoolName}}
+            <b class="text-primary">{{model.user.schoolName}}</b>
         </p>
         <p>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></p>
         <br>
@@ -23,7 +23,7 @@
                 </p>
                 <p class="list-group-item-text" ng-if="prof.accountType == 'Professor'">
                     <span>Works at </span>
-                    {{prof.schoolName}}
+                    <b class="text-primary">{{prof.schoolName}}</b>
                 </p>
             </a>
         </div>

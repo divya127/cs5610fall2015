@@ -1,18 +1,55 @@
-<h1> Account Details Page</h1>
+<h1 class="page-header"> Account Details Page</h1>
+
     <img src="{{model.currentUser.photo}}"/>
 <br>
 
-<div class="col-lg-7">
-    Username : <input ng-model="model.currentUser.username" type="text" class="form-control" placeholder="username">
-    Password : <input ng-model="model.currentUser.password" type="password" class="form-control" placeholder="password">
-    First Name : <input ng-model="model.currentUser.firstName" type="text" class="form-control" placeholder="First Name">
-    Last Name : <input ng-model="model.currentUser.lastName" type="text" class="form-control" placeholder="Last Name">
-    Email : <input ng-model="model.currentUser.email" type="text" class="form-control" placeholder="Email">
-    Phone : <input ng-model="model.currentUser.phone" type="text" class="form-control" placeholder="Phone">
-    Account Type : <input ng-model="model.currentUser.accountType" type="text" class="form-control" placeholder="AccountType">
-    School Name : <input ng-model="model.currentUser.schoolName" type="text" class="form-control" placeholder="School Name">
-    Tag Line :<input ng-model="model.currentUser.tagLine" type="text" class="form-control" placeholder="Tag Line">
-    <button class="btn btn-info" ng-click="model.update()">Update</button>
+<div>
+    <div class="form-group">
+        <button class="btn btn-success" ng-click="model.goToProfile()">Go to My Profile</button>
+        <button class="btn btn-info" ng-click="model.update()" style="float:right">Update</button>
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="uname">Username</label>
+        <input ng-model="model.currentUser.username" id="uname" type="text" class="form-control" placeholder="username">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="Password">Password</label>
+        <input ng-model="model.currentUser.password" id="Password" type="password" class="form-control" placeholder="password">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="fname">First Name </label>
+        <input ng-model="model.currentUser.firstName" id="fname" type="text" class="form-control" placeholder="First Name">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="lname">Last Name</label>
+        <input ng-model="model.currentUser.lastName" id="lname" type="text" class="form-control" placeholder="Last Name">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="email">Email</label>
+        <input ng-model="model.currentUser.email" id="email" type="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="phone">Phone</label>
+        <input ng-model="model.currentUser.phone" id="phone" type="text" class="form-control" placeholder="Phone">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="acctype">Account Type </label>
+        <select ng-model="model.currentUser.accountType" id="acctype" type="text" class="form-control">
+            <option ng-selected="model.currentUser.accountType == 'Student'">Student</option>
+            <option ng-selected="model.currentUser.accountType == 'Professor'">Professor</option>
+        </select>
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="sname">School Name</label>
+        <input ng-model="model.currentUser.schoolName" id="sname" type="text" class="form-control" placeholder="School Name">
+    </div>
+    <div class="form-group col-lg-6">
+        <label class="control-label" for="tag">Tag Line</label>
+        <input ng-model="model.currentUser.tagLine" id="tag" type="text" class="form-control" placeholder="Tag Line">
+    </div>
+    <div class="form-group col-lg-6">
+        <button class="btn btn-info" ng-click="model.update()" style="float:right">Update</button>
+    </div>
 </div>
 
-<button class="btn btn-success" ng-click="model.goToProfile()">Go to My Profile</button>
+

@@ -16,7 +16,7 @@ module.exports = function(app, model, passport) {
     app.post("/api/project/login", passport.authenticate('local'), findUserByUsernameAndPassword);
     app.get("/api/project/user", auth, findAllUsers);
     app.get("/api/project/user/:id", findUserById);
-    app.post("/api/project/user", auth, addNewUser);
+    app.post("/api/project/user", addNewUser);
     app.put("/api/project/user/:id", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);
     app.get("/api/project/user/username=:username", auth, findUserByUsername);

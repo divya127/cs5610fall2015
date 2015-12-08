@@ -38,7 +38,7 @@
                 {
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
-                    controllerAs: "model",
+                    controllerAs: "model"
 
                 })
                 .when("/professor",
@@ -101,4 +101,28 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
 
   return deferred.promise;
 };
+
+var checkAlreadyLoggedin = function($q, $timeout, $http, $location, $rootScope)
+{
+  var deferred = $q.defer();
+
+  $http.get('/api/project/loggedin').success(function(response)
+  {
+    if (response !== '0')
+    {
+      $rootScope.curusername = response.username;
+      $rootScope.curpwd = response.password;
+      $rootScope.curid = response._id;
+      $rootScope.curemail = response.email;
+      $rootScope.accountType = response.accountType;
+      $rootScope.firstName = response.firstName;
+      $rootScope.lastName = response.lastName;
+      deferred.resolve();
+    }
+
+  });
+
+  return deferred.promise;
+};
+
 

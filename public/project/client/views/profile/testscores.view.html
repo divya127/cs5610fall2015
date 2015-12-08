@@ -24,7 +24,7 @@
             </td>
             <td>
                 <input ng-show="model.editTestScoremode" ng-model ="model.scoreMaxText"
-                       class="form-control col-lg-2" type="text" placeholder="Score Acheived">
+                       class="form-control col-lg-2" type="text" placeholder="Score Achieved">
             </td>
             <td>
                 <button ng-show="model.editTestScoremode" class="btn btn-success" ng-click="model.updateScore()" ng-model="write"
@@ -39,8 +39,10 @@
                 </button>
             </td>
         </tr>
+        </table>
+    <table class="table">
     <tr ng-repeat = "score in model.profile.testScores">
-        <td>
+        <td class="col-lg-6">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{score.test}}</h3>
@@ -51,13 +53,14 @@
                 </div>
             </div>
         </td>
-        <td ng-show="model.editTestScoremode">
+        <td class="col-lg-3"></td>
+        <td ng-show="model.editTestScoremode" class="col-lg-1">
             <button class="btn btn-danger" style="float:right" ng-click="model.deleteScore(score._id)"
                     ng-model="write" ng-if="model.user._id == model.curUserId">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
         </td>
-        <td ng-show="model.editTestScoremode">
+        <td ng-show="model.editTestScoremode" class="col-lg-1">
             <button class="btn btn-primary" style="float:right" ng-click="model.selectScore(score._id)"
                     ng-model="write" ng-if="model.user._id == model.curUserId">
                 <span class="glyphicon glyphicon-pencil"></span>

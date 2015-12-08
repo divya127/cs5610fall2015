@@ -28,7 +28,7 @@
         </tr>
         <tr ng-repeat="skill in model.profile.skills">
             <ul class="list-group">
-                <td>
+                <td class="col-lg-7">
                     <li class="list-group-item">
                         <span class="badge">{{skill.count}}&nbsp;</span>
                         {{skill.title}}
@@ -38,13 +38,13 @@
                         </button>
                     </li>
                 </td>
-                <td ng-show="model.editSkillmode">
+                <td ng-show="model.editSkillmode" class="col-lg-1">
                     <button class="btn btn-danger" style="float:right" ng-click="model.deleteSkill(skill._id)"
                             ng-model="write" ng-if="model.user._id == model.curUserId">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>
                 </td>
-                <td ng-show="model.editSkillmode">
+                <td ng-show="model.editSkillmode" class="col-lg-1">
                     <button class="btn btn-primary" style="float:right" ng-click="model.selectSkill(skill._id)"
                             ng-model="write" ng-if="model.user._id == model.curUserId">
                         <span class="glyphicon glyphicon-pencil"></span>

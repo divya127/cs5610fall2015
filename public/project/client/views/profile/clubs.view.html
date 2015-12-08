@@ -1,4 +1,4 @@
-<div class=" col-lg-8">
+<div class="col-lg-8">
     <H3 ng-if="model.user.accountType == 'Student'"><b>Clubs & Activities</b></H3>
     <H3 ng-if="model.user.accountType == 'Professor'"><b>Classes Taught</b></H3>
     <button ng-show="model.editClubmode" class="btn btn-default" ng-click="model.disableEditClubmode()" ng-model="write"
@@ -30,18 +30,18 @@
 
             <ul class="list-group">
                 <tr ng-repeat = "club in model.profile.clubs">
-                    <td>
+                    <td class="col-lg-7">
                         <li class="list-group-item">
                             <i class="text-default">{{club.clubName}}</i>
                         </li>
                     </td>
-                    <td ng-show="model.editClubmode">
+                    <td ng-show="model.editClubmode" class="col-lg-1">
                         <button class="btn btn-danger" style="float:right" ng-click="model.deleteClub(club._id)"
                                 ng-model="write" ng-if="model.user._id == model.curUserId">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>
-                    <td ng-show="model.editClubmode">
+                    <td ng-show="model.editClubmode" class="col-lg-1">
                         <button class="btn btn-primary" style="float:right" ng-click="model.selectClub(club._id)"
                                 ng-model="write" ng-if="model.user._id == model.curUserId">
                             <span class="glyphicon glyphicon-pencil"></span>

@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr ng-repeat="pub in model.profile.publications">
-            <td>
+            <td class="col-lg-7">
                 <ol class="list-group">
                     <li class="list-group-item"><b class="text-success">{{pub.title}}</b>
                         <br>
@@ -48,13 +48,13 @@
                     </li>
                 </ol>
             </td>
-            <td ng-show="model.editPubmode">
+            <td ng-show="model.editPubmode" class="col-lg-1">
                 <button class="btn btn-danger" style="float:right" ng-click="model.deletePub(pub._id)"
                         ng-model="write" ng-if="model.user._id == model.curUserId">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </td>
-            <td ng-show="model.editPubmode">
+            <td ng-show="model.editPubmode" class="col-lg-1">
                 <button class="btn btn-primary" style="float:right" ng-click="model.selectPub(pub._id)"
                         ng-model="write" ng-if="model.user._id == model.curUserId">
                     <span class="glyphicon glyphicon-pencil"></span>

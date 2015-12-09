@@ -3,65 +3,68 @@
     <div class="well bs-component col-md-8 col-md-offset-2">
     <form class="form-horizontal">
         <div class="form-group">
-            <label for="userName">Username:</label>
-            <input id="userName" ng-model="model.user.username" type="text" class="form-control" placeholder="Username">
+            <label for="userName">*Username:</label>
+            <input id="userName" ng-model="model.user.username" type="text" class="form-control" placeholder="Username" required>
         </div>
         <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input id="pwd" ng-model="model.user.pwd" type="password" class="form-control" placeholder="Password">
+            <label for="model.user.pwd">*Password:</label>
+            <input id="model.user.pwd" ng-model="model.user.pwd" name="model.user.pwd" type="password" class="form-control" placeholder="Password" required>
         </div>
         <div class="form-group">
-            <label for="verifypwd">Verify Password:</label>
-            <input id="verifypwd" ng-model="model.user.verifypwd" type="password" class="form-control" placeholder="Verify Password">
+            <label for="model.user.verifypwd">*Verify Password:</label>
+            <input id="model.user.verifypwd" ng-model="model.user.verifypwd" name="model.user.verifypwd" type="password" class="form-control" placeholder="Verify Password" required>
         </div>
         <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input id="firstName" ng-model="model.user.firstName" type="text" class="form-control" placeholder="First Name">
+            <label for="firstName">*First Name:</label>
+            <input id="firstName" ng-model="model.user.firstName" type="text" class="form-control" placeholder="First Name" required>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input id="lastName" ng-model="model.user.lastName" type="text" class="form-control" placeholder="Last Name">
+            <label for="lastName">*Last Name:</label>
+            <input id="lastName" ng-model="model.user.lastName" type="text" class="form-control" placeholder="Last Name" required>
         </div>
         <div class="form-group">
             <label for="phone">Phone:</label>
             <input id="phone" ng-model="model.user.phone" type="text" class="form-control" placeholder="xxx-xx-xxxx">
         </div>
         <div class="form-group">
-            <label for="mail">Email:</label>
-            <input id="mail" ng-model="model.user.email" type="email" class="form-control" placeholder="Email">
+            <label for="mail">*Email:</label>
+            <input id="mail" ng-model="model.user.email" type="email" class="form-control" placeholder="Email" required>
         </div>
         <div class="form-group">
-            <label for="accountType">Account Type:</label>
+            <label for="accountType">*Account Type:</label>
                 <br>
-                <select id="accountType" ng-init="model.user.accountType = 'Student'" ng-model= "model.user.accountType" class="col-lg-4 form-control">
+                <select id="accountType" ng-init="model.user.accountType = 'Student'" ng-model= "model.user.accountType" class="col-lg-2 form-control">
                     <option>Student</option>
                     <option>Professor</option>
                 </select>
         </div>
         <div class="form-group" ng-if= "model.user.accountType == 'Student'">
-            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter your School Name">
-            <br>
-            <input ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!">
-            <br>
-            <input ng-model="model.user.github" type="text" class="form-control" placeholder="github profile link">
-            <br>
-            <input ng-model="model.user.facebook" type="text" class="form-control" placeholder="facebook profile link">
-            <br>
-            <input ng-model="model.user.linkedIn" type="text" class="form-control" placeholder="LinkedIn profile link">
+            <label for="sname">*School Name:</label>
+            <input ng-model="model.user.schoolName" id="sname" type="text" class="form-control" placeholder="Enter your School Name" required>
         </div>
         <div class="form-group" ng-if= "model.user.accountType == 'Professor'">
-            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter current university ">
-            <br>
-            <input ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!">
-            <br>
-            <input ng-model="model.user.github" type="text" class="form-control" placeholder="Github profile link">
-            <br>
-            <input ng-model="model.user.facebook" type="text" class="form-control" placeholder="Facebook profile link">
-            <br>
-            <input ng-model="model.user.linkedIn" type="text" class="form-control" placeholder="LinkedIn profile link">
+            <label for="sname">*School Name:</label>
+            <input ng-model="model.user.schoolName" type="text" class="form-control" placeholder="Enter current university" required>
         </div>
         <div class="form-group">
-            <button id="submit" ng-click="model.register()" type="register" class="btn btn-warning btn-group-justified">Register</button>
+            <label for="desc">*Tag Line:</label>
+            <input id="desc" ng-model="model.user.tagLine" type="text" class="form-control" placeholder="One line description about you!" required>
+        </div>
+        <div class="form-group">
+            <label for="git">Github Link:</label>
+            <input id="git" ng-model="model.user.github" type="text" class="form-control" placeholder="Github profile link">
+        </div>
+        <div class="form-group">
+            <label for="ln">LinkedIn Profile Link:</label>
+            <input id="ln" ng-model="model.user.facebook" type="text" class="form-control" placeholder="Facebook profile link">
+        </div>
+        <div class="form-group">
+            <label for="fb">Facebook Profile Link:</label>
+            <input id="fb" ng-model="model.user.linkedIn" type="text" class="form-control" placeholder="LinkedIn profile link">
+        </div>
+
+        <div class="form-group">
+            <button id="submit" ng-click="model.validateFields()" type="register" class="btn btn-warning btn-group-justified">Register</button>
         </div>
     </form>
     </div>

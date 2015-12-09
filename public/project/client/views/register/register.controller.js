@@ -7,6 +7,7 @@
          function RegisterController($scope, UserService, $location, $rootScope, ProfileService) {
                 var model = this;
                 model.register = register;
+                model.validateFields = validateFields;
 
              function init() {
                          ProfileService.getLoggedIn()
@@ -21,6 +22,14 @@
              function getAllUsers(response) {
                 if(response != null) {
                     model.allUsers = response;
+                }
+             }
+
+             function validateFields() {
+                if(model.user.pwd != model.user.verifypwd) {
+                    alert("Passwords do not match!!");
+                } else {
+                    register();
                 }
              }
 
@@ -71,6 +80,6 @@
 
                     });
                 });
-             }
+            }
          }
     })();

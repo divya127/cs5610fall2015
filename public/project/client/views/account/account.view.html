@@ -5,29 +5,30 @@
 <br>
 
 <div>
+    <form>
     <div class="form-group">
         <button class="btn btn-success" ng-click="model.goToProfile()">Go to My Profile</button>
         <button class="btn btn-info" ng-click="model.update()" style="float:right">Update</button>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="uname">Username</label>
-        <input ng-model="model.currentUser.username" id="uname" type="text" class="form-control" placeholder="username">
+        <input ng-model="model.currentUser.username" id="uname" type="text" class="form-control" placeholder="username" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="Password">Password</label>
-        <input ng-model="model.currentUser.password" id="Password" type="password" class="form-control" placeholder="password">
+        <input ng-model="model.currentUser.password" id="Password" type="password" class="form-control" placeholder="password" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="fname">First Name </label>
-        <input ng-model="model.currentUser.firstName" id="fname" type="text" class="form-control" placeholder="First Name">
+        <input ng-model="model.currentUser.firstName" id="fname" type="text" class="form-control" placeholder="First Name" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="lname">Last Name</label>
-        <input ng-model="model.currentUser.lastName" id="lname" type="text" class="form-control" placeholder="Last Name">
+        <input ng-model="model.currentUser.lastName" id="lname" type="text" class="form-control" placeholder="Last Name" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="email">Email</label>
-        <input ng-model="model.currentUser.email" id="email" type="email" class="form-control" placeholder="Email">
+        <input ng-model="model.currentUser.email" id="email" type="email" class="form-control" placeholder="Email" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="phone">Phone</label>
@@ -42,11 +43,11 @@
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="sname">School Name</label>
-        <input ng-model="model.currentUser.schoolName" id="sname" type="text" class="form-control" placeholder="School Name">
+        <input ng-model="model.currentUser.schoolName" id="sname" type="text" class="form-control" placeholder="School Name" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="tag">Tag Line</label>
-        <input ng-model="model.currentUser.tagLine" id="tag" type="text" class="form-control" placeholder="Tag Line">
+        <input ng-model="model.currentUser.tagLine" id="tag" type="text" class="form-control" placeholder="Tag Line" required>
     </div>
     <div class="form-group col-lg-6">
         <label class="control-label" for="git">Github Profile Link</label>
@@ -60,9 +61,10 @@
         <label class="control-label" for="li">LinkedIn Profile Link</label>
         <input ng-model="model.currentUser.linkedinId" id="li" type="text" class="form-control" placeholder="LinkedIn Profile link">
     </div>
-    <div class="form-group col-lg-6">
-        <button class="btn btn-info" ng-click="model.update()" style="float:right">Update</button>
+    <div class="form-group">
+        <button class="btn btn-lg btn-block btn-info" ng-click="model.update()">Update</button>
     </div>
+    </form>
 </div>
 
 

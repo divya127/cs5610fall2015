@@ -13,8 +13,8 @@
             <b class="text-primary">{{model.user.schoolName}}</b>
         </h4>
         <h4>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></h4>
-        <a ng-if="model.user.githubId != null" ng-href="{{model.user.githubId}}" target="_blank">Github</a> <b ng-if="model.user.githubId != null">|</b>
-         <a ng-if="model.user.linkedinId != null" ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> <b ng-if="model.user.linkedinId != null">|</b>
+        <a ng-if="model.user.githubId != null" ng-href="{{model.user.githubId}}" target="_blank">Github</a> <b ng-if="model.user.linkedinId != null">|</b>
+         <a ng-if="model.user.linkedinId != null" ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> <b ng-if="model.user.facebookId != null">|</b>
         <a ng-if="model.user.facebookId != null" ng-href="{{model.user.facebookId}}" target="_blank">Facebook</a>
         <br/>
     </div>

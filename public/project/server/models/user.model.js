@@ -194,6 +194,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy, GoogleStrategy)
                     user = doc[0];
                 } else {
                     user = new usersModel();
+                    user.accountType = "Student";
                 }
 
                 user.googleId = googleUser.id;

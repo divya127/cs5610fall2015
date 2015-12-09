@@ -28,6 +28,7 @@
                 var username = model.user.username;
                 var pwd = model.user.pwd;
                 var email = model.user.email;
+
                 var userObj = {
                     username: username,
                     password: pwd ,

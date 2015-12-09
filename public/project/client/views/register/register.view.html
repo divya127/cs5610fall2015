@@ -33,7 +33,7 @@
         <div class="form-group">
             <label for="accountType">Account Type:</label>
                 <br>
-                <select id="accountType" ng-model= "model.user.accountType" class="col-lg-4 form-control">
+                <select id="accountType" ng-init="model.user.accountType = 'Student'" ng-model= "model.user.accountType" class="col-lg-4 form-control">
                     <option>Student</option>
                     <option>Professor</option>
                 </select>

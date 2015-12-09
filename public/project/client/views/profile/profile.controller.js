@@ -385,7 +385,7 @@
          ProfileService.findProfileForUser(model.profUserId)
                     .then(function(forms){
                         console.log("Fetched profile: " + forms);
-                        model.profile = forms[0];
+                        model.profile = forms;
                     });
              UserService.findUserById(model.profUserId)
              .then(function(usr){

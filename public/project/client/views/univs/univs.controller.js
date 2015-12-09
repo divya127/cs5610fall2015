@@ -26,7 +26,7 @@
 
 				var studProfileLink = ProfileLink + $rootScope.curid;
 
-				var recos = response[0].recommendations;
+				var recos = response.recommendations;
 
 				var mailString = "\nDear " + univName + " admissions office,\n\n" +
 				"Please find below the recommendation Letters from" +

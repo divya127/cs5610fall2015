@@ -4,7 +4,7 @@
         .module("AcademiaApp")
         .controller("AccountController", AccountController);
 
-    function AccountController($rootScope, UserService, $routeParams, $location) {
+    function AccountController($rootScope, UserService, $routeParams, $location, ProfileService) {
 
         var model = this;
         model.curUserId = $rootScope.curid;
@@ -15,8 +15,26 @@
             console.log("Fetching account info for user: " + model.curUserId);
             UserService.findUserById(model.curUserId)
                  .then(function(usr){
-                        console.log("Found user! " + usr.googleId);
+                        console.log("Found user! account controller: " + usr);
                         model.currentUser = usr;
+
+                        ProfileService.findProfileForUser(model.curUserId)
+                        .then(function(res){
+                        console.log("Retrieved profile : " + res);
+                            if(!res) {
+                                console.log("No profile found for user!");
+                                var profObj= {
+                                    "userId" : usr._id,
+                                };
+                                ProfileService.addNewProfile(profObj)
+                                .then(function(result){
+                                    console.log("Created Profile for google user! : " + result);
+                                });
+                            } else {
+                                console.log("Found profile !!!!!!");
+                            }
+
+                        });
                  });
         } init();
 

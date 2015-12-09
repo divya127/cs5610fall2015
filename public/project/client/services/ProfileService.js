@@ -74,6 +74,7 @@
             console.log("Client server find profile for user: " + userId);
             $http.get("/api/project/profile/user/" + userId)
                 .success(function(user){
+                    console.log("profile found: " + user);
                     deferred.resolve(user);
                 });
 

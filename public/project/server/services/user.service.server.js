@@ -123,7 +123,7 @@ module.exports = function(app, model, passport) {
     console.log("Inside server side updateUser");
     var userId = req.params.id;
     var userObj = req.body;
-        userObj.delete("_id");
+
         model
             .updateUser(userId, userObj)
             .then(function(user){

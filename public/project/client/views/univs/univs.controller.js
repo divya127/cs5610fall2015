@@ -28,7 +28,7 @@
 
 				var recos = response[0].recommendations;
 
-				var mailString = "\nDear " + univName + " admissions office,\n\n " +
+				var mailString = "\nDear " + univName + " admissions office,\n\n" +
 				"Please find below the recommendation Letters from" +
 				" Academia Inc. for " + $rootScope.firstName + " " + $rootScope.lastName + " from professors.\n" +
 				"\nRef: Student's Academia Profile : " + studProfileLink;

@@ -7,6 +7,14 @@
     function LoginController(UserService, $rootScope, $location) {
         var model = this;
         model.login = login;
+        model.curid = $rootScope.curid;
+
+        function init() {
+            if(model.curid != null){
+                $location.url("/account");
+            }
+        }
+         init();
 
         function login() {
             var username = model.username;

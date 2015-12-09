@@ -41,7 +41,10 @@
                 {
                     templateUrl: "views/profile/profile.view.html",
                     controller: "ProfileController",
-                    controllerAs: "model"
+                    controllerAs: "model",
+                    resolve : {
+                        alreadyLoggedIn : checkAlreadyLoggedin
+                    }
 
                 })
                 .when("/professor",
@@ -120,12 +123,15 @@ var checkAlreadyLoggedin = function($q, $timeout, $http, $location, $rootScope)
       $rootScope.accountType = response.accountType;
       $rootScope.firstName = response.firstName;
       $rootScope.lastName = response.lastName;
-      deferred.resolve();
     }
+
+    deferred.resolve();
 
   });
 
   return deferred.promise;
 };
+
+
 
 

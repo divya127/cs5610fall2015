@@ -65,7 +65,7 @@ module.exports = function(app, model, userModel) {
                     var count = 1;
                     for (var proj in projs) {
                         if (typeof projs[proj].title != "undefined"){
-                            summary += "\n " + count + ". Title" + projs[proj].title + "\n " +
+                            summary += "\n " + count + ". Title: " + projs[proj].title + "\n " +
                                           projs[proj].description ;
                             count++;
                         } else {

@@ -8,8 +8,6 @@
                 var model = this;
                 model.register = register;
 
-             //UserService.findAllUsers(getAllUsers);
-
              function init() {
                          ProfileService.getLoggedIn()
                          .then(function(response){

@@ -1,5 +1,6 @@
 <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">-->
     <h1 class="page-header">Profile</h1>
+    <div class="col-lg-9">
     <div>
         <img src="{{model.user.photo}}"/>
         <h3 class="text-success">{{model.user.firstName}}&nbsp;{{model.user.lastName}}</h3>
@@ -12,7 +13,9 @@
             <b class="text-primary">{{model.user.schoolName}}</b>
         </h4>
         <h4>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></h4>
-        <a ng-href="{{model.user.githubId}}" target="_blank">Github</a> | <a ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> | <a ng-href="{{model.user.facebookId}}" target="_blank">Facebook</a>
+        <a ng-if="model.user.githubId != null" ng-href="{{model.user.githubId}}" target="_blank">Github</a> <b ng-if="model.user.githubId != null">|</b>
+         <a ng-if="model.user.linkedinId != null" ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> <b ng-if="model.user.linkedinId != null">|</b>
+        <a ng-if="model.user.facebookId != null" ng-href="{{model.user.facebookId}}" target="_blank">Facebook</a>
         <br/>
     </div>
 
@@ -20,39 +23,53 @@
         <a ng-if="model.user._id == model.curUserId && model.user.accountType == 'Student' " ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Download Profile Summary</button></a>
         </h3>
         <div ng-include src="'views/profile/projects.view.html'"></div>
-
-<H3><b>People also viewed</b></H3>
-<div class="model.rightCol list-group col-lg-4" >
-    <a href="#/profile/{{prof._id}}" class="list-group-item" ng-repeat="prof in model.randomProfs">
-        <img src="{{prof.photo}}"/>&nbsp;<h4 class="list-group-item-heading" style="color: #18bc9c;">{{prof.firstName}} {{prof.lastName}}</h4>
-        <p class="list-group-item-text">{{prof.tagLine}}</p>
-        <p class="list-group-item-text" ng-if="prof.accountType == 'Student'">
-            <span>Studies at </span>
-            <b class="text-primary">{{prof.schoolName}}</b>
-        </p>
-        <p class="list-group-item-text" ng-if="prof.accountType == 'Professor'">
-            <span>Works at </span>
-            <b class="text-primary">{{prof.schoolName}}</b>
-        </p>
-    </a>
-</div>
-
-<div class="model.leftCol">
         <div ng-include src="'views/profile/publications.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/recommendations.view.html'"></div>
         <div ng-include src="'views/profile/skills.view.html'"></div>
         <div ng-if="model.user.accountType == 'Student'" ng-include src="'views/profile/testscores.view.html'"></div>
         <div ng-include src="'views/profile/clubs.view.html'"></div>
 
+    </div>
 
-    <div class=" col-lg-5" ng-if="model.user.accountType == 'Student' && model.user._id == model.curUserId">
-        <H3><b>Universities Applied To</b></H3>
+<div class="col-lg-3">
+    <div class="list-group">
+        <H4><b>People also viewed</b></H4>
+        <a href="#/profile/{{prof._id}}" class="list-group-item" ng-repeat="prof in model.randomProfs">
+            <table>
+                <tr>
+                    <td>
+                        <img style="margin-right: 10px;" ng-if="prof.photo != null" src="{{prof.photo}}"/>
+                        <img style="margin-right: 10px;" ng-if="prof.photo == null" src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50"/>
+                    </td>
+                    <!--<td>&nbsp;&nbsp;</td>-->
+                    <td>
+                        <h4 class="list-group-item-heading" style="color: #18bc9c;">{{prof.firstName}} {{prof.lastName}}</h4>
+                        <p class="list-group-item-text" style="font-size: 12px">{{prof.tagLine}}</p>
+                        <p class="list-group-item-text" style="font-size: 12px" ng-if="prof.accountType == 'Student'">
+                            <span>Studies at </span>
+                            <b class="text-primary">{{prof.schoolName}}</b>
+                        </p>
+                        <p class="list-group-item-text" style="font-size: 12px" ng-if="prof.accountType == 'Professor'">
+                            <span>Works at </span>
+                            <b class="text-primary">{{prof.schoolName}}</b>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </a>
+    </div>
+
+    <div ng-if="model.user.accountType == 'Student' && model.user._id == model.curUserId">
+        <H4><b>Universities Applied</b></H4>
         <ul class="list-group">
             <li class="list-group-item" ng-repeat = "univ in model.profile.univsApplied">
                 <div class="text-success">{{univ.univName}}</div>
             </li>
         </ul>
     </div>
+
 </div>
+
+
 
 <!--</div>-->

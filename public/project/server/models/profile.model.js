@@ -353,6 +353,7 @@ module.exports = function(mongoose, db) {
 
     function findProjectsByUserId(userId) {
         var deferred = q.defer();
+        console.log("Inside find projects for user : " + userId);
         profileModel.findOne({userId : userId}, function(err, prof){
             console.log("Found profile! " + prof.projects);
             deferred.resolve(prof.projects);

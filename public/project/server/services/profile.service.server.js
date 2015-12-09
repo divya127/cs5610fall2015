@@ -58,6 +58,7 @@ module.exports = function(app, model, userModel) {
 
                 model.findProjectsByUserId(userId)
                 .then(function(projs){
+
                     console.log("Starting projects");
                     console.log("projs : " + projs);
                     summary += "\n Projects: ";
@@ -144,16 +145,6 @@ module.exports = function(app, model, userModel) {
             });
         }
 
-        function getSummary(projs) {
-            var sum = "";
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!Writing projects: " + data);
-            var count = 1;
-            for (var proj in projs) {
-                sum += "\n " + count+ ". " + projs[proj].title + "\n " +
-                            "\n " + projs[proj].description + " \n";
-            }
-            return sum;
-        }
 
         function addUnivToAppliedList(req, res) {
             model

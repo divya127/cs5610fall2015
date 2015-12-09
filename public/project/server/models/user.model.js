@@ -169,7 +169,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy, GoogleStrategy)
         console.log("inside user.model.js updateUser");
             var deferred = q.defer();
             console.log("update user userId: "+ userId);
-            userObj.delete("_id");
+            //userObj.delete("_id");
             usersModel.update({_id: userId}, {$set: userObj}, function(err, user) {
                      if(err) {
                         console.log("Cud not find Usr!!");

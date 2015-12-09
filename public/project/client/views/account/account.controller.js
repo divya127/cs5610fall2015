@@ -22,7 +22,22 @@
 
         function update() {
             console.log("Inside update userId: " + model.curUserId);
-            UserService.updateUser(model.curUserId, model.currentUser)
+            var usrObj = {
+                username : model.currentUser.username,
+                password : model.currentUser.password,
+                firstName : model.currentUser.firstName,
+                lastName : model.currentUser.lastName,
+                email : model.currentUser.email,
+                phone : model.currentUser.phone,
+                accountType : model.currentUser.accountType,
+                schoolName : model.currentUser.schoolName,
+                tagLine : model.currentUser.tagLine,
+                githubId : model.currentUser.githubId,
+                facebookId : model.currentUser.facebookId,
+                linkedInid : model.currentUser.linkedInid
+            };
+
+            UserService.updateUser(model.curUserId, usrObj)
             .then(function(res){
             console.log("Updated usr: " + res);
                 model.currentUser = res;

@@ -52,7 +52,7 @@
                 tagLine : model.currentUser.tagLine,
                 githubId : model.currentUser.githubId,
                 facebookId : model.currentUser.facebookId,
-                linkedInid : model.currentUser.linkedInid
+                linkedinId : model.currentUser.linkedinId
             };
 
             UserService.updateUser(model.curUserId, usrObj)

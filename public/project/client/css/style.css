@@ -16,17 +16,6 @@ span.glyphicon.glyphicon-triangle-bottom {
     float:right;
 }
 
-.navbar-form {
-    overflow: auto;
-}
-.navbar-form .input-group {
-    display: inline-block;
-    width: 90%;
-}
-.navbar-form .input-group .form-control{
-    display: inline;
-    width: 90%;
-}
 
 .omb_login .omb_socialButtons a {
 	color: white; // In yourUse @body-bg
@@ -43,8 +32,5 @@ span.glyphicon.glyphicon-triangle-bottom {
     padding-left: 150px;
 }
 
-.onl_login .onl_socialButtons .onl_btn-facebook {background: #3b5998;border-color:#172d5e}
 .onl_login .onl_socialButtons .onl_btn-google-plus {background: #c32f10;border-color:#6b1301}
-.onl_login .onl_socialButtons .onl_btn-github {background: #666666;border-color:#333333}
-.onl_login .onl_socialButtons .onl_btn-linkedin {background: #0976b4;border-color:#004269}
 

@@ -8,7 +8,17 @@
                 var model = this;
                 model.register = register;
 
-             UserService.findAllUsers(getAllUsers);
+             //UserService.findAllUsers(getAllUsers);
+
+             function init() {
+                         ProfileService.getLoggedIn()
+                         .then(function(response){
+                             if (response !== '0'){
+                                 $location.url('/account');
+                             }
+                         });
+                     }
+                      init();
 
              function getAllUsers(response) {
                 if(response != null) {
@@ -29,30 +39,38 @@
                     lastName : model.user.lastName,
                     phone : model.user.phone,
                     schoolName : model.user.schoolName,
-                    tagLine : model.user.tagLine
+                    tagLine : model.user.tagLine,
+                    linkedinId : model.user.linkedIn,
+                    facebookId : model.user.facebook,
+                    githubId : model.user.github
                 };
                 console.log("Inside register!");
                 var user = UserService.createUser(userObj)
-                .then(function(response){
-                console.log("New user " + response + " id: " + response._id);
+                .then(function(res){
+
+                    UserService.findUserByUsernameAndPassword(res.username, res.password)
+                    .then(function(response){
+                    console.log("New user " + response + " id: " + response[0]._id);
                     if(response != null) {
-                        $rootScope.curusername = response.username;
-                        $rootScope.curpwd = response.password;
-                        $rootScope.curid = response._id;
-                        $rootScope.curemail = response.email;
-                        $rootScope.accountType = response.accountType;
-                        $rootScope.firstName = response.firstName;
-                        $rootScope.lastName = response.lastName;
+                        $rootScope.curusername = response[0].username;
+                        $rootScope.curpwd = response[0].password;
+                        $rootScope.curid = response[0]._id;
+                        $rootScope.curemail = response[0].email;
+                        $rootScope.accountType = response[0].accountType;
+                        $rootScope.firstName = response[0].firstName;
+                        $rootScope.lastName = response[0].lastName;
 
                         var profObj= {
-                            "userId" : response._id,
+                            "userId" : response[0]._id,
                         };
                         ProfileService.addNewProfile(profObj)
-                        .then(function(res){
-
-                            $location.url("/profile/"+response._id);
+                        .then(function(result){
+                            ("Redirecting to profile page : " + response[0]._id);
+                            $location.url("/profile/"+response[0]._id);
                         });
                     }
+
+                    });
                 });
              }
          }

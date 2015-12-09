@@ -12,11 +12,13 @@
             <b class="text-primary">{{model.user.schoolName}}</b>
         </h4>
         <h4>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></h4>
-        <br>
+        <a ng-href="{{model.user.githubId}}" target="_blank">Github</a> | <a ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> | <a ng-href="{{model.user.facebookId}}" target="_blank">Facebook</a>
+        <br/>
     </div>
 
+        <h3>
         <a ng-if="model.user._id == model.curUserId && model.user.accountType == 'Student' " ng-href="/api/project/profile/export/{{model.curUserId}}" target="_blank"><button class="btn btn-danger">Download Profile Summary</button></a>
-
+        </h3>
         <div ng-include src="'views/profile/projects.view.html'"></div>
 
 <H3><b>People also viewed</b></H3>

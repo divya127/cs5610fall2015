@@ -84,14 +84,14 @@ module.exports = function(app, model, passport) {
 
     function findUserByUsernameAndPassword(req, res) {
     console.log("Inside server side findUserByUsernameAndPassword");
-//        var username = req.body.username;
-//        var pwd = req.body.password;
-//        var credentials = {
-//            username: username,
-//            password: pwd
-//        };
+        var username = req.body.username;
+        var pwd = req.body.password;
+        var credentials = {
+            username: username,
+            password: pwd
+        };
         model
-            .findUserByCredentials(req.body)
+            .findUserByCredentials(credentials)
             .then(function(user){
                 console.log(user);
                 res.json(user);

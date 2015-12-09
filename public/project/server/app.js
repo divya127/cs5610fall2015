@@ -7,6 +7,6 @@ module.exports = function(app, db, mongoose, passport, LocalStrategy, GoogleStra
     require("./services/univ.service.server.js")(app, model);
 
     var profileModel = require("./models/profile.model.js") (mongoose, db);
-        require("./services/profile.service.server.js")(app, profileModel);
+        require("./services/profile.service.server.js")(app, profileModel, userModel);
         require("./services/others.service.server.js")(app, profileModel);
 };

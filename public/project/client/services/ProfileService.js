@@ -14,12 +14,20 @@
            updateProfile : updateProfile,
            findProfileById : findProfileById,
            addUnivToAppliedList : addUnivToAppliedList,
-           exportProfile : exportProfile
+           exportProfile : exportProfile,
+           getLoggedIn :getLoggedIn
 
         };
         return api;
 
-
+        function getLoggedIn() {
+            var deferred = $q.defer();
+              $http.get('/api/project/loggedin')
+              .success(function(response) {
+                    deferred.resolve(response);
+              });
+              return deferred.promise;
+        }
 
         function exportProfile(userId) {
             var deferred = $q.defer();

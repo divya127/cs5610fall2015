@@ -86,6 +86,7 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
 
   $http.get('/api/project/loggedin').success(function(response)
   {
+  console.log("config.js checking logged in user: " + response);
     if (response !== '0')
     {
       $rootScope.curusername = response.username;

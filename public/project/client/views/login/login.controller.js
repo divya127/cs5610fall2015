@@ -4,15 +4,18 @@
         .module("AcademiaApp")
         .controller("LoginController", LoginController);
 
-    function LoginController(UserService, $rootScope, $location) {
+    function LoginController(UserService, $rootScope, $location, ProfileService) {
         var model = this;
         model.login = login;
         model.curid = $rootScope.curid;
 
         function init() {
-            if(model.curid != null){
-                $location.url("/account");
-            }
+            ProfileService.getLoggedIn()
+            .then(function(response){
+                if (response !== '0'){
+                    $location.url('/account');
+                }
+            });
         }
          init();
 

@@ -9,7 +9,7 @@ var smtpTransport = nodemailer.createTransport({
             }
         });
 
-module.exports = function(app, model) {
+module.exports = function(app, model, userModel) {
 
 
     app.get("/api/project/profile/user/:userId", findProfileForUser);
@@ -48,6 +48,13 @@ module.exports = function(app, model) {
             var userId = req.params.userId;
             console.log("INput userId : " + userId);
             var summary = "User Profile Summary\n";
+
+            userModel.findUserById(userId)
+                .then(function(user){
+                 console.log("Gor user details");
+                 console.log("user : " + user);
+                 summary += "\n " + user.firstName +" " + user.lastName +
+                            " | " + user.phone + " | " + user.email + "\n";
 
                 model.findProjectsByUserId(userId)
                 .then(function(projs){
@@ -133,8 +140,8 @@ module.exports = function(app, model) {
                             });
                         });
                     });
-
                 });
+            });
         }
 
         function getSummary(projs) {

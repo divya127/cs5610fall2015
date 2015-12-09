@@ -46,7 +46,7 @@ module.exports = function(mongoose, db, passport, LocalStrategy, GoogleStrategy)
         passport.use(new GoogleStrategy({
             clientID : googleCredentials.clientID,
             clientSecret : googleCredentials.clientSecret,
-            callbackURL : "http://cs5610-devarajdivya.rhcloud.com//auth/google/callback"
+            callbackURL : "http://cs5610-devarajdivya.rhcloud.com/auth/google/callback"
         },
         function(accessToken, refreshToken, profile, done) {
             process.nextTick(function(){

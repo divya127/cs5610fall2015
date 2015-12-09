@@ -120,7 +120,7 @@
 
         function updateUser(userId, userObj) {
             var deferred = $q.defer();
-
+            console.log("UserService userid update: " + userId);
             $http.put("/api/project/user/"+userId, userObj)
                 .success(function(user){
                     deferred.resolve(user);

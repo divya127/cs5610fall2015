@@ -21,9 +21,10 @@
         } init();
 
         function update() {
-            console.log("Inside update");
+            console.log("Inside update userId: " + model.curUserId);
             UserService.updateUser(model.curUserId, model.currentUser)
             .then(function(res){
+            console.log("Updated usr: " + res);
                 model.currentUser = res;
             });
         }

@@ -1,8 +1,46 @@
-<div class="bs-component">
+<!--<div class="bs-component">-->
+<!--<div class="navbar navbar-default navbar-fixed-top">-->
+    <!--<div class="container" ng-controller="HeaderController">-->
+        <!--<div class="navbar-header">-->
+            <!--<a href="#/home" class="navbar-brand">Academia</a>-->
+            <!--<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+        <!--</div>-->
+        <!--<div class="navbar-collapse collapse" id="navbar-main">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li><a href="#/univs">Universities</a></li>-->
+                <!--<li><a href="#/login" ng-if="curid == null">Login</a></li>-->
+            <!--</ul>-->
+            <!--<div class="navbar-form navbar-left" role="search">-->
+                <!--<div class="form-group">-->
+                    <!--<input type="text" ng-model="model.searchTerm" class="form-control" placeholder="Stanford or Jeff or Miller">-->
+                <!--</div>-->
+                <!--<button type="submit" ng-click="search()" class="btn btn-default"><i class="glyphicon glyphicon-search"/></button>-->
+            <!--</div>-->
+            <!--<ul class="nav navbar-nav navbar-right" ng-if="curid != null">-->
+                <!--<li><a ng-click="getUrl()"><span class="glyphicon glyphicon-user" aria-hidden="true"/><span>&nbsp;&nbsp;{{$root.firstName}}</span></a></li>-->
+                <!--<li class="dropdown">-->
+                    <!--<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></span></a>-->
+                    <!--<ul class="dropdown-menu" role="menu">-->
+                        <!--<li><a href="#/account">Accounts Settings</a></li>-->
+                        <!--<li><a href="#/logout" ng-click="logout()">Logout</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+
+            <!--</ul>-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
 <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container" ng-controller="HeaderController">
+    <div class="container">
         <div class="navbar-header">
-            <a href="#/home" class="navbar-brand">Academia</a>
+            <a href="../" class="navbar-brand">Bootswatch</a>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -11,28 +49,57 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li><a href="#/univs">Universities</a></li>
-                <li><a href="#/login" ng-if="curid == null">Login</a></li>
-            </ul>
-            <div class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" ng-model="model.searchTerm" class="form-control" placeholder="Stanford or Jeff or Miller">
-                </div>
-                <button type="submit" ng-click="search()" class="btn btn-default"><i class="glyphicon glyphicon-search"/></button>
-            </div>
-            <ul class="nav navbar-nav navbar-right" ng-if="curid != null">
-                <li><a ng-click="getUrl()"><span class="glyphicon glyphicon-user" aria-hidden="true"/><span>&nbsp;&nbsp;{{$root.firstName}}</span></a></li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#/account">Accounts Settings</a></li>
-                        <li><a href="#/logout" ng-click="logout()">Logout</a></li>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="themes">
+                        <li><a href="../default/">Default</a></li>
+                        <li class="divider"></li>
+                        <li><a href="../cerulean/">Cerulean</a></li>
+                        <li><a href="../cosmo/">Cosmo</a></li>
+                        <li><a href="../cyborg/">Cyborg</a></li>
+                        <li><a href="../darkly/">Darkly</a></li>
+                        <li><a href="../flatly/">Flatly</a></li>
+                        <li><a href="../journal/">Journal</a></li>
+                        <li><a href="../lumen/">Lumen</a></li>
+                        <li><a href="../paper/">Paper</a></li>
+                        <li><a href="../readable/">Readable</a></li>
+                        <li><a href="../sandstone/">Sandstone</a></li>
+                        <li><a href="../simplex/">Simplex</a></li>
+                        <li><a href="../slate/">Slate</a></li>
+                        <li><a href="../spacelab/">Spacelab</a></li>
+                        <li><a href="../superhero/">Superhero</a></li>
+                        <li><a href="../united/">United</a></li>
+                        <li><a href="../yeti/">Yeti</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="../help/">Help</a>
+                </li>
+                <li>
+                    <a href="http://news.bootswatch.com">Blog</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download">Flatly <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="download">
+                        <li><a href="http://jsfiddle.net/bootswatch/jmg3gykg/">Open Sandbox</a></li>
+                        <li class="divider"></li>
+                        <li><a href="./bootstrap.min.css">bootstrap.min.css</a></li>
+                        <li><a href="./bootstrap.css">bootstrap.css</a></li>
+                        <li class="divider"></li>
+                        <li><a href="./variables.less">variables.less</a></li>
+                        <li><a href="./bootswatch.less">bootswatch.less</a></li>
+                        <li class="divider"></li>
+                        <li><a href="./_variables.scss">_variables.scss</a></li>
+                        <li><a href="./_bootswatch.scss">_bootswatch.scss</a></li>
+                    </ul>
+                </li>
+            </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
             </ul>
 
         </div>
     </div>
-</div>
 </div>

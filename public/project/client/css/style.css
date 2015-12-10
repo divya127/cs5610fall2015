@@ -16,13 +16,6 @@ span.glyphicon.glyphicon-triangle-bottom {
     float:right;
 }
 
-@media (max-width: 320px) {
-.element {
-      width: 90%;
-     }
-}
-
-
 .omb_login .omb_socialButtons a {
 	color: white; // In yourUse @body-bg
 	opacity:0.9;

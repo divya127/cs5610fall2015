@@ -15,7 +15,7 @@ module.exports = function(app, model, passport) {
     app.get("/api/project/profile/random/:userId", getRandomProfiles)
     app.post("/api/project/login", passport.authenticate('local'), findUserByUsernameAndPassword);
     app.get("/api/project/user", auth, findAllUsers);
-    app.get("/api/project/user/:id", auth, findUserById);
+    app.get("/api/project/user/:id", findUserById);
     app.post("/api/project/user", addNewUser);
     app.put("/api/project/user/:id", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);

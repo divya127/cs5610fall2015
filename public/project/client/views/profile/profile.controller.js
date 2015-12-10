@@ -381,15 +381,16 @@
 
         function init() {
         console.log("inside form controller" + $rootScope.curid);
-            //var userId = "123";
-         ProfileService.findProfileForUser(model.profUserId)
+
+             UserService.findUserById(model.profUserId)
+             .then(function(usr){
+             console.log("Found user init profile: " + usr);
+                    model.user = usr;
+                    ProfileService.findProfileForUser(model.profUserId)
                     .then(function(forms){
                         console.log("Fetched profile: " + forms);
                         model.profile = forms;
                     });
-             UserService.findUserById(model.profUserId)
-             .then(function(usr){
-                    model.user = usr;
              });
              UserService.getRandomProfiles(model.profUserId)
              .then(function(users){

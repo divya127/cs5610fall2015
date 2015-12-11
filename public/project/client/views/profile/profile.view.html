@@ -2,8 +2,18 @@
     <h1 class="page-header">Profile</h1>
     <div class="col-lg-9">
     <div>
-        <img src="{{model.user.photo}}"/>
-        <h3 class="text-success">{{model.user.firstName}}&nbsp;{{model.user.lastName}}</h3>
+        <table>
+            <tr>
+                <td class="col-lg-2">
+                    <img ng-if="model.user.photo != null" src="{{model.user.photo}}"/>
+                    <img ng-if="model.user.photo == null" src="https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50"/>
+
+                </td>
+                <td>
+                    <h3 class="text-success">{{model.user.firstName}}&nbsp;{{model.user.lastName}}</h3>
+                </td>
+            </tr>
+        </table>
         <h4 ng-if="model.user.accountType == 'Student'">
             <span>Student at </span>
             <b class="text-primary">{{model.user.schoolName}}</b>
@@ -14,9 +24,9 @@
         </h4>
         <h4>Tag Line: <i class="text-success">{{model.user.tagLine}}</i></h4>
         <a ng-if="model.user.githubId != null" ng-href="{{model.user.githubId}}" target="_blank">Github</a> <b ng-if="model.user.linkedinId != null">|</b>
-         <a ng-if="model.user.linkedinId != null" ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> <b ng-if="model.user.facebookId != null">|</b>
+        <a ng-if="model.user.linkedinId != null" ng-href="{{model.user.linkedinId}}" target="_blank">LinkedIn</a> <b ng-if="model.user.facebookId != null">|</b>
         <a ng-if="model.user.facebookId != null" ng-href="{{model.user.facebookId}}" target="_blank">Facebook</a>
-        <br/>
+
     </div>
 
         <h3>

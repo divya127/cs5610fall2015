@@ -70,9 +70,9 @@ module.exports = function(mongoose, db, passport, LocalStrategy, GoogleStrategy)
             usersModel.count(function (e, count) {
                    console.log("Count : " + count);
                    n = count;
-                   var r = function(){return Math.floor( Math.random() * 2 )};
+                   var r = function(){return Math.floor( Math.random() * 5 )};
                    console.log("random " + r());
-                   usersModel.find({'_id': {$ne: userId}}, {} ,{ limit: 5 , skip : r()}, function(err, results) {
+                   usersModel.find({'_id': {$ne: userId}}, {} ,{ limit: 4 , skip : r()}, function(err, results) {
                            console.log("2 Random records ! : " + results);
                            deferred.resolve(results);
                         });
